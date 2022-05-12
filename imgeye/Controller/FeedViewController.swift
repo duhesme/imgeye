@@ -22,7 +22,7 @@ class FeedViewController: UIViewController {
         photoManager.delegate = self
         photoManager.downloadPhotos()
         
-        feedTableView.rowHeight = 120
+        //feedTableView.rowHeight = 220
         feedTableView.register(PhotoTableViewCell.nib, forCellReuseIdentifier: PhotoTableViewCell.identifier)
         feedTableView.dataSource = self
         feedTableView.delegate = self
@@ -58,7 +58,7 @@ extension FeedViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: PhotoTableViewCell.identifier, for: indexPath) as! PhotoTableViewCell
         
-        cell.setPhotoImage(fromUrl: photos[indexPath.row].urls.full)
+        cell.setPhotoImage(fromUrl: photos[indexPath.row].urls.small)
         
         return cell
     }
