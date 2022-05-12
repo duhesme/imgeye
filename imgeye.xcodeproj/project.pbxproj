@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2BFC4D57CD84E633E643EB31 /* Pods_imgeye.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C725982C24E7F340C92494F /* Pods_imgeye.framework */; };
 		84D73D98282D56300070950B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D73D97282D56300070950B /* AppDelegate.swift */; };
 		84D73D9A282D56300070950B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D73D99282D56300070950B /* SceneDelegate.swift */; };
 		84D73D9C282D56300070950B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D73D9B282D56300070950B /* ViewController.swift */; };
@@ -16,6 +17,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6C725982C24E7F340C92494F /* Pods_imgeye.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_imgeye.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6D75FF380AB33F507BA22987 /* Pods-imgeye.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-imgeye.release.xcconfig"; path = "Target Support Files/Pods-imgeye/Pods-imgeye.release.xcconfig"; sourceTree = "<group>"; };
 		84D73D94282D56300070950B /* imgeye.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = imgeye.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84D73D97282D56300070950B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		84D73D99282D56300070950B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -24,6 +27,7 @@
 		84D73DA0282D56310070950B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		84D73DA3282D56310070950B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		84D73DA5282D56310070950B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C64CD8A2C8E7AB7222904669 /* Pods-imgeye.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-imgeye.debug.xcconfig"; path = "Target Support Files/Pods-imgeye/Pods-imgeye.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +35,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2BFC4D57CD84E633E643EB31 /* Pods_imgeye.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		692F154F175DBB33FCA151FD /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C64CD8A2C8E7AB7222904669 /* Pods-imgeye.debug.xcconfig */,
+				6D75FF380AB33F507BA22987 /* Pods-imgeye.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		84D73D8B282D56300070950B = {
 			isa = PBXGroup;
 			children = (
 				84D73D96282D56300070950B /* imgeye */,
 				84D73D95282D56300070950B /* Products */,
+				692F154F175DBB33FCA151FD /* Pods */,
+				FB65C9963D7580369CF812CE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -67,6 +84,14 @@
 			path = imgeye;
 			sourceTree = "<group>";
 		};
+		FB65C9963D7580369CF812CE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6C725982C24E7F340C92494F /* Pods_imgeye.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -74,9 +99,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 84D73DA8282D56310070950B /* Build configuration list for PBXNativeTarget "imgeye" */;
 			buildPhases = (
+				69A7B05E5AEF22F0D72C89FD /* [CP] Check Pods Manifest.lock */,
 				84D73D90282D56300070950B /* Sources */,
 				84D73D91282D56300070950B /* Frameworks */,
 				84D73D92282D56300070950B /* Resources */,
+				ED52F091095D407A8A46F31C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -132,6 +159,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		69A7B05E5AEF22F0D72C89FD /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-imgeye-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		ED52F091095D407A8A46F31C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-imgeye/Pods-imgeye-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-imgeye/Pods-imgeye-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-imgeye/Pods-imgeye-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		84D73D90282D56300070950B /* Sources */ = {
@@ -282,6 +351,7 @@
 		};
 		84D73DA9282D56310070950B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C64CD8A2C8E7AB7222904669 /* Pods-imgeye.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -311,6 +381,7 @@
 		};
 		84D73DAA282D56310070950B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6D75FF380AB33F507BA22987 /* Pods-imgeye.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
