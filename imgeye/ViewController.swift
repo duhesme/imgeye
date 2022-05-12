@@ -7,12 +7,31 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class FeedViewController: UIViewController {
 
+    let photoManager = PhotoManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        photoManager.downloadPhotos()
     }
 
+}
+
+extension FeedViewController: PhotoManagerDelegate {
+    
+    func didDownloadPhotos(_ photoManager: PhotoManager, photos: [PhotoData]) {
+        
+    }
+    
+    func didFailDownloadingPhotosWithErrorMessage(_ photoManager: PhotoManager, errorData: ErrorData) {
+        
+    }
+    
+    func didFailWithErrorDownloadingPhotos(error: Error?) {
+        
+    }
+    
 }
 
