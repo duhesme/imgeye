@@ -14,6 +14,7 @@
 		84D73D9F282D56300070950B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84D73D9D282D56300070950B /* Main.storyboard */; };
 		84D73DA1282D56310070950B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84D73DA0282D56310070950B /* Assets.xcassets */; };
 		84D73DA4282D56310070950B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84D73DA2282D56310070950B /* LaunchScreen.storyboard */; };
+		84D73DAC282D62C00070950B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D73DAB282D62C00070950B /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		84D73DA0282D56310070950B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		84D73DA3282D56310070950B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		84D73DA5282D56310070950B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		84D73DAB282D62C00070950B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		C64CD8A2C8E7AB7222904669 /* Pods-imgeye.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-imgeye.debug.xcconfig"; path = "Target Support Files/Pods-imgeye/Pods-imgeye.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -48,7 +50,6 @@
 				C64CD8A2C8E7AB7222904669 /* Pods-imgeye.debug.xcconfig */,
 				6D75FF380AB33F507BA22987 /* Pods-imgeye.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -80,6 +81,7 @@
 				84D73DA0282D56310070950B /* Assets.xcassets */,
 				84D73DA2282D56310070950B /* LaunchScreen.storyboard */,
 				84D73DA5282D56310070950B /* Info.plist */,
+				84D73DAB282D62C00070950B /* Constants.swift */,
 			);
 			path = imgeye;
 			sourceTree = "<group>";
@@ -210,6 +212,7 @@
 				84D73D9C282D56300070950B /* ViewController.swift in Sources */,
 				84D73D98282D56300070950B /* AppDelegate.swift in Sources */,
 				84D73D9A282D56300070950B /* SceneDelegate.swift in Sources */,
+				84D73DAC282D62C00070950B /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
