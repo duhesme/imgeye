@@ -9,7 +9,15 @@ import UIKit
 
 class PhotoTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var photoImagaView: UIImageView!
+    class var identifier: String {
+        return "PhotoTableViewCell"
+    }
+    
+    class var nib: UINib {
+        return UINib(nibName: "PhotoTableViewCell", bundle: nil)
+    }
+    
+    @IBOutlet weak var photoImageView: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -23,7 +31,7 @@ class PhotoTableViewCell: UITableViewCell {
     }
     
     func setPhotoImage(fromUrl url: URL) {
-        photoImagaView.kf.setImage(with: url) { result in
+        photoImageView.kf.setImage(with: url) { result in
             switch result {
             case .success(let value):
                 print("Task done for: \(value.source.url?.absoluteString ?? "")")

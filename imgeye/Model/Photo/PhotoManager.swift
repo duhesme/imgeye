@@ -6,9 +6,10 @@
 //
 
 import Foundation
+import CloudKit
 
 protocol PhotoManagerDelegate: NSObjectProtocol {
-    func didDownloadPhotos(_ photoManager: PhotoManager, photos: [PhotoData])
+    func didDownloadPhotos(_ photoManager: PhotoManager, photos: [PhotoModel])
     func didFailDownloadingPhotosWithErrorMessage(_ photoManager: PhotoManager, errorData: ErrorData)
     func didFailWithErrorDownloadingPhotos(error: Error?)
 }
@@ -149,11 +150,21 @@ struct PhotoManager {
         }
     }
     
-    private func parseJSON(_ photoData: Data) -> [PhotoData]? {
+    private func parseJSON(_ photoData: Data) -> [PhotoModel]? {
         let decoder = JSONDecoder()
         do {
             let decodedData = try decoder.decode([PhotoData].self, from: photoData)
-            return decodedData
+            
+            var photos = [PhotoModel]()
+            
+            for d in decodedData {
+                let urls = photoModelURL(raw: URL(string: d.urls.raw)!, full: URL(string: d.urls.full)!, regular: URL(string: d.urls.regular)!, small: URL(string: d.urls.small)!, thumb: URL(string: d.urls.thumb)!)
+                let p = PhotoModel(id: d.id, urls: urls, user: d.user)
+                
+                photos.append(p)
+            }
+            
+            return photos
         } catch {
             print(error)
             delegate?.didFailWithErrorDownloadingPhotos(error: error)

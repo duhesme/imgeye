@@ -6,3 +6,17 @@
 //
 
 import Foundation
+
+struct PhotoModel {
+    let id: String
+    let urls: photoModelURL
+    let user: User
+}
+
+struct photoModelURL {
+    let raw: URL
+    let full: URL
+    let regular: URL
+    let small: URL
+    let thumb: URL
+}
