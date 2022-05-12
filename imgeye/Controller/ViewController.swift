@@ -10,8 +10,6 @@ import Kingfisher
 
 class FeedViewController: UIViewController {
 
-    @IBOutlet weak var photoImageView: UIImageView!
-    
     var photoManager = PhotoManager()
     
     override func viewDidLoad() {
@@ -26,17 +24,17 @@ class FeedViewController: UIViewController {
 extension FeedViewController: PhotoManagerDelegate {
     
     func didDownloadPhotos(_ photoManager: PhotoManager, photos: [PhotoData]) {
-        let url = URL(string: photos[0].urls.full)
-        DispatchQueue.main.async {
-            self.photoImageView.kf.setImage(with: url) { result in
-                    switch result {
-                    case .success(let value):
-                        print("Task done for: \(value.source.url?.absoluteString ?? "")")
-                    case .failure(let error):
-                        print("Job failed: \(error.localizedDescription)")
-                    }
-            }
-        }
+//        let url = URL(string: photos[0].urls.full)
+//        DispatchQueue.main.async {
+//            self.photoImageView.kf.setImage(with: url) { result in
+//                    switch result {
+//                    case .success(let value):
+//                        print("Task done for: \(value.source.url?.absoluteString ?? "")")
+//                    case .failure(let error):
+//                        print("Job failed: \(error.localizedDescription)")
+//                    }
+//            }
+//        }
     }
     
     func didFailDownloadingPhotosWithErrorMessage(_ photoManager: PhotoManager, errorData: ErrorData) {
