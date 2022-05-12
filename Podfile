@@ -8,5 +8,6 @@ target 'imgeye' do
   # Pods for imgeye
   pod 'RealmSwift'
   pod 'UnsplashPhotoPicker', '~> 1.3'
+  pod 'Kingfisher', '~> 6.0'
 
 end
