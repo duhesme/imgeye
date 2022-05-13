@@ -9,5 +9,6 @@ target 'imgeye' do
   pod 'RealmSwift'
   pod 'UnsplashPhotoPicker', '~> 1.3'
   pod 'Kingfisher', '~> 6.0'
+  pod 'SkeletonView'
 
 end
