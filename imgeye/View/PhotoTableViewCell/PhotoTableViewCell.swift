@@ -28,7 +28,6 @@ class PhotoTableViewCell: UITableViewCell {
         self.actualContentView.layer.cornerRadius = 8
         self.actualContentView.layer.masksToBounds = true
         
-
         self.shadowLayer.layer.masksToBounds = false
         self.shadowLayer.layer.shadowOffset = CGSize(width: 0, height: 0)
         self.shadowLayer.layer.shadowColor = UIColor.black.cgColor
@@ -44,10 +43,21 @@ class PhotoTableViewCell: UITableViewCell {
     }
     
     func setPhotoImage(fromUrl url: URL) {
-        photoImageView.kf.setImage(with: url) { result in
+        self.showAnimatedGradientSkeleton()
+        
+        photoImageView.kf.indicatorType = .activity
+        photoImageView.kf.setImage(
+            with: url,
+            placeholder: UIImage(named: "placeholderImage"),
+            options: [
+                .transition(.fade(1))
+            ])
+        {
+            result in
             switch result {
             case .success(let value):
                 print("Task done for: \(value.source.url?.absoluteString ?? "")")
+                self.hideSkeleton()
             case .failure(let error):
                 print("Job failed: \(error.localizedDescription)")
             }

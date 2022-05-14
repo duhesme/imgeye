@@ -22,84 +22,6 @@ struct PhotoManager {
         performRequest(with: K.photosURL)
     }
     
-//    private func performRequest(with urlString: String, _ id: Int, _ code: Int) {
-//        let authParameters = ["Accept-Version": "v1"]
-//        let parameters = ["id": id, "code": code]
-//
-//        let url = URL(string: urlString)!
-//        let session = URLSession.shared
-//
-//        var request = URLRequest(url: url)
-//        request.httpMethod = "POST"
-//        request.allHTTPHeaderFields = authParameters
-//
-//        do {
-//            request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
-//        } catch let error {
-//            print(error.localizedDescription)
-//        }
-//
-//        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-//        request.addValue("application/json", forHTTPHeaderField: "Accept")
-//
-//        let task = session.dataTask(with: request as URLRequest, completionHandler: { data, response, error in
-//
-//            guard error == nil else {
-//                delegate?.didFailWithErrorAuthorizingUser(self, error: error)
-//                return
-//            }
-//
-//            guard let data = data else {
-//                delegate?.didFailWithErrorAuthorizingUser(self, error: error)
-//                return
-//            }
-//
-//
-////                if error != nil {
-////                    self.delegate?.didFailWithErrorLoadingUser(error: error)
-////                }
-////
-////                if let safeData = data {
-////                    if let user = self.parseJSON(safeData) {
-////                        self.delegate?.didLoadUser(self, user: user)
-////                    }
-////                }
-//
-//
-//            do {
-//                //create json object from data
-//                if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] {
-//                    print("JSON: ")
-//                    print(json)
-//                    // handle json...
-//                }
-//
-//                //let d = self.parseJSON(data)
-//
-//                if let httpResponse = response as? HTTPURLResponse {
-//                    print("httpResponse code: \(httpResponse.statusCode)")
-//
-//                    let statusCode = httpResponse.statusCode
-//                    if statusCode == 400 {
-//                        if let errorReason = ErrorManager.parseJSON(data) {
-//                            self.delegate?.didNotAuthorizeUser(self, reason: errorReason)
-//                        } else {
-//                            self.delegate?.didFailWithErrorAuthorizingUser(self, error: error)
-//                        }
-//                    } else {
-//                        if let user = self.parseJSON(data) {
-//                            self.delegate?.didAuthorizeUser(self, user: user)
-//                        }
-//                    }
-//                }
-//            } catch let error {
-//                delegate?.didFailWithErrorAuthorizingUser(self, error: error)
-//                return
-//            }
-//        })
-//        task.resume()
-//    }
-    
     private func performRequest(with urlString: String) {
         let parameters = ["Accept-Version": "v1"]
         
@@ -138,13 +60,6 @@ struct PhotoManager {
                         }
                     }
                 }
-                
-                
-//                if let safeData = data {
-//                    if let photos = self.parseJSON(safeData) {
-//                        self.delegate?.didDownloadPhotos(self, photos: photos)
-//                    }
-//                }
             }
             task.resume()
         }
