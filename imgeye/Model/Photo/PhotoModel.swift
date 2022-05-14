@@ -7,13 +7,17 @@
 
 import Foundation
 
-struct PhotoModel {
+struct PhotoModel: Hashable {
+    static func == (lhs: PhotoModel, rhs: PhotoModel) -> Bool {
+        lhs.id == rhs.id
+    }
+    
     let id: String
     let urls: photoModelURL
     let user: User
 }
 
-struct photoModelURL {
+struct photoModelURL: Hashable {
     let raw: URL
     let full: URL
     let regular: URL

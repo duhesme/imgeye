@@ -18,8 +18,8 @@ struct PhotoManager {
     
     weak var delegate: PhotoManagerDelegate?
     
-    func downloadPhotos() {
-        performRequest(with: K.photosURL)
+    func downloadPhotos(count: Int = 10) {
+        performRequest(with: "\(K.photosURL)&count=\(count)")
     }
     
     private func performRequest(with urlString: String) {

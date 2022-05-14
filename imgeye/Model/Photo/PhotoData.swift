@@ -21,7 +21,7 @@ struct photoURL: Decodable {
     let thumb: String
 }
 
-struct User: Decodable {
+struct User: Decodable, Hashable {
     let id: String
     let name: String
 }

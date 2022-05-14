@@ -13,39 +13,47 @@ class FeedViewController: UIViewController {
     
     @IBOutlet weak var feedTableView: UITableView!
     
-    var photoManager = PhotoManager()
+    let refreshControl = UIRefreshControl()
     
-    var photos = [PhotoModel]()
-    var downloadedImagesCount = 0
+    var photoManager = PhotoManager()
+    var photosArray = [PhotoModel]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         photoManager.delegate = self
-        photoManager.downloadPhotos()
         
         feedTableView.rowHeight = 220
         feedTableView.register(PhotoTableViewCell.nib, forCellReuseIdentifier: PhotoTableViewCell.identifier)
         feedTableView.dataSource = self
+        
+        refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
+        feedTableView.addSubview(refreshControl)
+        
+        photoManager.downloadPhotos()
+    }
+    
+    @objc private func refresh(_ sender: AnyObject) {
+        photoManager.downloadPhotos()
     }
     
 }
 
 extension FeedViewController: SkeletonTableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return photos.count
+        return photosArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: PhotoTableViewCell.identifier, for: indexPath) as! PhotoTableViewCell
-        
-        cell.setPhotoImage(fromUrl: photos[indexPath.row].urls.small)
+        cell.setPhotoImage(fromUrl: photosArray[indexPath.row].urls.small)
         
         return cell
     }
     
     func collectionSkeletonView(_ skeletonView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return photos.count
+        return photosArray.count
     }
     
     func collectionSkeletonView(_ skeletonView: UITableView, skeletonCellForRowAt indexPath: IndexPath) -> UITableViewCell? {
@@ -64,7 +72,11 @@ extension FeedViewController: PhotoManagerDelegate {
     
     func didDownloadPhotos(_ photoManager: PhotoManager, photos: [PhotoModel]) {
         DispatchQueue.main.async {
-            self.photos = photos
+            self.photosArray.append(contentsOf: photos.filter {
+                !self.photosArray.contains($0)
+            })
+
+            self.refreshControl.endRefreshing()
             self.feedTableView.reloadData()
         }
     }

@@ -8,9 +8,10 @@
 import Foundation
 
 enum K {
-    static let apiURL = "https://api.unsplash.com/"
-    static let accessKey = "clab61R-CUuhMlZekf5TjWcXUdTpKAsZYQ-tSWTIpmM"
+    private static let apiURL = "https://api.unsplash.com/"
+    private static let accessKey = "clab61R-CUuhMlZekf5TjWcXUdTpKAsZYQ-tSWTIpmM"
     
     private static let photos = "photos/?client_id=\(accessKey)"
-    static let photosURL = "\(apiURL)\(photos)"
+    private static let randomPhotos = "photos/random/?client_id=\(accessKey)"
+    static let photosURL = "\(apiURL)\(randomPhotos)"
 }
