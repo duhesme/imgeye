@@ -37,8 +37,6 @@ class PhotoTableViewCell: UITableViewCell {
         self.shadowLayer.layer.shadowOpacity = 0.23
         self.shadowLayer.layer.shadowRadius = 4
         self.shadowLayer.layer.cornerRadius = 8
-        
-        likeButton.titleLabel?.text = nil
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
