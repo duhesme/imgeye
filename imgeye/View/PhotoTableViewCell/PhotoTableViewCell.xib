@@ -44,11 +44,27 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hyn-ki-Ox3" userLabel="Like Button">
+                                        <rect key="frame" x="8" y="118" width="32" height="32"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="32" id="SRh-VM-7mM"/>
+                                            <constraint firstAttribute="height" constant="32" id="W0T-JT-rAx"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain">
+                                            <backgroundConfiguration key="background" image="heart-icon-gray"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="likeButtonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="2LM-DO-usI"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="2B5-xV-gC6" firstAttribute="leading" secondItem="bL8-S3-aaL" secondAttribute="leading" id="05M-m0-mLR"/>
+                                    <constraint firstItem="Hyn-ki-Ox3" firstAttribute="leading" secondItem="bL8-S3-aaL" secondAttribute="leading" constant="8" id="8De-k2-BGI"/>
                                     <constraint firstAttribute="bottom" secondItem="2B5-xV-gC6" secondAttribute="bottom" id="8FR-qg-etY"/>
+                                    <constraint firstAttribute="bottom" secondItem="Hyn-ki-Ox3" secondAttribute="bottom" constant="8" id="NaC-kc-VYK"/>
                                     <constraint firstItem="2B5-xV-gC6" firstAttribute="top" secondItem="bL8-S3-aaL" secondAttribute="top" id="ltL-mz-czE"/>
                                     <constraint firstAttribute="trailing" secondItem="2B5-xV-gC6" secondAttribute="trailing" id="stW-3c-ZLJ"/>
                                 </constraints>
@@ -107,6 +123,7 @@
             </userDefinedRuntimeAttributes>
             <connections>
                 <outlet property="actualContentView" destination="bL8-S3-aaL" id="nx6-Qk-4YX"/>
+                <outlet property="likeButton" destination="Hyn-ki-Ox3" id="ZDv-eb-plc"/>
                 <outlet property="photoImageView" destination="2B5-xV-gC6" id="GKc-11-ewU"/>
                 <outlet property="shadowLayer" destination="3jw-vF-cir" id="L0e-as-MYt"/>
             </connections>
@@ -114,6 +131,7 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="heart-icon-gray" width="666.5" height="666.5"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

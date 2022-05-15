@@ -20,6 +20,9 @@ class PhotoTableViewCell: UITableViewCell {
     @IBOutlet weak var shadowLayer: UIView!
     @IBOutlet weak var actualContentView: UIView!
     @IBOutlet weak var photoImageView: UIImageView!
+    @IBOutlet weak var likeButton: UIButton!
+    
+    var model: PhotoModel?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -34,6 +37,8 @@ class PhotoTableViewCell: UITableViewCell {
         self.shadowLayer.layer.shadowOpacity = 0.23
         self.shadowLayer.layer.shadowRadius = 4
         self.shadowLayer.layer.cornerRadius = 8
+        
+        likeButton.titleLabel?.text = nil
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -42,7 +47,11 @@ class PhotoTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func setPhotoImage(fromUrl url: URL) {
+    func configure(fromModel model: PhotoModel) {
+        setPhotoImage(fromUrl: model.urls.small)
+    }
+    
+    private func setPhotoImage(fromUrl url: URL) {
         self.showAnimatedGradientSkeleton()
         
         photoImageView.kf.indicatorType = .activity
@@ -62,6 +71,10 @@ class PhotoTableViewCell: UITableViewCell {
                 print("Job failed: \(error.localizedDescription)")
             }
         }
+    }
+    
+    @IBAction func likeButtonPressed(_ sender: UIButton) {
+        
     }
     
 }
