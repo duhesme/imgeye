@@ -48,7 +48,8 @@ extension FeedViewController: SkeletonTableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: PhotoTableViewCell.identifier, for: indexPath) as! PhotoTableViewCell
-        cell.configure(fromModel: photosArray[indexPath.row])
+        cell.delegate = self
+        cell.configure(fromModel: photosArray[indexPath.row], withIndexPath: indexPath)
         
         return cell
     }
@@ -72,20 +73,7 @@ extension FeedViewController: SkeletonTableViewDataSource {
 extension FeedViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath) as! PhotoTableViewCell
-        let index = indexPath.row
         
-        photosArray[index].isFavorite = !photosArray[index].isFavorite
-        
-        let photo = photosArray[index]
-        
-        if photo.isFavorite {
-            DataManager.shared.saveFavorivePhoto(withID: photo.id)
-        } else {
-            DataManager.shared.deleteFromFavoritesPhoto(withID: photo.id)
-        }
-        
-        cell.update(model: photo)
     }
     
 }
@@ -109,6 +97,27 @@ extension FeedViewController: PhotoManagerDelegate {
     
     func didFailWithErrorDownloadingPhotos(error: Error?) {
         
+    }
+    
+}
+
+extension FeedViewController: PhotoTableViewCellDelegate {
+    
+    func photoTableViewCell(didUpdateFavoriteStateTo state: Bool, atIndexPath indexPath: IndexPath) {
+        let cell = feedTableView.cellForRow(at: indexPath) as! PhotoTableViewCell
+        let index = indexPath.row
+        
+        photosArray[index].isFavorite = state
+        
+        let photo = photosArray[index]
+        
+        if photo.isFavorite {
+            DataManager.shared.saveFavorivePhoto(withID: photo.id)
+        } else {
+            DataManager.shared.deleteFromFavoritesPhoto(withID: photo.id)
+        }
+        
+        cell.update(model: photo)
     }
     
 }

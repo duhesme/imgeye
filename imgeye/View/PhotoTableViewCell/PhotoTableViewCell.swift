@@ -17,12 +17,15 @@ class PhotoTableViewCell: UITableViewCell {
         return UINib(nibName: "PhotoTableViewCell", bundle: nil)
     }
     
+    weak var delegate: PhotoTableViewCellDelegate?
+    
     @IBOutlet weak var shadowLayer: UIView!
     @IBOutlet weak var actualContentView: UIView!
     @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var likeButton: UIButton!
     
     private var model: PhotoModel?
+    var indexPath: IndexPath?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -45,10 +48,11 @@ class PhotoTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func configure(fromModel model: PhotoModel) {
+    func configure(fromModel model: PhotoModel, withIndexPath indexPath: IndexPath) {
         self.model = model
+        self.indexPath = indexPath
         
-        setPhotoImage(fromUrl: model.urls.small)
+        setPhotoImage(fromUrl: model.urls.regular)
         
         if model.isFavorite {
             likeButton.setBackgroundImage(Asset.Assets.heartIconActive.image, for: .normal)
@@ -84,7 +88,7 @@ class PhotoTableViewCell: UITableViewCell {
     }
     
     @IBAction func likeButtonPressed(_ sender: UIButton) {
-        guard let model = model else {
+        guard let model = model, let indexPath = indexPath else {
             return
         }
         
@@ -93,6 +97,8 @@ class PhotoTableViewCell: UITableViewCell {
         } else {
             likeButton.setBackgroundImage(Asset.Assets.heartIconActive.image, for: .normal)
         }
+        
+        delegate?.photoTableViewCell(didUpdateFavoriteStateTo: !model.isFavorite, atIndexPath: indexPath)
     }
     
 }
