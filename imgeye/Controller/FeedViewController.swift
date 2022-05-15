@@ -81,11 +81,11 @@ extension FeedViewController: UITableViewDelegate {
 extension FeedViewController: PhotoManagerDelegate {
     
     func didDownloadPhotos(_ photoManager: PhotoManager, photos: [PhotoModel]) {
+        photosArray.append(contentsOf: photos.filter {
+            !photosArray.contains($0)
+        })
+        
         DispatchQueue.main.async {
-            self.photosArray.append(contentsOf: photos.filter {
-                !self.photosArray.contains($0)
-            })
-
             self.refreshControl.endRefreshing()
             self.feedTableView.reloadData()
         }

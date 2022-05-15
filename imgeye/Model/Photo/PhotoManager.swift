@@ -74,7 +74,11 @@ struct PhotoManager {
             
             for d in decodedData {
                 let urls = photoModelURL(raw: URL(string: d.urls.raw)!, full: URL(string: d.urls.full)!, regular: URL(string: d.urls.regular)!, small: URL(string: d.urls.small)!, thumb: URL(string: d.urls.thumb)!)
-                let p = PhotoModel(id: d.id, urls: urls, user: d.user)
+                var p = PhotoModel(id: d.id, urls: urls, user: d.user)
+                
+                DispatchQueue.global(qos: .userInteractive).sync {
+                    p.isFavorite = DataManager.shared.isPhotoFavorite(basedOnID: p.id)
+                }
                 
                 photos.append(p)
             }

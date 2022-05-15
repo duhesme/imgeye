@@ -58,7 +58,8 @@ class DataManager {
         request.predicate = favoritePhotoPredicate
         
         do {
-            return (try managedContext.fetch(request))[0]
+            let fpdm = try managedContext.fetch(request)
+            return !fpdm.isEmpty ? fpdm[0] : nil
         } catch {
             print("Error fetching data from context \(error)")
             return nil

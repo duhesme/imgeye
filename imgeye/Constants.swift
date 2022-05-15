@@ -13,5 +13,5 @@ enum K {
     
     private static let photos = "photos/?client_id=\(accessKey)"
     private static let randomPhotos = "photos/random/?client_id=\(accessKey)"
-    static let photosURL = "\(apiURL)\(randomPhotos)"
+    static let photosURL = "\(apiURL)\(photos)"
 }
