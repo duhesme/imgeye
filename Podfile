@@ -10,5 +10,6 @@ target 'imgeye' do
   pod 'UnsplashPhotoPicker', '~> 1.3'
   pod 'Kingfisher', '~> 6.0'
   pod 'SkeletonView'
+  pod 'SwiftGen'
 
 end

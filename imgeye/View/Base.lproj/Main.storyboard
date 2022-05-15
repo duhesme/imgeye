@@ -77,7 +77,7 @@
         <!--Item-->
         <scene sceneID="nX0-SS-0nd">
             <objects>
-                <viewController id="O98-lb-Y4W" sceneMemberID="viewController">
+                <viewController id="O98-lb-Y4W" customClass="FavoriteViewController" customModule="imgeye" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mZf-IK-ZGt">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
