@@ -4,6 +4,7 @@
 *.xcodeproj/*
 !*.xcodeproj/project.pbxproj
 !*.xcodeproj/xcshareddata
+*.xcworkspace/xcshareddata
 
 #
 # *.lock - this is used and abused by many editors for many different things.
