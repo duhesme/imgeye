@@ -88,6 +88,10 @@ extension FeedViewController: PhotoManagerDelegate {
         DispatchQueue.main.async {
             self.refreshControl.endRefreshing()
             self.feedTableView.reloadData()
+            
+            for photo in photos {
+                print("User: \(photo.user.username)")
+            }
         }
     }
     

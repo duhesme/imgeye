@@ -12,8 +12,12 @@ class FavoriteViewController: UIViewController {
     
     @IBOutlet weak var favoritesTableView: UITableView!
     
+    var userManager = UserManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        userManager.downloadUser(byUsername: "guillaumevdn")
         
         favoritesTableView.register(FavoritesTableViewCell.nib, forCellReuseIdentifier: FavoritesTableViewCell.identifier)
     }

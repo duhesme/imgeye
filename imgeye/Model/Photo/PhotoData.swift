@@ -23,5 +23,5 @@ struct photoURL: Decodable {
 
 struct User: Decodable, Hashable {
     let id: String
-    let name: String
+    let username: String
 }
