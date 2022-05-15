@@ -72,7 +72,7 @@ class PhotoTableViewCell: UITableViewCell {
     }
     
     @IBAction func likeButtonPressed(_ sender: UIButton) {
-        
+        likeButton.setBackgroundImage(Asset.Assets.heartIconActive.image, for: .normal)
     }
     
 }
