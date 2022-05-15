@@ -28,6 +28,7 @@
 		84E89D762830FF7C00483368 /* XCAssets+Generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E89D732830FF7B00483368 /* XCAssets+Generated.swift */; };
 		84E89D772830FF7C00483368 /* IB-Scenes+Generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E89D742830FF7B00483368 /* IB-Scenes+Generated.swift */; };
 		84E89D782830FF7C00483368 /* IB-Segues+Generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E89D752830FF7C00483368 /* IB-Segues+Generated.swift */; };
+		84E89D7B2831048000483368 /* PersistentDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 84E89D792831048000483368 /* PersistentDataModel.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +56,7 @@
 		84E89D732830FF7B00483368 /* XCAssets+Generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCAssets+Generated.swift"; sourceTree = "<group>"; };
 		84E89D742830FF7B00483368 /* IB-Scenes+Generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "IB-Scenes+Generated.swift"; sourceTree = "<group>"; };
 		84E89D752830FF7C00483368 /* IB-Segues+Generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "IB-Segues+Generated.swift"; sourceTree = "<group>"; };
+		84E89D7A2831048000483368 /* PersistentDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PersistentDataModel.xcdatamodel; sourceTree = "<group>"; };
 		C64CD8A2C8E7AB7222904669 /* Pods-imgeye.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-imgeye.debug.xcconfig"; path = "Target Support Files/Pods-imgeye/Pods-imgeye.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -120,6 +122,7 @@
 			children = (
 				84D73DB1282D649B0070950B /* Photo */,
 				84D73DBC282D6B5A0070950B /* Error */,
+				84E89D792831048000483368 /* PersistentDataModel.xcdatamodeld */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -349,6 +352,7 @@
 				84D73DB3282D64A40070950B /* PhotoData.swift in Sources */,
 				84E89D5F2830FBC400483368 /* BounceButton.swift in Sources */,
 				84D73D9A282D56300070950B /* SceneDelegate.swift in Sources */,
+				84E89D7B2831048000483368 /* PersistentDataModel.xcdatamodeld in Sources */,
 				84D73DB5282D64AC0070950B /* PhotoModel.swift in Sources */,
 				84D73DAE282D64890070950B /* PhotoManager.swift in Sources */,
 				84E89D782830FF7C00483368 /* IB-Segues+Generated.swift in Sources */,
@@ -577,6 +581,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		84E89D792831048000483368 /* PersistentDataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				84E89D7A2831048000483368 /* PersistentDataModel.xcdatamodel */,
+			);
+			currentVersion = 84E89D7A2831048000483368 /* PersistentDataModel.xcdatamodel */;
+			path = PersistentDataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 84D73D8C282D56300070950B /* Project object */;
 }
