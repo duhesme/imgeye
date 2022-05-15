@@ -26,6 +26,7 @@ class FeedViewController: UIViewController {
         feedTableView.rowHeight = 360
         feedTableView.register(PhotoTableViewCell.nib, forCellReuseIdentifier: PhotoTableViewCell.identifier)
         feedTableView.dataSource = self
+        feedTableView.delegate = self
         
         refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
         feedTableView.addSubview(refreshControl)
@@ -64,6 +65,16 @@ extension FeedViewController: SkeletonTableViewDataSource {
     
     func collectionSkeletonView(_ skeletonView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
         return PhotoTableViewCell.identifier
+    }
+    
+}
+
+extension FeedViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let index = indexPath.row
+        
+        photosArray[index].isFavorite = !photosArray[index].isFavorite
     }
     
 }

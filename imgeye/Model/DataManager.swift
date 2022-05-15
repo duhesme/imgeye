@@ -47,6 +47,24 @@ class DataManager {
         }
     }
     
+    private func readFavoritePhoto(withID id: String) -> FavoritePhotoDataModel? {
+        guard let managedContext = context else {
+            print("Failed to get CoreData context.")
+            return nil
+        }
+        
+        let request = FavoritePhotoDataModel.fetchRequest()
+        let favoritePhotoPredicate = NSPredicate(format: "id MATCHES %@", id)
+        request.predicate = favoritePhotoPredicate
+        
+        do {
+            return (try managedContext.fetch(request))[0]
+        } catch {
+            print("Error fetching data from context \(error)")
+            return nil
+        }
+    }
+    
     func saveFavorivePhoto(withID id: String) {
         guard let managedContext = context else {
             print("Failed to get CoreData context.")
@@ -56,6 +74,21 @@ class DataManager {
         let a = FavoritePhotoDataModel(context: managedContext)
         a.id = id
         
+        commitChanges()
+    }
+    
+    func deleteFromFavoritesPhoto(withID id: String) {
+        guard let managedContext = context else {
+            print("Failed to get CoreData context.")
+            return
+        }
+        
+        guard let favoritePhotoToDelete = readFavoritePhoto(withID: id) else {
+            print("Can not find favorite photo with id =\(id).")
+            return
+        }
+        
+        managedContext.delete(favoritePhotoToDelete)
         commitChanges()
     }
     
