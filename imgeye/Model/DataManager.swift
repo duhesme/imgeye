@@ -65,6 +65,14 @@ class DataManager {
         }
     }
     
+    func isPhotoFavorite(basedOnID id: String) -> Bool {
+        if let _ = readFavoritePhoto(withID: id) {
+            return true
+        } else {
+            return false
+        }
+    }
+    
     func saveFavorivePhoto(withID id: String) {
         guard let managedContext = context else {
             print("Failed to get CoreData context.")
