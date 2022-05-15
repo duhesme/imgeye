@@ -15,6 +15,7 @@ struct PhotoModel: Hashable {
     let id: String
     let urls: photoModelURL
     let user: User
+    let isFavorite: Bool = false
 }
 
 struct photoModelURL: Hashable {

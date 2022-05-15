@@ -23,7 +23,7 @@ class FeedViewController: UIViewController {
         
         photoManager.delegate = self
         
-        feedTableView.rowHeight = 220
+        feedTableView.rowHeight = 360
         feedTableView.register(PhotoTableViewCell.nib, forCellReuseIdentifier: PhotoTableViewCell.identifier)
         feedTableView.dataSource = self
         
