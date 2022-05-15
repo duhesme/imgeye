@@ -72,9 +72,20 @@ extension FeedViewController: SkeletonTableViewDataSource {
 extension FeedViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath) as! PhotoTableViewCell
         let index = indexPath.row
         
         photosArray[index].isFavorite = !photosArray[index].isFavorite
+        
+        let photo = photosArray[index]
+        
+        if photo.isFavorite {
+            DataManager.shared.saveFavorivePhoto(withID: photo.id)
+        } else {
+            DataManager.shared.deleteFromFavoritesPhoto(withID: photo.id)
+        }
+        
+        cell.update(model: photo)
     }
     
 }

@@ -22,7 +22,7 @@ class PhotoTableViewCell: UITableViewCell {
     @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var likeButton: UIButton!
     
-    var model: PhotoModel?
+    private var model: PhotoModel?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -46,7 +46,19 @@ class PhotoTableViewCell: UITableViewCell {
     }
     
     func configure(fromModel model: PhotoModel) {
+        self.model = model
+        
         setPhotoImage(fromUrl: model.urls.small)
+        
+        if model.isFavorite {
+            likeButton.setBackgroundImage(Asset.Assets.heartIconActive.image, for: .normal)
+        } else {
+            likeButton.setBackgroundImage(Asset.Assets.heartIconGray.image, for: .normal)
+        }
+    }
+    
+    func update(model: PhotoModel) {
+        self.model = model
     }
     
     private func setPhotoImage(fromUrl url: URL) {
@@ -72,7 +84,15 @@ class PhotoTableViewCell: UITableViewCell {
     }
     
     @IBAction func likeButtonPressed(_ sender: UIButton) {
-        likeButton.setBackgroundImage(Asset.Assets.heartIconActive.image, for: .normal)
+        guard let model = model else {
+            return
+        }
+        
+        if model.isFavorite {
+            likeButton.setBackgroundImage(Asset.Assets.heartIconGray.image, for: .normal)
+        } else {
+            likeButton.setBackgroundImage(Asset.Assets.heartIconActive.image, for: .normal)
+        }
     }
     
 }
