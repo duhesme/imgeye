@@ -10,8 +10,12 @@ import UIKit
 
 class FavoriteViewController: UIViewController {
     
+    @IBOutlet weak var favoritesTableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        favoritesTableView.register(FavoritesTableViewCell.nib, forCellReuseIdentifier: FavoritesTableViewCell.identifier)
     }
     
 }

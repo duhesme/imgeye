@@ -84,7 +84,19 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ezM-c8-86f" userLabel="Content View">
                                 <rect key="frame" x="0.0" y="44" width="414" height="769"/>
-                                <color key="backgroundColor" systemColor="systemMintColor"/>
+                                <subviews>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="wSU-vN-ucY">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="769"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    </tableView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="wSU-vN-ucY" firstAttribute="leading" secondItem="ezM-c8-86f" secondAttribute="leading" id="5uu-4d-rDV"/>
+                                    <constraint firstAttribute="trailing" secondItem="wSU-vN-ucY" secondAttribute="trailing" id="6eY-IH-NII"/>
+                                    <constraint firstAttribute="bottom" secondItem="wSU-vN-ucY" secondAttribute="bottom" id="jHw-gM-y8V"/>
+                                    <constraint firstItem="wSU-vN-ucY" firstAttribute="top" secondItem="ezM-c8-86f" secondAttribute="top" id="qKz-hZ-G2w"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Yid-SJ-tPt"/>
@@ -97,6 +109,9 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="ZVG-Kn-Kk0"/>
+                    <connections>
+                        <outlet property="favoritesTableView" destination="wSU-vN-ucY" id="Mfv-Sg-526"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eow-2q-3pS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -109,9 +124,6 @@
         </systemColor>
         <systemColor name="systemIndigoColor">
             <color red="0.34509803921568627" green="0.33725490196078434" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemMintColor">
-            <color red="0.0" green="0.7803921568627451" blue="0.74509803921568629" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
