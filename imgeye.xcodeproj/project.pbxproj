@@ -36,6 +36,7 @@
 		84E89D862831623200483368 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E89D852831623200483368 /* UserManager.swift */; };
 		84E89D882831624200483368 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E89D872831624200483368 /* UserData.swift */; };
 		84E89D8B2831703100483368 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E89D8A2831703100483368 /* UserModel.swift */; };
+		84E89D8D2831743B00483368 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E89D8C2831743B00483368 /* Date+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,6 +72,7 @@
 		84E89D852831623200483368 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		84E89D872831624200483368 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		84E89D8A2831703100483368 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		84E89D8C2831743B00483368 /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		C64CD8A2C8E7AB7222904669 /* Pods-imgeye.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-imgeye.debug.xcconfig"; path = "Target Support Files/Pods-imgeye/Pods-imgeye.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -127,6 +129,7 @@
 				84D73DAB282D62C00070950B /* Constants.swift */,
 				84D73DAF282D648D0070950B /* Model */,
 				84E89D602830FBCF00483368 /* Custom UI Controls */,
+				84E89D8C2831743B00483368 /* Date+Extensions.swift */,
 			);
 			path = imgeye;
 			sourceTree = "<group>";
@@ -392,6 +395,7 @@
 				84E89D5F2830FBC400483368 /* BounceButton.swift in Sources */,
 				84D73D9A282D56300070950B /* SceneDelegate.swift in Sources */,
 				84E89D882831624200483368 /* UserData.swift in Sources */,
+				84E89D8D2831743B00483368 /* Date+Extensions.swift in Sources */,
 				84E89D8B2831703100483368 /* UserModel.swift in Sources */,
 				84E89D7B2831048000483368 /* PersistentDataModel.xcdatamodeld in Sources */,
 				84E89D7D28312F6C00483368 /* DataManager.swift in Sources */,
