@@ -117,7 +117,9 @@
                 <userDefinedRuntimeAttribute type="boolean" keyPath="isUserInteractionDisabledWhenSkeletonIsActive" value="YES"/>
             </userDefinedRuntimeAttributes>
             <connections>
+                <outlet property="actualContentView" destination="t0W-ex-kBq" id="JIW-Kz-i3n"/>
                 <outlet property="authorNameLabel" destination="J4b-pw-4eC" id="l7f-dx-2xz"/>
+                <outlet property="shadowLayer" destination="F22-gU-pom" id="kma-N7-WVb"/>
                 <outlet property="thumbImageView" destination="5bq-HY-pHb" id="Naq-g6-cbb"/>
             </connections>
             <point key="canvasLocation" x="249.27536231884059" y="93.080357142857139"/>

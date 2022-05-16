@@ -38,7 +38,7 @@ class PhotoTableViewCell: UITableViewCell {
         self.shadowLayer.layer.shadowOffset = CGSize(width: 0, height: 0)
         self.shadowLayer.layer.shadowColor = UIColor.black.cgColor
         self.shadowLayer.layer.shadowOpacity = 0.23
-        self.shadowLayer.layer.shadowRadius = 4
+        self.shadowLayer.layer.shadowRadius = 8
         self.shadowLayer.layer.cornerRadius = 8
     }
     

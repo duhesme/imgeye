@@ -20,6 +20,8 @@ class FavoritesTableViewCell: UITableViewCell {
     
     @IBOutlet weak var thumbImageView: UIImageView!
     @IBOutlet weak var authorNameLabel: UILabel!
+    @IBOutlet weak var shadowLayer: UIView!
+    @IBOutlet weak var actualContentView: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -27,6 +29,16 @@ class FavoritesTableViewCell: UITableViewCell {
         
         self.thumbImageView.layer.masksToBounds = true
         self.thumbImageView.layer.cornerRadius = self.thumbImageView.bounds.height / 2.5
+        
+        self.shadowLayer.layer.masksToBounds = false
+        self.shadowLayer.layer.shadowOffset = CGSize(width: 0, height: 0)
+        self.shadowLayer.layer.shadowColor = UIColor.black.cgColor
+        self.shadowLayer.layer.shadowOpacity = 0.23
+        self.shadowLayer.layer.shadowRadius = 8
+        self.shadowLayer.layer.cornerRadius = 8
+        
+        self.actualContentView.layer.cornerRadius = 8
+        self.actualContentView.layer.masksToBounds = true
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

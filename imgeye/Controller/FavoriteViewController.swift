@@ -72,6 +72,10 @@ extension FavoriteViewController: SkeletonTableViewDataSource {
     
 }
 
+extension FavoriteViewController: UITableViewDelegate {
+    
+}
+
 extension FavoriteViewController: PhotoManagerDelegate {
     
     func didDownloadPhotos(_ photoManager: PhotoManager, photos: [PhotoModel]) {
