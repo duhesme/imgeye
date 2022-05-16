@@ -95,6 +95,8 @@ extension FavoriteViewController: SwipeTableViewCellDelegate {
 
         // customize the action appearance
         deleteAction.image = Asset.Assets.trashBin.image
+        deleteAction.backgroundColor = UIColor.white
+        deleteAction.textColor = UIColor.black
         
         return [deleteAction]
     }
