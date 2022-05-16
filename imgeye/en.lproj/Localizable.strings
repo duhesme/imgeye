@@ -1,0 +1,13 @@
+//
+//  Localizable.strings
+//  imgeye
+//
+//  Created by Никита Владимирович on 16.05.2022.
+//
+
+// Feed
+"Feed.Navigation.Title" = "Feed";
+
+// Favorites
+"Favorites.Navigation.Title" = "Favorites";
+"Favorites.TableView.SwipeAction.Delete.Title" = "Delete";

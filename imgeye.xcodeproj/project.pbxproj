@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		2BFC4D57CD84E633E643EB31 /* Pods_imgeye.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C725982C24E7F340C92494F /* Pods_imgeye.framework */; };
+		84D31A6B2832B5A600480113 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 84D31A692832B5A600480113 /* Localizable.strings */; };
+		84D31A6F2832B8F000480113 /* Strings+Generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D31A6E2832B8F000480113 /* Strings+Generated.swift */; };
 		84D73D98282D56300070950B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D73D97282D56300070950B /* AppDelegate.swift */; };
 		84D73D9A282D56300070950B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D73D99282D56300070950B /* SceneDelegate.swift */; };
 		84D73D9C282D56300070950B /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D73D9B282D56300070950B /* FeedViewController.swift */; };
@@ -42,6 +44,8 @@
 /* Begin PBXFileReference section */
 		6C725982C24E7F340C92494F /* Pods_imgeye.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_imgeye.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D75FF380AB33F507BA22987 /* Pods-imgeye.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-imgeye.release.xcconfig"; path = "Target Support Files/Pods-imgeye/Pods-imgeye.release.xcconfig"; sourceTree = "<group>"; };
+		84D31A692832B5A600480113 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		84D31A6E2832B8F000480113 /* Strings+Generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Strings+Generated.swift"; sourceTree = "<group>"; };
 		84D73D94282D56300070950B /* imgeye.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = imgeye.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84D73D97282D56300070950B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		84D73D99282D56300070950B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -97,6 +101,14 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		84D31A6D2832B73B00480113 /* en.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				84D31A692832B5A600480113 /* Localizable.strings */,
+			);
+			path = en.lproj;
+			sourceTree = "<group>";
+		};
 		84D73D8B282D56300070950B = {
 			isa = PBXGroup;
 			children = (
@@ -118,6 +130,7 @@
 		84D73D96282D56300070950B /* imgeye */ = {
 			isa = PBXGroup;
 			children = (
+				84D31A6D2832B73B00480113 /* en.lproj */,
 				84E89D722830FF6800483368 /* Generated */,
 				84E89D522830F41900483368 /* swiftgen.yml */,
 				84D73D97282D56300070950B /* AppDelegate.swift */,
@@ -214,6 +227,7 @@
 		84E89D722830FF6800483368 /* Generated */ = {
 			isa = PBXGroup;
 			children = (
+				84D31A6E2832B8F000480113 /* Strings+Generated.swift */,
 				84E89D742830FF7B00483368 /* IB-Scenes+Generated.swift */,
 				84E89D752830FF7C00483368 /* IB-Segues+Generated.swift */,
 				84E89D732830FF7B00483368 /* XCAssets+Generated.swift */,
@@ -312,6 +326,7 @@
 				84D73DC2282D73D70070950B /* PhotoTableViewCell.xib in Resources */,
 				84E89D83283156AA00483368 /* FavoritesTableViewCell.xib in Resources */,
 				84E89D532830F41900483368 /* swiftgen.yml in Resources */,
+				84D31A6B2832B5A600480113 /* Localizable.strings in Resources */,
 				84D73DA4282D56310070950B /* LaunchScreen.storyboard in Resources */,
 				84D73DA1282D56310070950B /* Assets.xcassets in Resources */,
 				84D73D9F282D56300070950B /* Main.storyboard in Resources */,
@@ -399,6 +414,7 @@
 				84E89D8B2831703100483368 /* UserModel.swift in Sources */,
 				84E89D7B2831048000483368 /* PersistentDataModel.xcdatamodeld in Sources */,
 				84E89D7D28312F6C00483368 /* DataManager.swift in Sources */,
+				84D31A6F2832B8F000480113 /* Strings+Generated.swift in Sources */,
 				84D73DB5282D64AC0070950B /* PhotoModel.swift in Sources */,
 				84D73DAE282D64890070950B /* PhotoManager.swift in Sources */,
 				84E89D782830FF7C00483368 /* IB-Segues+Generated.swift in Sources */,

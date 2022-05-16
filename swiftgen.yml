@@ -92,3 +92,16 @@ ib:
     # 3
     - templateName: segues-swift5
       output: IB-Segues+Generated.swift
+      
+## Strings
+strings:
+  inputs:
+    # 1
+    - en.lproj
+  outputs:
+    - templateName: structured-swift5
+      # 2
+      params:
+        publicAccess: true
+        enumName: Strings
+      output: Strings+Generated.swift
