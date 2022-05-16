@@ -32,8 +32,14 @@ class FavoriteViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        favoritesArray = []
         guard let favoritePhotos = DataManager.shared.readFavoritePhotos() else { return }
+
+        let favoritePhotosFromCoreDataSet = Set(arrayLiteral: favoritePhotos.map { $0.id! })
+        let favoritePhotosFromArraySet = Set(arrayLiteral: favoritesArray.map { $0.id })
+        
+        guard !(favoritePhotos.count == favoritesArray.count && favoritePhotosFromCoreDataSet.isSubset(of: favoritePhotosFromArraySet)) else { return }
+        
+        favoritesArray = []
         for favoritePhoto in favoritePhotos {
             photoManager.downloadPhoto(byID: favoritePhoto.id!)
         }
@@ -146,6 +152,7 @@ extension FavoriteViewController: FavoritesTableViewCellDelegate {
             self?.favoritesTableView.deleteRows(at: [indexPath], with: .fade)
         }
         let noAction = UIAlertAction(title: "No", style: .default)
+        
         alert.addAction(yesAction)
         alert.addAction(noAction)
         present(alert, animated: true)
