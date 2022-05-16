@@ -83,7 +83,7 @@ extension FeedViewController: SkeletonTableViewDataSource {
 extension FeedViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        performSegue(withIdentifier: StoryboardSegue.Main.fromFeedToInfo.rawValue, sender: nil)
     }
     
 }

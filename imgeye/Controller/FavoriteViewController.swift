@@ -34,8 +34,8 @@ class FavoriteViewController: UIViewController {
         
         guard let favoritePhotos = DataManager.shared.readFavoritePhotos() else { return }
 
-        let favoritePhotosFromCoreDataSet = Set(arrayLiteral: favoritePhotos.map { $0.id! })
-        let favoritePhotosFromArraySet = Set(arrayLiteral: favoritesArray.map { $0.id })
+        let favoritePhotosFromCoreDataSet = Set(favoritePhotos.map { $0.id! })
+        let favoritePhotosFromArraySet = Set(favoritesArray.map { $0.id })
         
         guard !(favoritePhotos.count == favoritesArray.count && favoritePhotosFromCoreDataSet.isSubset(of: favoritePhotosFromArraySet)) else { return }
         
@@ -88,6 +88,10 @@ extension FavoriteViewController: SkeletonTableViewDataSource {
 }
 
 extension FavoriteViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: StoryboardSegue.Main.fromFavoritesToInfo.rawValue, sender: nil)
+    }
     
 }
 
