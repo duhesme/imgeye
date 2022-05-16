@@ -136,7 +136,7 @@ extension FavoriteViewController: PhotoManagerDelegate {
 extension FavoriteViewController: FavoritesTableViewCellDelegate {
     
     func favoriteCellDidPressDeleteButton(atIndexPath indexPath: IndexPath) {
-        let alert = UIAlertController(title: "Delete", message: "Are you sure you want to delete this photo from favorites?", preferredStyle: .alert)
+        let alert = UIAlertController(title: Strings.Favorites.TableView.Cell.Deletion.Alert.title, message: Strings.Favorites.TableView.Cell.Deletion.Alert.message, preferredStyle: .alert)
 
         let yesAction = UIAlertAction(title: "Yes", style: .default) { [weak self] action in
             guard let favArray = self?.favoritesArray else { return }
