@@ -34,7 +34,7 @@ class FavoritesTableViewCell: SwipeTableViewCell {
         // Initialization code
         
         self.thumbImageView.layer.masksToBounds = true
-        self.thumbImageView.layer.cornerRadius = self.thumbImageView.bounds.height / 2.5
+        self.thumbImageView.layer.cornerRadius = 20
         
         self.shadowLayer.layer.masksToBounds = false
         self.shadowLayer.layer.shadowOffset = CGSize(width: 0, height: 0)
@@ -65,13 +65,11 @@ class FavoritesTableViewCell: SwipeTableViewCell {
     private func setPhotoImage(fromUrl url: URL) {
         self.showAnimatedGradientSkeleton()
         
-//        let processor = RoundCornerImageProcessor(cornerRadius: thumbImageView.bounds.height / 2)
         thumbImageView.kf.indicatorType = .activity
         thumbImageView.kf.setImage(
             with: url,
             placeholder: UIImage(named: "placeholderImage"),
             options: [
-//                .processor(processor),
                 .transition(.fade(1))
             ])
         {
@@ -79,8 +77,6 @@ class FavoritesTableViewCell: SwipeTableViewCell {
             switch result {
             case .success(let value):
                 print("Task done for: \(value.source.url?.absoluteString ?? "")")
-//                self.thumbImageView.layer.masksToBounds = true
-//                self.thumbImageView.layer.cornerRadius = self.thumbImageView.bounds.height / 2
                 self.hideSkeleton()
             case .failure(let error):
                 print("Job failed: \(error.localizedDescription)")
