@@ -25,6 +25,7 @@ internal enum Asset {
     internal static let accentColor = ColorAsset(name: "AccentColor")
     internal static let heartIconActive = ImageAsset(name: "heart-icon-active")
     internal static let heartIconGray = ImageAsset(name: "heart-icon-gray")
+    internal static let trashBin = ImageAsset(name: "trash-bin")
   }
 }
 // swiftlint:enable identifier_name line_length nesting type_body_length type_name

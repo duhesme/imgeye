@@ -10,4 +10,4 @@
 
 // Favorites
 "Favorites.Navigation.Title" = "Favorites";
-"Favorites.TableView.SwipeAction.Delete.Title" = "Delete";
+"Favorites.TableView.SwipeAction.Delete" = "Delete";
