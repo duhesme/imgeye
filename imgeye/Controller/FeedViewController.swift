@@ -80,6 +80,10 @@ extension FeedViewController: UITableViewDelegate {
 
 extension FeedViewController: PhotoManagerDelegate {
     
+    func didDownloadPhoto(_ photoManager: PhotoManager, photo: PhotoModel) {
+        
+    }
+    
     func didDownloadPhotos(_ photoManager: PhotoManager, photos: [PhotoModel]) {
         photosArray.append(contentsOf: photos.filter {
             !photosArray.contains($0)
@@ -90,7 +94,7 @@ extension FeedViewController: PhotoManagerDelegate {
             self.feedTableView.reloadData()
             
             for photo in photos {
-                print("User: \(photo.user.username)")
+                print("User: \(photo.user.name) (\(photo.user.username))")
             }
         }
     }

@@ -13,17 +13,32 @@ class FavoriteViewController: UIViewController {
     
     @IBOutlet weak var favoritesTableView: UITableView!
     
-    var userManager = UserManager()
+    var photoManager = PhotoManager()
     
     var favoritesArray = [PhotoModel]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        userManager.downloadUser(byUsername: "guillaumevdn")
+        photoManager.delegate = self
         
+        favoritesTableView.rowHeight = 148
         favoritesTableView.register(FavoritesTableViewCell.nib, forCellReuseIdentifier: FavoritesTableViewCell.identifier)
         favoritesTableView.dataSource = self
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        favoritesArray = []
+        guard let favoritePhotos = DataManager.shared.readFavoritePhotos() else { return }
+        for favoritePhoto in favoritePhotos {
+            photoManager.downloadPhoto(byID: favoritePhoto.id!)
+        }
+        
+        if favoritePhotos.isEmpty {
+            favoritesTableView.reloadData()
+        }
     }
     
 }
@@ -36,6 +51,7 @@ extension FavoriteViewController: SkeletonTableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: FavoritesTableViewCell.identifier, for: indexPath) as! FavoritesTableViewCell
+        cell.configure(withModel: favoritesArray[indexPath.row])
         
         return cell
     }
@@ -52,6 +68,29 @@ extension FavoriteViewController: SkeletonTableViewDataSource {
     
     func collectionSkeletonView(_ skeletonView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
         return FavoritesTableViewCell.identifier
+    }
+    
+}
+
+extension FavoriteViewController: PhotoManagerDelegate {
+    
+    func didDownloadPhotos(_ photoManager: PhotoManager, photos: [PhotoModel]) {
+
+    }
+    
+    func didDownloadPhoto(_ photoManager: PhotoManager, photo: PhotoModel) {
+        DispatchQueue.main.sync {
+            self.favoritesArray.append(photo)
+            self.favoritesTableView.reloadData()
+        }
+    }
+    
+    func didFailDownloadingPhotosWithErrorMessage(_ photoManager: PhotoManager, errorData: ErrorData) {
+        
+    }
+    
+    func didFailWithErrorDownloadingPhotos(error: Error?) {
+        
     }
     
 }
