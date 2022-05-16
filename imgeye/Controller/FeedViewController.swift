@@ -34,6 +34,16 @@ class FeedViewController: UIViewController {
         photoManager.downloadPhotos()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        for (index, p) in photosArray.enumerated() {
+            photosArray[index].isFavorite = DataManager.shared.isPhotoFavorite(basedOnID: p.id)
+        }
+        
+        feedTableView.reloadData()
+    }
+    
     @objc private func refresh(_ sender: AnyObject) {
         photoManager.downloadPhotos()
     }
@@ -89,7 +99,7 @@ extension FeedViewController: PhotoManagerDelegate {
             !photosArray.contains($0)
         })
         
-        DispatchQueue.main.async {
+        DispatchQueue.main.sync {
             self.refreshControl.endRefreshing()
             self.feedTableView.reloadData()
             

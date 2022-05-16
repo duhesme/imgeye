@@ -109,6 +109,14 @@
 			path = en.lproj;
 			sourceTree = "<group>";
 		};
+		84D31A702832CC9A00480113 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				84E89D8C2831743B00483368 /* Date+Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		84D73D8B282D56300070950B = {
 			isa = PBXGroup;
 			children = (
@@ -142,7 +150,7 @@
 				84D73DAB282D62C00070950B /* Constants.swift */,
 				84D73DAF282D648D0070950B /* Model */,
 				84E89D602830FBCF00483368 /* Custom UI Controls */,
-				84E89D8C2831743B00483368 /* Date+Extensions.swift */,
+				84D31A702832CC9A00480113 /* Extensions */,
 			);
 			path = imgeye;
 			sourceTree = "<group>";
