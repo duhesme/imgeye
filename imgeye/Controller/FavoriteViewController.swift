@@ -59,7 +59,8 @@ extension FavoriteViewController: SkeletonTableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: FavoritesTableViewCell.identifier, for: indexPath) as! FavoritesTableViewCell
         cell.delegate = self
-        cell.configure(withModel: favoritesArray[indexPath.row])
+        cell.favoriteDelegate = self
+        cell.configure(withModel: favoritesArray[indexPath.row], atIndexPath: indexPath)
         
         return cell
     }
@@ -128,6 +129,26 @@ extension FavoriteViewController: PhotoManagerDelegate {
     
     func didFailWithErrorDownloadingPhotos(error: Error?) {
         
+    }
+    
+}
+
+extension FavoriteViewController: FavoritesTableViewCellDelegate {
+    
+    func favoriteCellDidPressDeleteButton(atIndexPath indexPath: IndexPath) {
+        let alert = UIAlertController(title: "Delete", message: "Are you sure you want to delete this photo from favorites?", preferredStyle: .alert)
+
+        let yesAction = UIAlertAction(title: "Yes", style: .default) { [weak self] action in
+            guard let favArray = self?.favoritesArray else { return }
+            
+            DataManager.shared.deleteFromFavoritesPhoto(withID: favArray[indexPath.row].id)
+            self?.favoritesArray.remove(at: indexPath.row)
+            self?.favoritesTableView.deleteRows(at: [indexPath], with: .fade)
+        }
+        let noAction = UIAlertAction(title: "No", style: .default)
+        alert.addAction(yesAction)
+        alert.addAction(noAction)
+        present(alert, animated: true)
     }
     
 }

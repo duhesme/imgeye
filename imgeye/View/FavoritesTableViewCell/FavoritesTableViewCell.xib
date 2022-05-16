@@ -67,7 +67,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="5bq-HY-pHb" firstAttribute="leading" secondItem="t0W-ex-kBq" secondAttribute="leading" constant="16" id="32o-yX-TSg"/>
                                     <constraint firstItem="s0q-OQ-KlB" firstAttribute="top" secondItem="t0W-ex-kBq" secondAttribute="top" constant="16" id="FfZ-K6-90r"/>
@@ -82,12 +82,26 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isUserInteractionDisabledWhenSkeletonIsActive" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j55-iv-fwZ" customClass="BounceButton" customModule="imgeye" customModuleProvider="target">
+                                <rect key="frame" x="434" y="2" width="36" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="32" id="f5x-in-kv5"/>
+                                    <constraint firstAttribute="width" constant="36" id="iTV-16-fbi"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" backgroundImage="favorite-delte-icon"/>
+                                <connections>
+                                    <action selector="deleteButtonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="WG1-iw-efX"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="t0W-ex-kBq" firstAttribute="leading" secondItem="A0z-vb-BQY" secondAttribute="leading" constant="10" id="Byh-yu-YlS"/>
                             <constraint firstAttribute="bottom" secondItem="t0W-ex-kBq" secondAttribute="bottom" constant="10" id="HR9-2q-yQb"/>
+                            <constraint firstItem="j55-iv-fwZ" firstAttribute="top" secondItem="A0z-vb-BQY" secondAttribute="top" constant="2" id="JJs-dR-SpN"/>
                             <constraint firstAttribute="bottom" secondItem="F22-gU-pom" secondAttribute="bottom" constant="10" id="OFh-nf-VEq"/>
+                            <constraint firstAttribute="trailing" secondItem="j55-iv-fwZ" secondAttribute="trailing" id="Obv-p6-P6l"/>
                             <constraint firstItem="F22-gU-pom" firstAttribute="top" secondItem="A0z-vb-BQY" secondAttribute="top" constant="10" id="U1D-qv-46c"/>
                             <constraint firstAttribute="trailing" secondItem="F22-gU-pom" secondAttribute="trailing" constant="10" id="gQW-4l-8Dc"/>
                             <constraint firstItem="F22-gU-pom" firstAttribute="leading" secondItem="A0z-vb-BQY" secondAttribute="leading" constant="10" id="jzL-R6-dHG"/>
@@ -126,6 +140,7 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="favorite-delte-icon" width="306.5" height="273"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -24,6 +24,11 @@ class FavoritesTableViewCell: SwipeTableViewCell {
     @IBOutlet weak var shadowLayer: UIView!
     @IBOutlet weak var actualContentView: UIView!
     
+    var model: PhotoModel?
+    
+    weak var favoriteDelegate: FavoritesTableViewCellDelegate?
+    var indexPath: IndexPath?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -48,7 +53,10 @@ class FavoritesTableViewCell: SwipeTableViewCell {
         // Configure the view for the selected state
     }
     
-    func configure(withModel model: PhotoModel) {
+    func configure(withModel model: PhotoModel, atIndexPath indexPath: IndexPath) {
+        self.model = model
+        self.indexPath = indexPath
+        
         self.showAnimatedGradientSkeleton()
         setPhotoImage(fromUrl: model.urls.thumb)
         authorNameLabel.text = "\(model.user.name)\n(\(model.user.username))"
@@ -78,6 +86,14 @@ class FavoritesTableViewCell: SwipeTableViewCell {
                 print("Job failed: \(error.localizedDescription)")
             }
         }
+    }
+    
+    @IBAction func deleteButtonPressed(_ sender: BounceButton) {
+        guard let indexPath = indexPath else {
+            return
+        }
+
+        favoriteDelegate?.favoriteCellDidPressDeleteButton(atIndexPath: indexPath)
     }
     
 }
