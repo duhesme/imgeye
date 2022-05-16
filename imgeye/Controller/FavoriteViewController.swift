@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import SkeletonView
+import SwipeCellKit
 
 class FavoriteViewController: UIViewController {
     
@@ -25,6 +26,7 @@ class FavoriteViewController: UIViewController {
         favoritesTableView.rowHeight = 148
         favoritesTableView.register(FavoritesTableViewCell.nib, forCellReuseIdentifier: FavoritesTableViewCell.identifier)
         favoritesTableView.dataSource = self
+        favoritesTableView.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -41,6 +43,11 @@ class FavoriteViewController: UIViewController {
         }
     }
     
+    func deletePhotoFromFavorites(atIndexPath indexPath: IndexPath) {
+        DataManager.shared.deleteFromFavoritesPhoto(withID: favoritesArray[indexPath.row].id)
+        favoritesArray.remove(at: indexPath.row)
+    }
+    
 }
 
 extension FavoriteViewController: SkeletonTableViewDataSource {
@@ -51,6 +58,7 @@ extension FavoriteViewController: SkeletonTableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: FavoritesTableViewCell.identifier, for: indexPath) as! FavoritesTableViewCell
+        cell.delegate = self
         cell.configure(withModel: favoritesArray[indexPath.row])
         
         return cell
@@ -73,6 +81,29 @@ extension FavoriteViewController: SkeletonTableViewDataSource {
 }
 
 extension FavoriteViewController: UITableViewDelegate {
+    
+}
+
+extension FavoriteViewController: SwipeTableViewCellDelegate {
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
+        guard orientation == .right else { return nil }
+        
+        let deleteAction = SwipeAction(style: .destructive, title: "Delete") { [weak self] action, indexPath in
+            self?.deletePhotoFromFavorites(atIndexPath: indexPath)
+        }
+        
+        // customize the action appearance
+        deleteAction.image = UIImage(named: "delete-icon")
+        
+        return [deleteAction]
+    }
+    
+    func tableView(_ tableView: UITableView, editActionsOptionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> SwipeOptions {
+        var options = SwipeOptions()
+        options.expansionStyle = .destructive
+        return options
+    }
     
 }
 

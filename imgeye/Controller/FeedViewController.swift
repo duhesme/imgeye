@@ -48,7 +48,7 @@ extension FeedViewController: SkeletonTableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: PhotoTableViewCell.identifier, for: indexPath) as! PhotoTableViewCell
-        cell.delegate = self
+        cell.photoTableViewCellDelegate = self
         cell.configure(fromModel: photosArray[indexPath.row], withIndexPath: indexPath)
         
         return cell

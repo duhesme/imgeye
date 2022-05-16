@@ -7,8 +7,9 @@
 
 import UIKit
 import Kingfisher
+import SwipeCellKit
 
-class FavoritesTableViewCell: UITableViewCell {
+class FavoritesTableViewCell: SwipeTableViewCell {
 
     class var identifier: String {
         return "FavoritesTableViewCell"

@@ -6,8 +6,9 @@
 //
 
 import UIKit
+import SwipeCellKit
 
-class PhotoTableViewCell: UITableViewCell {
+class PhotoTableViewCell: SwipeTableViewCell {
     
     class var identifier: String {
         return "PhotoTableViewCell"
@@ -17,7 +18,7 @@ class PhotoTableViewCell: UITableViewCell {
         return UINib(nibName: "PhotoTableViewCell", bundle: nil)
     }
     
-    weak var delegate: PhotoTableViewCellDelegate?
+    weak var photoTableViewCellDelegate: PhotoTableViewCellDelegate?
     
     @IBOutlet weak var shadowLayer: UIView!
     @IBOutlet weak var actualContentView: UIView!
@@ -98,7 +99,7 @@ class PhotoTableViewCell: UITableViewCell {
             likeButton.setBackgroundImage(Asset.Assets.heartIconActive.image, for: .normal)
         }
         
-        delegate?.photoTableViewCell(didUpdateFavoriteStateTo: !model.isFavorite, atIndexPath: indexPath)
+        photoTableViewCellDelegate?.photoTableViewCell(didUpdateFavoriteStateTo: !model.isFavorite, atIndexPath: indexPath)
     }
     
 }
