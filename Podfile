@@ -6,7 +6,7 @@ target 'imgeye' do
   use_frameworks!
 
   # Pods for imgeye
-  pod 'RealmSwift'
+  pod 'SwipeCellKit', :git => 'https://github.com/SwipeCellKit/SwipeCellKit.git', :branch => 'develop'
   pod 'UnsplashPhotoPicker', '~> 1.3'
   pod 'Kingfisher', '~> 6.0'
   pod 'SkeletonView'
