@@ -12,4 +12,5 @@ struct UserModel {
     let update_at: Date
     let username: String
     let name: String
+    let profileImageURLs: ProfileImageData
 }

@@ -74,7 +74,7 @@ struct UserManager {
             
             let dateFormatter = ISO8601DateFormatter()
             let date = dateFormatter.date(from: decodedData.updated_at)!
-            let model = UserModel(id: decodedData.id, update_at: date, username: decodedData.username, name: decodedData.name)
+            let model = UserModel(id: decodedData.id, update_at: date, username: decodedData.username, name: decodedData.name, profileImageURLs: decodedData.profile_image)
             return model
         } catch {
             print(error)

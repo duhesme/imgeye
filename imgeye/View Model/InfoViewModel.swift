@@ -7,12 +7,19 @@
 
 import Foundation
 
-struct InfoViewModel {
+class InfoViewModel: NSObject {
     
     private let model: PhotoModel
     
+    private var userManager = UserManager()
+    private let didFetchUserProfilePicture: (_ authorProfilePictureURL: URL) -> Void
+    
     var imageURL: URL {
         return model.urls.regular
+    }
+    
+    var authorName: String {
+        return "\(model.user.name) (\(model.user.username))"
     }
     
     var likesCount: String {
@@ -53,8 +60,30 @@ struct InfoViewModel {
         return model.updated_at.shortString
     }
     
-    init(photoModel model: PhotoModel) {
+    init(photoModel model: PhotoModel, didFetchUserProfilePicture: @escaping (_ authorProfilePictureURL: URL) -> Void) {
         self.model = model
+        self.didFetchUserProfilePicture = didFetchUserProfilePicture
+        super.init()
+        self.userManager.delegate = self
+        
+        userManager.downloadUser(byUsername: model.user.username)
+    }
+    
+}
+
+extension InfoViewModel: UserManagerDelegate {
+    
+    func didDownloadUserByUsername(_ userManager: UserManager, user: UserModel) {
+        guard let url = URL(string: user.profileImageURLs.small) else { return }
+        didFetchUserProfilePicture(url)
+    }
+    
+    func didFailDownloadingUserWithErrorMessage(_ userManager: UserManager, errorData: ErrorData) {
+        
+    }
+    
+    func didFailWithErrorDownloadingUser(error: Error?) {
+        
     }
     
 }

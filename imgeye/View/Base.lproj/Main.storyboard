@@ -156,11 +156,38 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5CZ-sQ-fvT" userLabel="Info View">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="280.5"/>
                                         <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="apY-Sa-rJw" userLabel="Author View">
+                                                <rect key="frame" x="8" y="8" width="92" height="56"/>
+                                                <subviews>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="f4d-G3-b4R" userLabel="Author Image View">
+                                                        <rect key="frame" x="0.0" y="12" width="32" height="32"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="32" id="IEG-QZ-aDt"/>
+                                                            <constraint firstAttribute="width" constant="32" id="huZ-hk-7vy"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p04-Rw-eco">
+                                                        <rect key="frame" x="40" y="18" width="41.5" height="20.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="56" id="Cg9-nR-Uul"/>
+                                                    <constraint firstItem="f4d-G3-b4R" firstAttribute="centerY" secondItem="apY-Sa-rJw" secondAttribute="centerY" id="EKX-h5-Mcw"/>
+                                                    <constraint firstItem="p04-Rw-eco" firstAttribute="leading" secondItem="f4d-G3-b4R" secondAttribute="trailing" constant="8" id="G54-VO-qjr"/>
+                                                    <constraint firstAttribute="width" constant="92" id="Hre-p8-Qas"/>
+                                                    <constraint firstItem="p04-Rw-eco" firstAttribute="centerY" secondItem="apY-Sa-rJw" secondAttribute="centerY" id="b5w-vW-fa0"/>
+                                                    <constraint firstItem="f4d-G3-b4R" firstAttribute="leading" secondItem="apY-Sa-rJw" secondAttribute="leading" id="cto-kv-7l7"/>
+                                                </constraints>
+                                            </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7x9-wo-4ZO">
-                                                <rect key="frame" x="8" y="8" width="398" height="56"/>
+                                                <rect key="frame" x="126" y="8" width="280" height="56"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NVL-EU-lx5" userLabel="Likes View">
-                                                        <rect key="frame" x="0.0" y="0.0" width="128" height="56"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="102.5" height="56"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PcL-wH-qvS" customClass="BounceButton" customModule="imgeye" customModuleProvider="target">
                                                                 <rect key="frame" x="8" y="12" width="32" height="32"/>
@@ -172,7 +199,7 @@
                                                                 <state key="normal" backgroundImage="heart-icon-gray"/>
                                                             </button>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1000" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="Jcu-Ow-BfM">
-                                                                <rect key="frame" x="48" y="18" width="64" height="20.5"/>
+                                                                <rect key="frame" x="48" y="18" width="38.5" height="20.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -188,7 +215,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kb1-58-XX1" userLabel="Downloads View">
-                                                        <rect key="frame" x="128" y="0.0" width="270" height="56"/>
+                                                        <rect key="frame" x="102.5" y="0.0" width="177.5" height="56"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Guj-7q-aei">
                                                                 <rect key="frame" x="42" y="18" width="10.5" height="20.5"/>
@@ -330,9 +357,11 @@
                                             <constraint firstItem="Va0-Ph-nF6" firstAttribute="top" secondItem="7x9-wo-4ZO" secondAttribute="bottom" constant="8" id="LNp-WZ-2GD"/>
                                             <constraint firstItem="W86-GF-3Bo" firstAttribute="top" secondItem="o2j-Q7-Rr9" secondAttribute="bottom" constant="8" id="MNv-07-bth"/>
                                             <constraint firstAttribute="trailing" secondItem="o2j-Q7-Rr9" secondAttribute="trailing" constant="16" id="N9N-vY-WzX"/>
-                                            <constraint firstItem="7x9-wo-4ZO" firstAttribute="leading" secondItem="5CZ-sQ-fvT" secondAttribute="leading" constant="8" id="Nl5-re-GDC"/>
+                                            <constraint firstItem="apY-Sa-rJw" firstAttribute="top" secondItem="5CZ-sQ-fvT" secondAttribute="top" constant="8" id="NaM-tO-9Ei"/>
                                             <constraint firstItem="o2j-Q7-Rr9" firstAttribute="top" secondItem="Va0-Ph-nF6" secondAttribute="bottom" constant="6" id="OqV-Mf-hia"/>
                                             <constraint firstAttribute="trailing" secondItem="7x9-wo-4ZO" secondAttribute="trailing" constant="8" id="UFg-Uc-I8b"/>
+                                            <constraint firstItem="apY-Sa-rJw" firstAttribute="leading" secondItem="5CZ-sQ-fvT" secondAttribute="leading" constant="8" id="ZS0-Ip-KxT"/>
+                                            <constraint firstItem="7x9-wo-4ZO" firstAttribute="leading" secondItem="apY-Sa-rJw" secondAttribute="trailing" constant="26" id="dlx-zP-Gse"/>
                                             <constraint firstAttribute="trailing" secondItem="W86-GF-3Bo" secondAttribute="trailing" id="pfj-vV-dDW"/>
                                             <constraint firstItem="o2j-Q7-Rr9" firstAttribute="leading" secondItem="5CZ-sQ-fvT" secondAttribute="leading" constant="16" id="q3t-rd-lIB"/>
                                             <constraint firstItem="Va0-Ph-nF6" firstAttribute="leading" secondItem="5CZ-sQ-fvT" secondAttribute="leading" constant="16" id="qGY-YA-bKm"/>
@@ -382,6 +411,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="qHv-bY-s4d"/>
                     <connections>
+                        <outlet property="authorAvatarImageView" destination="f4d-G3-b4R" id="sum-Bz-vVo"/>
+                        <outlet property="authorUsernameLabel" destination="p04-Rw-eco" id="D5b-PB-BIB"/>
                         <outlet property="contentLabel" destination="o2j-Q7-Rr9" id="Zhi-UX-B9d"/>
                         <outlet property="downloadsLabel" destination="Guj-7q-aei" id="d4E-j9-oUx"/>
                         <outlet property="imageContainerView" destination="X7W-KM-9Ev" id="VZt-pV-wfP"/>

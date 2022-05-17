@@ -13,6 +13,8 @@ class InfoViewController: UIViewController {
     @IBOutlet weak var imageContainerView: UIView!
     @IBOutlet weak var photoImageView: UIImageView!
     
+    @IBOutlet weak var authorAvatarImageView: UIImageView!
+    @IBOutlet weak var authorUsernameLabel: UILabel!
     @IBOutlet weak var likesLabel: UILabel!
     @IBOutlet weak var downloadsLabel: UILabel!
     @IBOutlet weak var contentLabel: UILabel!
@@ -22,6 +24,8 @@ class InfoViewController: UIViewController {
     
     var photo: PhotoModel?
     
+    var infoViewModel: InfoViewModel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -29,15 +33,20 @@ class InfoViewController: UIViewController {
             return
         }
         
-        let infoViewViewModel = InfoViewModel(photoModel: photo)
+        infoViewModel = InfoViewModel(photoModel: photo) { [weak self] authorProfilePictureURL in
+            DispatchQueue.main.async {
+                self?.authorAvatarImageView.kf.setImage(with: authorProfilePictureURL)
+            }
+        }
         
-        photoImageView.kf.setImage(with: infoViewViewModel.imageURL)
-        likesLabel.text = infoViewViewModel.likesCount
-        downloadsLabel.text = infoViewViewModel.downloadsCount
-        contentLabel.text  = infoViewViewModel.descriptionText
-        locationLabel.text = infoViewViewModel.locationString
-        publishedDateLabel.text = infoViewViewModel.publicationDate
-        updatedDateLabel.text = infoViewViewModel.updationDate
+        photoImageView.kf.setImage(with: infoViewModel.imageURL)
+        authorUsernameLabel.text = infoViewModel.authorName
+        likesLabel.text = infoViewModel.likesCount
+        downloadsLabel.text = infoViewModel.downloadsCount
+        contentLabel.text  = infoViewModel.descriptionText
+        locationLabel.text = infoViewModel.locationString
+        publishedDateLabel.text = infoViewModel.publicationDate
+        updatedDateLabel.text = infoViewModel.updationDate
         
         imageContainerView.layer.masksToBounds = false
         imageContainerView.layer.shadowOffset = CGSize(width: 0, height: 0)
