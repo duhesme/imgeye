@@ -32,7 +32,10 @@ class FavoriteViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        update()
+    }
+    
+    func update() {
         guard let favoritePhotos = DataManager.shared.readFavoritePhotos() else { return }
 
         let favoritePhotosFromCoreDataSet = Set(favoritePhotos.map { $0.id! })
@@ -58,6 +61,9 @@ class FavoriteViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let infoVC = segue.destination as! InfoViewController
         infoVC.photo = selectedPhoto
+        infoVC.viewDidDismissHadler = {
+            self.update()
+        }
     }
     
 }

@@ -39,6 +39,10 @@ class FeedViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        update()
+    }
+    
+    func update() {
         for (index, p) in photosArray.enumerated() {
             photosArray[index].isFavorite = DataManager.shared.isPhotoFavorite(basedOnID: p.id)
         }
@@ -53,6 +57,9 @@ class FeedViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let infoVC = segue.destination as! InfoViewController
         infoVC.photo = selectedPhoto
+        infoVC.viewDidDismissHadler = {
+            self.update()
+        }
     }
     
 }

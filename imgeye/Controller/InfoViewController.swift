@@ -24,8 +24,8 @@ class InfoViewController: UIViewController {
     @IBOutlet weak var publishedDateLabel: UILabel!
     @IBOutlet weak var updatedDateLabel: UILabel!
     
+    var viewDidDismissHadler: (() -> Void) = {}
     var photo: PhotoModel?
-    
     var infoViewModel: InfoViewModel!
     
     override func viewDidLoad() {
@@ -54,6 +54,11 @@ class InfoViewController: UIViewController {
         imageContainerView.setShadow(withCornerRadius: 0, shadowRadius: 8, shadowOpacity: 0.33, color: UIColor.black)
         authorAvatarImageView.roundCorners(withCornerRadius: authorAvatarImageView.bounds.height / 2)
         authorPictureShadowView.roundCorners(withCornerRadius: authorPictureShadowView.bounds.height / 2)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        viewDidDismissHadler()
     }
     
     @IBAction func likeButtonPressed(_ sender: BounceButton) {
