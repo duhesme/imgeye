@@ -65,6 +65,10 @@ class InfoViewModel: NSObject {
         return model.updated_at.shortString
     }
     
+    var isCurrentPhotoInFavorites: Bool {
+        return model.isFavorite
+    }
+    
     init(photoModel model: PhotoModel, didFetchUserProfilePicture: @escaping (_ authorProfilePictureURL: URL) -> Void) {
         self.model = model
         self.didFetchUserProfilePicture = didFetchUserProfilePicture

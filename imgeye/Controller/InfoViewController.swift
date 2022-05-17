@@ -57,8 +57,18 @@ class InfoViewController: UIViewController {
     }
     
     @IBAction func likeButtonPressed(_ sender: BounceButton) {
+        guard let photo = photo else {
+            return
+        }
+        
         infoViewModel.toogleFavoriteState()
         likeButton.setBackgroundImage(infoViewModel.likeButtonImage, for: .normal)
+        
+        if infoViewModel.isCurrentPhotoInFavorites {
+            DataManager.shared.saveFavorivePhoto(withID: photo.id)
+        } else {
+            DataManager.shared.deleteFromFavoritesPhoto(withID: photo.id)
+        }
     }
     
 }
