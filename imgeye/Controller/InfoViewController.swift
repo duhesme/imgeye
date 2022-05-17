@@ -14,6 +14,7 @@ class InfoViewController: UIViewController {
     @IBOutlet weak var photoImageView: UIImageView!
     
     @IBOutlet weak var authorAvatarImageView: UIImageView!
+    @IBOutlet weak var authorPictureShadowView: UIView!
     @IBOutlet weak var authorUsernameLabel: UILabel!
     @IBOutlet weak var likesLabel: UILabel!
     @IBOutlet weak var downloadsLabel: UILabel!
@@ -49,6 +50,8 @@ class InfoViewController: UIViewController {
         updatedDateLabel.text = infoViewModel.updationDate
         
         imageContainerView.setShadow(withCornerRadius: 0, shadowRadius: 8, shadowOpacity: 0.33, color: UIColor.black)
+        authorAvatarImageView.roundCorners(withCornerRadius: authorAvatarImageView.bounds.height / 2)
+        authorPictureShadowView.roundCorners(withCornerRadius: authorPictureShadowView.bounds.height / 2)
     }
     
 }
