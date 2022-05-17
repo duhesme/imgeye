@@ -17,6 +17,7 @@ class FavoriteViewController: UIViewController {
     var photoManager = PhotoManager()
     
     var favoritesArray = [PhotoModel]()
+    var selectedPhoto: PhotoModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,6 +53,11 @@ class FavoriteViewController: UIViewController {
     func deletePhotoFromFavorites(atIndexPath indexPath: IndexPath) {
         DataManager.shared.deleteFromFavoritesPhoto(withID: favoritesArray[indexPath.row].id)
         favoritesArray.remove(at: indexPath.row)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let infoVC = segue.destination as! InfoViewController
+        infoVC.photo = selectedPhoto
     }
     
 }
@@ -90,6 +96,7 @@ extension FavoriteViewController: SkeletonTableViewDataSource {
 extension FavoriteViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectedPhoto = favoritesArray[indexPath.row]
         performSegue(withIdentifier: StoryboardSegue.Main.fromFavoritesToInfo.rawValue, sender: nil)
     }
     
@@ -154,6 +161,7 @@ extension FavoriteViewController: FavoritesTableViewCellDelegate {
             DataManager.shared.deleteFromFavoritesPhoto(withID: favArray[indexPath.row].id)
             self?.favoritesArray.remove(at: indexPath.row)
             self?.favoritesTableView.deleteRows(at: [indexPath], with: .fade)
+            self?.favoritesTableView.reloadData()
         }
         let noAction = UIAlertAction(title: "No", style: .default)
         

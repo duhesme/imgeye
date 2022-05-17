@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Item-->
+        <!--Feed-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="FeedViewController" customModule="imgeye" customModuleProvider="target" sceneMemberID="viewController">
@@ -47,8 +47,8 @@
                             <constraint firstItem="IeN-G5-ByZ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="rvX-us-VlN"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="Chc-LB-LOR"/>
-                    <navigationItem key="navigationItem" id="YOZ-2c-uLt"/>
+                    <tabBarItem key="tabBarItem" title="Feed" id="Chc-LB-LOR"/>
+                    <navigationItem key="navigationItem" title="Feed" id="YOZ-2c-uLt"/>
                     <connections>
                         <outlet property="feedTableView" destination="D14-pI-PsV" id="9jP-rC-Xdm"/>
                         <segue destination="F7K-Io-s36" kind="showDetail" identifier="FromFeedToInfo" id="rg2-oa-ymo"/>
@@ -76,11 +76,11 @@
             </objects>
             <point key="canvasLocation" x="444" y="106"/>
         </scene>
-        <!--Item-->
+        <!--Favorites-->
         <scene sceneID="Q5I-Wr-jSM">
             <objects>
                 <navigationController id="nGZ-ie-N2D" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="Vzc-jJ-YH5"/>
+                    <tabBarItem key="tabBarItem" title="Favorites" id="Vzc-jJ-YH5"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="72u-zI-Ce8">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -93,7 +93,7 @@
             </objects>
             <point key="canvasLocation" x="1796" y="585"/>
         </scene>
-        <!--Item-->
+        <!--Favorites-->
         <scene sceneID="nX0-SS-0nd">
             <objects>
                 <viewController id="O98-lb-Y4W" customClass="FavoriteViewController" customModule="imgeye" customModuleProvider="target" sceneMemberID="viewController">
@@ -131,8 +131,8 @@
                             <constraint firstItem="ezM-c8-86f" firstAttribute="top" secondItem="Yid-SJ-tPt" secondAttribute="top" id="ySZ-l5-Nqv"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="ZVG-Kn-Kk0"/>
-                    <navigationItem key="navigationItem" id="GsE-6Z-UGI"/>
+                    <tabBarItem key="tabBarItem" title="Favorites" id="ZVG-Kn-Kk0"/>
+                    <navigationItem key="navigationItem" title="Favorites" id="GsE-6Z-UGI"/>
                     <connections>
                         <outlet property="favoritesTableView" destination="wSU-vN-ucY" id="Mfv-Sg-526"/>
                         <segue destination="F7K-Io-s36" kind="showDetail" identifier="FromFavoritesToInfo" id="Kam-GL-Wyg"/>
@@ -149,8 +149,28 @@
                     <view key="view" contentMode="scaleToFill" id="w5A-Qi-dxz">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X7W-KM-9Ev" userLabel="Image View">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="505"/>
+                                <color key="backgroundColor" systemColor="systemBlueColor"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5CZ-sQ-fvT">
+                                <rect key="frame" x="0.0" y="505" width="414" height="337"/>
+                                <color key="backgroundColor" systemColor="systemMintColor"/>
+                            </view>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="xr2-RW-qfl"/>
-                        <color key="backgroundColor" systemColor="systemPurpleColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="X7W-KM-9Ev" firstAttribute="height" secondItem="w5A-Qi-dxz" secondAttribute="height" multiplier="0.6" id="1dS-Sf-SPn"/>
+                            <constraint firstItem="5CZ-sQ-fvT" firstAttribute="top" secondItem="X7W-KM-9Ev" secondAttribute="bottom" id="4nx-LI-8I4"/>
+                            <constraint firstItem="xr2-RW-qfl" firstAttribute="trailing" secondItem="X7W-KM-9Ev" secondAttribute="trailing" id="Cfs-ok-LbZ"/>
+                            <constraint firstItem="xr2-RW-qfl" firstAttribute="trailing" secondItem="5CZ-sQ-fvT" secondAttribute="trailing" id="GKe-vi-OoB"/>
+                            <constraint firstItem="X7W-KM-9Ev" firstAttribute="top" secondItem="w5A-Qi-dxz" secondAttribute="top" id="SgA-iS-Vzk"/>
+                            <constraint firstItem="X7W-KM-9Ev" firstAttribute="leading" secondItem="xr2-RW-qfl" secondAttribute="leading" id="aUf-Ay-MdH"/>
+                            <constraint firstItem="5CZ-sQ-fvT" firstAttribute="leading" secondItem="xr2-RW-qfl" secondAttribute="leading" id="hp0-26-Udr"/>
+                            <constraint firstItem="xr2-RW-qfl" firstAttribute="bottom" secondItem="5CZ-sQ-fvT" secondAttribute="bottom" id="xls-th-efn"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="qHv-bY-s4d"/>
                 </viewController>
@@ -158,11 +178,11 @@
             </objects>
             <point key="canvasLocation" x="3975" y="106"/>
         </scene>
-        <!--Item-->
+        <!--Feed-->
         <scene sceneID="aRA-gC-RG2">
             <objects>
                 <navigationController id="bRL-AR-ZY2" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="4Dp-qJ-0xO"/>
+                    <tabBarItem key="tabBarItem" title="Feed" id="4Dp-qJ-0xO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="YeD-RB-JCn">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -183,11 +203,14 @@
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemIndigoColor">
             <color red="0.34509803921568627" green="0.33725490196078434" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
-        <systemColor name="systemPurpleColor">
-            <color red="0.68627450980392157" green="0.32156862745098042" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <systemColor name="systemMintColor">
+            <color red="0.0" green="0.7803921568627451" blue="0.74509803921568629" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

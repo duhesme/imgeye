@@ -10,6 +10,8 @@ import UIKit
 
 class InfoViewController: UIViewController {
     
+    var photo: PhotoModel?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }

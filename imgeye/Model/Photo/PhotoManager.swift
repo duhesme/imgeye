@@ -82,7 +82,12 @@ struct PhotoManager {
             
             for d in decodedData {
                 let urls = photoModelURL(raw: URL(string: d.urls.raw)!, full: URL(string: d.urls.full)!, regular: URL(string: d.urls.regular)!, small: URL(string: d.urls.small)!, thumb: URL(string: d.urls.thumb)!)
-                var p = PhotoModel(id: d.id, urls: urls, user: d.user)
+                
+                let dateFormatter = ISO8601DateFormatter()
+                let created_at = dateFormatter.date(from: d.created_at)!
+                let updated_at = dateFormatter.date(from: d.updated_at)!
+                
+                var p = PhotoModel(id: d.id, urls: urls, user: d.user, created_at: created_at, updated_at: created_at, likes: d.likes, downloads: d.downloads, location: d.location, tags: d.tags)
                 
                 DispatchQueue.main.sync {
                     p.isFavorite = DataManager.shared.isPhotoFavorite(basedOnID: p.id)
@@ -151,7 +156,12 @@ struct PhotoManager {
             let photo = try decoder.decode(PhotoData.self, from: photoData)
             
             let urls = photoModelURL(raw: URL(string: photo.urls.raw)!, full: URL(string: photo.urls.full)!, regular: URL(string: photo.urls.regular)!, small: URL(string: photo.urls.small)!, thumb: URL(string: photo.urls.thumb)!)
-            var p = PhotoModel(id: photo.id, urls: urls, user: photo.user)
+            
+            let dateFormatter = ISO8601DateFormatter()
+            let created_at = dateFormatter.date(from: photo.created_at)!
+            let updated_at = dateFormatter.date(from: photo.updated_at)!
+            
+            var p = PhotoModel(id: photo.id, urls: urls, user: photo.user, created_at: created_at, updated_at: updated_at, likes: photo.likes, downloads: photo.downloads, location: photo.location, tags: photo.tags)
             
             DispatchQueue.main.sync {
                 p.isFavorite = DataManager.shared.isPhotoFavorite(basedOnID: p.id)

@@ -15,6 +15,12 @@ struct PhotoModel: Hashable {
     let id: String
     let urls: photoModelURL
     let user: User
+    let created_at: Date
+    let updated_at: Date
+    let likes: Int
+    let downloads: Int?
+    let location: Location?
+    let tags: [Tag]?
     var isFavorite: Bool = false
 }
 

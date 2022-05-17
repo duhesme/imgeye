@@ -18,6 +18,8 @@ class FeedViewController: UIViewController {
     var photoManager = PhotoManager()
     var photosArray = [PhotoModel]()
     
+    var selectedPhoto: PhotoModel?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -46,6 +48,11 @@ class FeedViewController: UIViewController {
     
     @objc private func refresh(_ sender: AnyObject) {
         photoManager.downloadPhotos()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let infoVC = segue.destination as! InfoViewController
+        infoVC.photo = selectedPhoto
     }
     
 }
@@ -83,6 +90,7 @@ extension FeedViewController: SkeletonTableViewDataSource {
 extension FeedViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectedPhoto = photosArray[indexPath.row]
         performSegue(withIdentifier: StoryboardSegue.Main.fromFeedToInfo.rawValue, sender: nil)
     }
     
@@ -102,10 +110,6 @@ extension FeedViewController: PhotoManagerDelegate {
         DispatchQueue.main.sync {
             self.refreshControl.endRefreshing()
             self.feedTableView.reloadData()
-            
-            for photo in photos {
-                print("User: \(photo.user.name) (\(photo.user.username))")
-            }
         }
     }
     
