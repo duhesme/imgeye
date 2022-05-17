@@ -16,6 +16,7 @@ class InfoViewController: UIViewController {
     @IBOutlet weak var authorAvatarImageView: UIImageView!
     @IBOutlet weak var authorPictureShadowView: UIView!
     @IBOutlet weak var authorUsernameLabel: UILabel!
+    @IBOutlet weak var likeButton: BounceButton!
     @IBOutlet weak var likesLabel: UILabel!
     @IBOutlet weak var downloadsLabel: UILabel!
     @IBOutlet weak var contentLabel: UILabel!
@@ -42,6 +43,7 @@ class InfoViewController: UIViewController {
         
         photoImageView.kf.setImage(with: infoViewModel.imageURL)
         authorUsernameLabel.text = infoViewModel.authorName
+        likeButton.setBackgroundImage(infoViewModel.likeButtonImage, for: .normal)
         likesLabel.text = infoViewModel.likesCount
         downloadsLabel.text = infoViewModel.downloadsCount
         contentLabel.text  = infoViewModel.descriptionText
@@ -52,6 +54,11 @@ class InfoViewController: UIViewController {
         imageContainerView.setShadow(withCornerRadius: 0, shadowRadius: 8, shadowOpacity: 0.33, color: UIColor.black)
         authorAvatarImageView.roundCorners(withCornerRadius: authorAvatarImageView.bounds.height / 2)
         authorPictureShadowView.roundCorners(withCornerRadius: authorPictureShadowView.bounds.height / 2)
+    }
+    
+    @IBAction func likeButtonPressed(_ sender: BounceButton) {
+        infoViewModel.toogleFavoriteState()
+        likeButton.setBackgroundImage(infoViewModel.likeButtonImage, for: .normal)
     }
     
 }

@@ -170,6 +170,9 @@
                                                                 </constraints>
                                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                                 <state key="normal" backgroundImage="heart-icon-gray"/>
+                                                                <connections>
+                                                                    <action selector="likeButtonPressed:" destination="F7K-Io-s36" eventType="touchUpInside" id="Kb2-XK-tgO"/>
+                                                                </connections>
                                                             </button>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1000" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="Jcu-Ow-BfM">
                                                                 <rect key="frame" x="40" y="18" width="38.5" height="20.5"/>
@@ -218,7 +221,7 @@
                                                 </constraints>
                                             </stackView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="apY-Sa-rJw" userLabel="Author View">
-                                                <rect key="frame" x="16" y="72" width="92" height="56"/>
+                                                <rect key="frame" x="13" y="72" width="92" height="56"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gnk-U4-auf" userLabel="Shadow View">
                                                         <rect key="frame" x="0.0" y="10" width="36" height="36"/>
@@ -372,7 +375,7 @@
                                             <constraint firstItem="apY-Sa-rJw" firstAttribute="top" secondItem="7x9-wo-4ZO" secondAttribute="bottom" constant="8" id="NaM-tO-9Ei"/>
                                             <constraint firstItem="o2j-Q7-Rr9" firstAttribute="top" secondItem="Va0-Ph-nF6" secondAttribute="bottom" constant="6" id="OqV-Mf-hia"/>
                                             <constraint firstAttribute="trailing" secondItem="7x9-wo-4ZO" secondAttribute="trailing" constant="8" id="UFg-Uc-I8b"/>
-                                            <constraint firstItem="apY-Sa-rJw" firstAttribute="leading" secondItem="5CZ-sQ-fvT" secondAttribute="leading" constant="16" id="ZS0-Ip-KxT"/>
+                                            <constraint firstItem="apY-Sa-rJw" firstAttribute="leading" secondItem="5CZ-sQ-fvT" secondAttribute="leading" constant="13" id="ZS0-Ip-KxT"/>
                                             <constraint firstAttribute="trailing" secondItem="W86-GF-3Bo" secondAttribute="trailing" id="pfj-vV-dDW"/>
                                             <constraint firstItem="o2j-Q7-Rr9" firstAttribute="leading" secondItem="5CZ-sQ-fvT" secondAttribute="leading" constant="16" id="q3t-rd-lIB"/>
                                             <constraint firstItem="Va0-Ph-nF6" firstAttribute="leading" secondItem="5CZ-sQ-fvT" secondAttribute="leading" constant="16" id="qGY-YA-bKm"/>
@@ -429,6 +432,7 @@
                         <outlet property="contentLabel" destination="o2j-Q7-Rr9" id="Zhi-UX-B9d"/>
                         <outlet property="downloadsLabel" destination="Guj-7q-aei" id="d4E-j9-oUx"/>
                         <outlet property="imageContainerView" destination="X7W-KM-9Ev" id="VZt-pV-wfP"/>
+                        <outlet property="likeButton" destination="PcL-wH-qvS" id="KQF-B8-tk3"/>
                         <outlet property="likesLabel" destination="Jcu-Ow-BfM" id="Qa4-wX-DVu"/>
                         <outlet property="locationLabel" destination="CQ0-Us-eOH" id="vhT-lo-w2o"/>
                         <outlet property="photoImageView" destination="7XK-ev-jxu" id="aA4-7Y-O9V"/>

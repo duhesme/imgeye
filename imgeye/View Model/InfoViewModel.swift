@@ -6,10 +6,11 @@
 //
 
 import Foundation
+import UIKit
 
 class InfoViewModel: NSObject {
     
-    private let model: PhotoModel
+    private var model: PhotoModel
     
     private var userManager = UserManager()
     private let didFetchUserProfilePicture: (_ authorProfilePictureURL: URL) -> Void
@@ -20,6 +21,10 @@ class InfoViewModel: NSObject {
     
     var authorName: String {
         return "\(model.user.name) (\(model.user.username))"
+    }
+    
+    var likeButtonImage: UIImage {
+        return model.isFavorite ? Asset.Assets.heartIconActive.image : Asset.Assets.heartIconGray.image
     }
     
     var likesCount: String {
@@ -67,6 +72,14 @@ class InfoViewModel: NSObject {
         self.userManager.delegate = self
         
         userManager.downloadUser(byUsername: model.user.username)
+    }
+    
+    func toogleFavoriteState() {
+        self.model.isFavorite.toggle()
+    }
+    
+    func update(photoModel model: PhotoModel) {
+        self.model = model
     }
     
 }
