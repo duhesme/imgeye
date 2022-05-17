@@ -25,17 +25,19 @@ class InfoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        guard let photo = photo, photo.location != nil, photo.downloads != nil, photo.tags != nil else {
+        guard let photo = photo else {
             return
         }
         
-        photoImageView.kf.setImage(with: photo.urls.regular)
-        likesLabel.text = "\(photo.likes)"
-        contentLabel.text  = photo.description ?? "No description."
-        downloadsLabel.text = "\(photo.downloads)"
-        locationLabel.text = "\(photo.location?.city), \(photo.location?.country)"
-        publishedDateLabel.text = photo.created_at.shortString
-        updatedDateLabel.text = photo.updated_at.shortString
+        let infoViewViewModel = InfoViewModel(photoModel: photo)
+        
+        photoImageView.kf.setImage(with: infoViewViewModel.imageURL)
+        likesLabel.text = infoViewViewModel.likesCount
+        downloadsLabel.text = infoViewViewModel.downloadsCount
+        contentLabel.text  = infoViewViewModel.descriptionText
+        locationLabel.text = infoViewViewModel.locationString
+        publishedDateLabel.text = infoViewViewModel.publicationDate
+        updatedDateLabel.text = infoViewViewModel.updationDate
         
         imageContainerView.layer.masksToBounds = false
         imageContainerView.layer.shadowOffset = CGSize(width: 0, height: 0)
