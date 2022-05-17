@@ -27,8 +27,8 @@ class InfoViewController: UIViewController {
         imageContainerView.layer.masksToBounds = false
         imageContainerView.layer.shadowOffset = CGSize(width: 0, height: 0)
         imageContainerView.layer.shadowColor = UIColor.black.cgColor
-        imageContainerView.layer.shadowOpacity = 0.43
-        imageContainerView.layer.shadowRadius = 16
+        imageContainerView.layer.shadowOpacity = 0.33
+        imageContainerView.layer.shadowRadius = 8
         imageContainerView.layer.cornerRadius = 0
     }
     
