@@ -48,12 +48,7 @@ class InfoViewController: UIViewController {
         publishedDateLabel.text = infoViewModel.publicationDate
         updatedDateLabel.text = infoViewModel.updationDate
         
-        imageContainerView.layer.masksToBounds = false
-        imageContainerView.layer.shadowOffset = CGSize(width: 0, height: 0)
-        imageContainerView.layer.shadowColor = UIColor.black.cgColor
-        imageContainerView.layer.shadowOpacity = 0.33
-        imageContainerView.layer.shadowRadius = 8
-        imageContainerView.layer.cornerRadius = 0
+        imageContainerView.setShadow(withCornerRadius: 0, shadowRadius: 8, shadowOpacity: 0.33, color: UIColor.black)
     }
     
 }
