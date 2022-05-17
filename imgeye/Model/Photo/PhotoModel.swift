@@ -21,6 +21,7 @@ struct PhotoModel: Hashable {
     let downloads: Int?
     let location: Location?
     let tags: [Tag]?
+    let description: String?
     var isFavorite: Bool = false
 }
 

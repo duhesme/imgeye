@@ -15,6 +15,7 @@ class InfoViewController: UIViewController {
     
     @IBOutlet weak var likesLabel: UILabel!
     @IBOutlet weak var downloadsLabel: UILabel!
+    @IBOutlet weak var contentLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var publishedDateLabel: UILabel!
     @IBOutlet weak var updatedDateLabel: UILabel!
@@ -27,9 +28,10 @@ class InfoViewController: UIViewController {
         guard let photo = photo, photo.location != nil, photo.downloads != nil, photo.tags != nil else {
             return
         }
-
+        
         photoImageView.kf.setImage(with: photo.urls.regular)
         likesLabel.text = "\(photo.likes)"
+        contentLabel.text  = photo.description ?? "No description."
         downloadsLabel.text = "\(photo.downloads)"
         locationLabel.text = "\(photo.location?.city), \(photo.location?.country)"
         publishedDateLabel.text = photo.created_at.shortString

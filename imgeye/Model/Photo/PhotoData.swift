@@ -15,6 +15,7 @@ struct PhotoData: Decodable {
     let downloads: Int?
     let location: Location?
     let tags: [Tag]?
+    let description: String?
     let urls: photoURL
     let user: User
 }
