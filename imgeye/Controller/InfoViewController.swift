@@ -13,6 +13,11 @@ class InfoViewController: UIViewController {
     @IBOutlet weak var imageContainerView: UIView!
     @IBOutlet weak var photoImageView: UIImageView!
     
+    @IBOutlet weak var likesLabel: UILabel!
+    @IBOutlet weak var downloadsLabel: UILabel!
+    @IBOutlet weak var locationLabel: UILabel!
+    @IBOutlet weak var publishedDateLabel: UILabel!
+    @IBOutlet weak var updatedDateLabel: UILabel!
     var photo: PhotoModel?
     
     override func viewDidLoad() {

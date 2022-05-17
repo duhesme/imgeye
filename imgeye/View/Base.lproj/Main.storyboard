@@ -345,8 +345,13 @@
                     </view>
                     <navigationItem key="navigationItem" id="qHv-bY-s4d"/>
                     <connections>
+                        <outlet property="downloadsLabel" destination="Guj-7q-aei" id="d4E-j9-oUx"/>
                         <outlet property="imageContainerView" destination="X7W-KM-9Ev" id="VZt-pV-wfP"/>
+                        <outlet property="likesLabel" destination="Jcu-Ow-BfM" id="Qa4-wX-DVu"/>
+                        <outlet property="locationLabel" destination="CQ0-Us-eOH" id="vhT-lo-w2o"/>
                         <outlet property="photoImageView" destination="7XK-ev-jxu" id="aA4-7Y-O9V"/>
+                        <outlet property="publishedDateLabel" destination="kWO-LH-yM7" id="05l-jw-8jI"/>
+                        <outlet property="updatedDateLabel" destination="kUz-ZE-pXm" id="MYV-EM-3TH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VhL-d6-dME" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
