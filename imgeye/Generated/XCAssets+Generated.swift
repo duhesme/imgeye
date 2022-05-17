@@ -24,9 +24,14 @@ internal enum Asset {
   internal enum Assets {
     internal static let accentColor = ColorAsset(name: "AccentColor")
     internal static let favoriteDelteIcon = ImageAsset(name: "favorite-delte-icon")
+    internal static let favoritesTabIcon = ImageAsset(name: "favorites-tab-icon")
+    internal static let feedTabIcon = ImageAsset(name: "feed-tab-icon")
     internal static let heartIconActive = ImageAsset(name: "heart-icon-active")
     internal static let heartIconGray = ImageAsset(name: "heart-icon-gray")
+    internal static let locationIcon = ImageAsset(name: "location-icon")
+    internal static let publishedDateIcon = ImageAsset(name: "published-date-icon")
     internal static let trashBin = ImageAsset(name: "trash-bin")
+    internal static let updatedDateIcon = ImageAsset(name: "updated-date-icon")
   }
 }
 // swiftlint:enable identifier_name line_length nesting type_body_length type_name

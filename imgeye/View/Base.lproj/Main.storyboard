@@ -80,7 +80,7 @@
         <scene sceneID="Q5I-Wr-jSM">
             <objects>
                 <navigationController id="nGZ-ie-N2D" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Favorites" id="Vzc-jJ-YH5"/>
+                    <tabBarItem key="tabBarItem" title="Favorites" image="favorites-tab-icon" id="Vzc-jJ-YH5"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="72u-zI-Ce8">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -210,11 +210,34 @@
                                             <constraint firstAttribute="height" constant="56" id="btH-nw-aHD"/>
                                         </constraints>
                                     </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="W86-GF-3Bo">
+                                        <rect key="frame" x="8" y="72" width="200" height="200"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5MC-R9-7U3" userLabel="Location View">
+                                                <rect key="frame" x="0.0" y="0.0" width="120" height="67"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="11e-7Q-8mf" userLabel="Published View">
+                                                <rect key="frame" x="0.0" y="67" width="146" height="66.5"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BBe-2e-huh" userLabel="Last update View">
+                                                <rect key="frame" x="0.0" y="133.5" width="165" height="66.5"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            </view>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="200" id="fhG-8Z-paz"/>
+                                            <constraint firstAttribute="height" constant="200" id="jGd-Ey-LXr"/>
+                                        </constraints>
+                                    </stackView>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemMintColor"/>
                                 <constraints>
+                                    <constraint firstItem="W86-GF-3Bo" firstAttribute="leading" secondItem="5CZ-sQ-fvT" secondAttribute="leading" constant="8" id="4hm-jt-CVW"/>
                                     <constraint firstItem="7x9-wo-4ZO" firstAttribute="top" secondItem="5CZ-sQ-fvT" secondAttribute="top" constant="8" id="Ij2-Hx-Qsa"/>
                                     <constraint firstItem="7x9-wo-4ZO" firstAttribute="leading" secondItem="5CZ-sQ-fvT" secondAttribute="leading" constant="8" id="Nl5-re-GDC"/>
+                                    <constraint firstItem="W86-GF-3Bo" firstAttribute="top" secondItem="7x9-wo-4ZO" secondAttribute="bottom" constant="8" id="uBN-3Q-V9q"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X7W-KM-9Ev" userLabel="Image Container View">
@@ -260,7 +283,7 @@
         <scene sceneID="aRA-gC-RG2">
             <objects>
                 <navigationController id="bRL-AR-ZY2" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Feed" id="4Dp-qJ-0xO"/>
+                    <tabBarItem key="tabBarItem" title="Feed" image="feed-tab-icon" id="4Dp-qJ-0xO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="YeD-RB-JCn">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -278,6 +301,8 @@
         <segue reference="Kam-GL-Wyg"/>
     </inferredMetricsTieBreakers>
     <resources>
+        <image name="favorites-tab-icon" width="25" height="25"/>
+        <image name="feed-tab-icon" width="25" height="25"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
