@@ -89,7 +89,7 @@
                                     <constraint firstAttribute="width" constant="36" id="iTV-16-fbi"/>
                                 </constraints>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" backgroundImage="favorite-delte-icon"/>
+                                <state key="normal" backgroundImage="favorite-delete-icon"/>
                                 <connections>
                                     <action selector="deleteButtonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="WG1-iw-efX"/>
                                 </connections>
@@ -140,7 +140,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="favorite-delte-icon" width="306.5" height="273"/>
+        <image name="favorite-delete-icon" width="306.5" height="273"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
