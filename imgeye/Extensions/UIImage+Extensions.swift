@@ -13,7 +13,9 @@ extension UIImage {
     static func download(from url: URL, completionHandler: @escaping (_ image: UIImage?) -> Void) {
         DispatchQueue.global(qos: .userInteractive).async {
             guard let data = try? Data(contentsOf: url) else { return }
-            completionHandler(UIImage(data: data))
+            DispatchQueue.main.async {
+                completionHandler(UIImage(data: data))
+            }
         }
     }
     

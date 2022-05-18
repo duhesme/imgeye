@@ -50,6 +50,7 @@ class InfoViewController: UIViewController {
         
         authorAvatarImageView.showAnimatedGradientSkeleton()
         photoImageView.kf.setImage(with: infoViewModel.imageURL)
+        
         authorUsernameLabel.text = infoViewModel.authorName
         likeButton.setBackgroundImage(infoViewModel.likeButtonImage, for: .normal)
         likesLabel.text = infoViewModel.likesCount

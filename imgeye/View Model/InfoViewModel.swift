@@ -15,12 +15,17 @@ class InfoViewModel: NSObject {
     }
     
     private var model: PhotoModel
+    private var fullImageForSaving: UIImage?
     
     private var userManager = UserManager()
     private let didFetchUserProfilePicture: (_ authorProfilePictureURL: URL) -> Void
     
     var imageURL: URL {
         return model.urls.regular
+    }
+    
+    var fullUIImage: UIImage? {
+        return fullImageForSaving
     }
     
     var authorName: String {
@@ -80,6 +85,13 @@ class InfoViewModel: NSObject {
         self.userManager.delegate = self
         
         userManager.downloadUser(byUsername: model.user.username)
+        
+        UIImage.download(from: model.urls.full) { [weak self] image in
+            guard let image = image else {
+                return
+            }
+            self?.fullImageForSaving = image
+        }
     }
     
     func toogleFavoriteState() {
