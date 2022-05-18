@@ -24,7 +24,9 @@ class InfoViewController: UIViewController {
     @IBOutlet weak var publishedDateLabel: UILabel!
     @IBOutlet weak var updatedDateLabel: UILabel!
     
-    var viewDidDismissHadler: (() -> Void) = {}
+    var viewDidDismissHadler: ((_ didChangeState: Bool) -> Void) = { didChangeState in }
+    var isStateChanged = false
+    
     var photo: PhotoModel?
     var infoViewModel: InfoViewModel!
     
@@ -64,13 +66,15 @@ class InfoViewController: UIViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        viewDidDismissHadler()
+        viewDidDismissHadler(isStateChanged)
     }
     
     @IBAction func likeButtonPressed(_ sender: BounceButton) {
         guard let photo = photo else {
             return
         }
+        
+        isStateChanged = true
         
         infoViewModel.toogleFavoriteState()
         likeButton.setBackgroundImage(infoViewModel.likeButtonImage, for: .normal)

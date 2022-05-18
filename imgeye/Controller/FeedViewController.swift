@@ -57,8 +57,10 @@ class FeedViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let infoVC = segue.destination as! InfoViewController
         infoVC.photo = selectedPhoto
-        infoVC.viewDidDismissHadler = {
-            self.update()
+        infoVC.viewDidDismissHadler = { didChangeState in
+            if didChangeState {
+                self.update()
+            }
         }
     }
     
