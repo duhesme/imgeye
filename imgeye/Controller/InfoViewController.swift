@@ -7,10 +7,12 @@
 
 import Foundation
 import UIKit
+import Progress
 
 class InfoViewController: UIViewController {
     
     @IBOutlet weak var imageContainerView: UIView!
+    @IBOutlet weak var imageDownloadingProgessView: UIView!
     @IBOutlet weak var photoImageView: UIImageView!
     
     @IBOutlet weak var authorAvatarImageView: UIImageView!
@@ -18,6 +20,7 @@ class InfoViewController: UIViewController {
     @IBOutlet weak var authorUsernameLabel: UILabel!
     @IBOutlet weak var likeButton: BounceButton!
     @IBOutlet weak var likesLabel: UILabel!
+    @IBOutlet weak var downloadButton: BounceButton!
     @IBOutlet weak var downloadsLabel: UILabel!
     @IBOutlet weak var contentLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
@@ -33,6 +36,8 @@ class InfoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let DefaultRingProgressorParameter: RingProgressorParameter = (.proportional, Asset.Colors.imageDownloadingProgressColor.color, 15, 2)
+        Prog.start(in: imageDownloadingProgessView, .ring(DefaultRingProgressorParameter))
         guard let photo = photo else {
             return
         }
@@ -46,8 +51,9 @@ class InfoViewController: UIViewController {
                     imageView.roundCorners(withCornerRadius: imageView.bounds.height / 2)
                 }
             }
-        } imageDownloadingProgessHandler: { progress in
-            print("Image downloading progess: \(progress)")
+        } imageDownloadingProgessHandler: { [weak self] progress in
+            guard let progressParent = self?.imageDownloadingProgessView else { return }
+            Prog.update(progress, in: progressParent)
         }
         
         authorAvatarImageView.showAnimatedGradientSkeleton()

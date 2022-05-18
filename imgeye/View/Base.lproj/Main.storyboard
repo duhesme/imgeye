@@ -206,16 +206,26 @@
                                                                     <constraint firstAttribute="width" constant="32" id="4Ex-NQ-I87"/>
                                                                 </constraints>
                                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                                <state key="normal" backgroundImage="download-icon"/>
+                                                                <state key="normal" backgroundImage="download-ohne-stroke-icon"/>
                                                                 <connections>
                                                                     <action selector="downloadButtonPressed:" destination="F7K-Io-s36" eventType="touchUpInside" id="HD9-el-Im5"/>
                                                                 </connections>
                                                             </button>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X7c-88-cuB" userLabel="Image Downloading Progress View">
+                                                                <rect key="frame" x="2" y="12" width="32" height="32"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="32" id="K8J-CZ-0dw"/>
+                                                                    <constraint firstAttribute="height" constant="32" id="neb-wZ-BIy"/>
+                                                                </constraints>
+                                                            </view>
                                                         </subviews>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstItem="IGH-tI-cmg" firstAttribute="leading" secondItem="Kb1-58-XX1" secondAttribute="leading" constant="2" id="2AR-WM-1vV"/>
                                                             <constraint firstItem="IGH-tI-cmg" firstAttribute="centerY" secondItem="Kb1-58-XX1" secondAttribute="centerY" id="AHY-uW-Bdo"/>
+                                                            <constraint firstItem="X7c-88-cuB" firstAttribute="centerY" secondItem="Kb1-58-XX1" secondAttribute="centerY" id="aUe-KJ-TKh"/>
+                                                            <constraint firstItem="X7c-88-cuB" firstAttribute="leading" secondItem="Kb1-58-XX1" secondAttribute="leading" constant="2" id="d17-Oa-nQ9"/>
                                                             <constraint firstItem="Guj-7q-aei" firstAttribute="centerY" secondItem="Kb1-58-XX1" secondAttribute="centerY" id="i1K-14-xYX"/>
                                                             <constraint firstItem="Guj-7q-aei" firstAttribute="leading" secondItem="IGH-tI-cmg" secondAttribute="trailing" constant="8" id="jRu-9X-frz"/>
                                                         </constraints>
@@ -441,8 +451,10 @@
                         <outlet property="authorPictureShadowView" destination="gnk-U4-auf" id="HHT-SS-JKR"/>
                         <outlet property="authorUsernameLabel" destination="p04-Rw-eco" id="D5b-PB-BIB"/>
                         <outlet property="contentLabel" destination="o2j-Q7-Rr9" id="Zhi-UX-B9d"/>
+                        <outlet property="downloadButton" destination="IGH-tI-cmg" id="ypN-W4-UTY"/>
                         <outlet property="downloadsLabel" destination="Guj-7q-aei" id="d4E-j9-oUx"/>
                         <outlet property="imageContainerView" destination="X7W-KM-9Ev" id="VZt-pV-wfP"/>
+                        <outlet property="imageDownloadingProgessView" destination="X7c-88-cuB" id="UWf-NI-NJW"/>
                         <outlet property="likeButton" destination="PcL-wH-qvS" id="KQF-B8-tk3"/>
                         <outlet property="likesLabel" destination="Jcu-Ow-BfM" id="Qa4-wX-DVu"/>
                         <outlet property="locationLabel" destination="CQ0-Us-eOH" id="vhT-lo-w2o"/>
@@ -477,7 +489,7 @@
         <segue reference="rg2-oa-ymo"/>
     </inferredMetricsTieBreakers>
     <resources>
-        <image name="download-icon" width="406.5" height="406.5"/>
+        <image name="download-ohne-stroke-icon" width="406.5" height="406.5"/>
         <image name="favorites-tab-icon" width="25" height="25"/>
         <image name="feed-tab-icon" width="25" height="25"/>
         <image name="heart-icon-gray" width="666.5" height="666.5"/>

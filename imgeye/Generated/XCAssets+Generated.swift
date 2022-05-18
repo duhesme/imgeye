@@ -24,6 +24,7 @@ internal enum Asset {
   internal enum Assets {
     internal static let accentColor = ColorAsset(name: "AccentColor")
     internal static let downloadIcon = ImageAsset(name: "download-icon")
+    internal static let downloadOhneStrokeIcon = ImageAsset(name: "download-ohne-stroke-icon")
     internal static let favoriteDeleteIcon = ImageAsset(name: "favorite-delete-icon")
     internal static let favoritesTabIcon = ImageAsset(name: "favorites-tab-icon")
     internal static let feedTabIcon = ImageAsset(name: "feed-tab-icon")
@@ -33,6 +34,9 @@ internal enum Asset {
     internal static let publishedDateIcon = ImageAsset(name: "published-date-icon")
     internal static let trashBin = ImageAsset(name: "trash-bin")
     internal static let updatedDateIcon = ImageAsset(name: "updated-date-icon")
+  }
+  internal enum Colors {
+    internal static let imageDownloadingProgressColor = ColorAsset(name: "image-downloading-progress-color")
   }
 }
 // swiftlint:enable identifier_name line_length nesting type_body_length type_name

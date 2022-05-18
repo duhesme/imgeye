@@ -143,8 +143,8 @@ extension InfoViewModel: URLSessionDownloadDelegate {
     public func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
         guard let data = readDownloadedData(of: location) else { return }
         
-        let image = UIImage(data: data)
-        print("[urlSession] Image successfuly.")
+        fullImageForSaving = UIImage(data: data)
+        print("[urlSession] Image downloaded successfuly.")
     }
     
     func readDownloadedData(of url: URL) -> Data? {

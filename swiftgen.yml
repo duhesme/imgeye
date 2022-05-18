@@ -68,6 +68,7 @@ xcassets:
   # 2
   inputs:
     - Assets.xcassets
+    - Colors.xcassets
   # 3
   outputs:
     # 4

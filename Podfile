@@ -11,6 +11,6 @@ target 'imgeye' do
   pod 'Kingfisher', '~> 6.0'
   pod 'SkeletonView'
   pod 'SwiftGen'
-  pod 'ProgressHUD'
+  pod 'Progress'
 
 end

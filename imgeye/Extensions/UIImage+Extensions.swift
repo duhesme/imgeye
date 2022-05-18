@@ -19,7 +19,7 @@ extension UIImage {
         }
     }
     
-    static func download(from url: URL, delegate: URLSessionDownloadDelegate) {
+    static func download(from url: URL, delegate: URLSessionDownloadDelegate?) {
         let configuration = URLSessionConfiguration.default
         let operationQueue = OperationQueue()
         let session = URLSession(configuration: configuration, delegate: delegate, delegateQueue: operationQueue)
