@@ -46,6 +46,8 @@ class InfoViewController: UIViewController {
                     imageView.roundCorners(withCornerRadius: imageView.bounds.height / 2)
                 }
             }
+        } imageDownloadingProgessHandler: { progress in
+            print("Image downloading progess: \(progress)")
         }
         
         authorAvatarImageView.showAnimatedGradientSkeleton()

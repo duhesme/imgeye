@@ -15,6 +15,7 @@ class InfoViewModel: NSObject {
     
     private var userManager = UserManager()
     private let didFetchUserProfilePicture: (_ authorProfilePictureURL: URL) -> Void
+    private var imageDownloadingProgessHandler: (_ progress: Float) -> Void
     
     var imageURL: URL {
         return model.urls.regular
@@ -74,26 +75,31 @@ class InfoViewModel: NSObject {
         return model.isFavorite
     }
     
-    init(photoModel model: PhotoModel, didFetchUserProfilePicture: @escaping (_ authorProfilePictureURL: URL) -> Void) {
+    init(photoModel model: PhotoModel,
+         didFetchUserProfilePicture: @escaping (_ authorProfilePictureURL: URL) -> Void,
+         imageDownloadingProgessHandler: @escaping (_ progress: Float) -> Void
+    ) {
         self.model = model
         self.didFetchUserProfilePicture = didFetchUserProfilePicture
+        self.imageDownloadingProgessHandler = imageDownloadingProgessHandler
         super.init()
         self.userManager.delegate = self
         
         userManager.downloadUser(byUsername: model.user.username)
-       
-        if let savedPhoto = DataManager.shared.read(photoWithID: model.id) {
-            fullImageForSaving = savedPhoto
-        } else {
-            UIImage.download(from: model.urls.full) { [weak self ]image in
-                guard let image = image else {
-                    return
-                }
-                self?.fullImageForSaving = image
-                DataManager.shared.save(photoWithID: model.id, withUIImage: image)
-            }
-        }
         
+//        if let savedPhoto = DataManager.shared.read(photoWithID: model.id) {
+//            fullImageForSaving = savedPhoto
+//        } else {
+//            UIImage.download(from: model.urls.full) { [weak self ]image in
+//                guard let image = image else {
+//                    return
+//                }
+//                self?.fullImageForSaving = image
+//                DataManager.shared.save(photoWithID: model.id, withUIImage: image)
+//            }
+//        }
+        
+        UIImage.download(from: model.urls.full, delegate: self)
     }
     
     func toogleFavoriteState() {
@@ -119,6 +125,38 @@ extension InfoViewModel: UserManagerDelegate {
     
     func didFailWithErrorDownloadingUser(error: Error?) {
         
+    }
+    
+}
+
+extension InfoViewModel: URLSessionDownloadDelegate {
+    
+    public func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) {
+        
+        let percentDownloaded = Float(totalBytesWritten) / Float(totalBytesExpectedToWrite)
+        
+        DispatchQueue.main.async { [weak self] in
+            self?.imageDownloadingProgessHandler(percentDownloaded)
+        }
+    }
+    
+    public func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
+        guard let data = readDownloadedData(of: location) else { return }
+        
+        let image = UIImage(data: data)
+        print("[urlSession] Image successfuly.")
+    }
+    
+    func readDownloadedData(of url: URL) -> Data? {
+        do {
+            let reader = try FileHandle(forReadingFrom: url)
+            let data = reader.readDataToEndOfFile()
+                
+            return data
+        } catch {
+            print(error)
+            return nil
+        }
     }
     
 }
