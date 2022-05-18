@@ -101,7 +101,7 @@ class DataManager {
         commitChanges()
     }
     
-    func save(photoWithID id: String, andUIImage image: UIImage) {
+    func save(photoWithID id: String, withUIImage image: UIImage) {
         guard let managedContext = context else {
             print("Failed to get CoreData context.")
             return

@@ -81,13 +81,19 @@ class InfoViewModel: NSObject {
         self.userManager.delegate = self
         
         userManager.downloadUser(byUsername: model.user.username)
-        
-        UIImage.download(from: model.urls.full) { [weak self] image in
-            guard let image = image else {
-                return
+       
+        if let savedPhoto = DataManager.shared.read(photoWithID: model.id) {
+            fullImageForSaving = savedPhoto
+        } else {
+            UIImage.download(from: model.urls.full) { [weak self ]image in
+                guard let image = image else {
+                    return
+                }
+                self?.fullImageForSaving = image
+                DataManager.shared.save(photoWithID: model.id, withUIImage: image)
             }
-            self?.fullImageForSaving = image
         }
+        
     }
     
     func toogleFavoriteState() {

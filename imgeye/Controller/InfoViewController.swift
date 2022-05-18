@@ -89,11 +89,11 @@ class InfoViewController: UIViewController {
     
     @IBAction func downloadButtonPressed(_ sender: BounceButton) {
         guard let image = infoViewModel.fullUIImage else { return }
-        UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
+        saveToPhotoLibrary(UIImage: image)
     }
     
-    func saveImage() {
-        
+    func saveToPhotoLibrary(UIImage image: UIImage) {
+        UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
     }
     
 }
