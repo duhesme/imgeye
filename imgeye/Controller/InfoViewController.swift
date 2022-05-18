@@ -37,10 +37,16 @@ class InfoViewController: UIViewController {
         
         infoViewModel = InfoViewModel(photoModel: photo) { [weak self] authorProfilePictureURL in
             DispatchQueue.main.async {
-                self?.authorAvatarImageView.kf.setImage(with: authorProfilePictureURL)
+                self?.authorAvatarImageView.kf.setImage(with: authorProfilePictureURL) { _ in
+                    guard let imageView = self?.authorAvatarImageView else { return }
+                    
+                    imageView.hideSkeleton()
+                    imageView.roundCorners(withCornerRadius: imageView.bounds.height / 2)
+                }
             }
         }
         
+        authorAvatarImageView.showAnimatedGradientSkeleton()
         photoImageView.kf.setImage(with: infoViewModel.imageURL)
         authorUsernameLabel.text = infoViewModel.authorName
         likeButton.setBackgroundImage(infoViewModel.likeButtonImage, for: .normal)
