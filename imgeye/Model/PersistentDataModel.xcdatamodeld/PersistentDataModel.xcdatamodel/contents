@@ -3,7 +3,12 @@
     <entity name="FavoritePhotoDataModel" representedClassName="FavoritePhotoDataModel" syncable="YES" codeGenerationType="class">
         <attribute name="id" attributeType="String"/>
     </entity>
+    <entity name="PhotoDataModel" representedClassName="PhotoDataModel" syncable="YES" codeGenerationType="class">
+        <attribute name="id" attributeType="String"/>
+        <attribute name="storedImage" attributeType="Binary"/>
+    </entity>
     <elements>
         <element name="FavoritePhotoDataModel" positionX="-63" positionY="-18" width="128" height="58"/>
+        <element name="PhotoDataModel" positionX="-63" positionY="0" width="128" height="59"/>
     </elements>
 </model>

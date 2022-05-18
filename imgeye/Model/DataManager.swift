@@ -101,4 +101,52 @@ class DataManager {
         commitChanges()
     }
     
+    func save(photoWithID id: String, andUIImage image: UIImage) {
+        guard let managedContext = context else {
+            print("Failed to get CoreData context.")
+            return
+        }
+        
+        let imageJPEGData = image.jpegData(compressionQuality: 1.0)
+        let photo = PhotoDataModel(context: managedContext)
+        photo.id = id
+        photo.storedImage = imageJPEGData
+        
+        commitChanges()
+    }
+    
+    func read(photoWithID id: String) -> UIImage? {
+        guard let managedContext = context else {
+            print("Failed to get CoreData context.")
+            return nil
+        }
+        
+        let request = PhotoDataModel.fetchRequest()
+        let photoDataPredicate = NSPredicate(format: "id MATCHES %@", id)
+        request.predicate = photoDataPredicate
+        
+        do {
+            let photos = try managedContext.fetch(request)
+            return !photos.isEmpty ? UIImage(data: photos[0].storedImage!) : nil
+        } catch {
+            print("Error fetching data from context \(error)")
+            return nil
+        }
+    }
+    
+    func delete(photoWithID id: String) {
+        guard let managedContext = context else {
+            print("Failed to get CoreData context.")
+            return
+        }
+        
+        guard let photoToDelete = readFavoritePhoto(withID: id) else {
+            print("Can not find photo with id =\(id).")
+            return
+        }
+        
+        managedContext.delete(photoToDelete)
+        commitChanges()
+    }
+    
 }
