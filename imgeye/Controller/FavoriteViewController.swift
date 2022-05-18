@@ -11,7 +11,7 @@ import SkeletonView
 import SwipeCellKit
 
 class FavoriteViewController: UIViewController {
-    
+
     @IBOutlet weak var favoritesTableView: UITableView!
     
     var photoManager = PhotoManager()

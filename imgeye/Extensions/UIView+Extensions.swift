@@ -5,10 +5,21 @@
 //  Created by Никита Владимирович on 17.05.2022.
 //
 
-import Foundation
 import UIKit
 
 extension UIView {
+    
+    @IBInspectable var cornerRadius: CGFloat {
+        
+            get {
+                return layer.cornerRadius
+            }
+        
+            set {
+                layer.masksToBounds = true
+                layer.cornerRadius = newValue
+            }
+    }
     
     func roundCorners(withCornerRadius radius: CGFloat) {
         self.layer.masksToBounds = true

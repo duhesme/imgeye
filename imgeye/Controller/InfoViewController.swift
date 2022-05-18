@@ -11,6 +11,7 @@ import Progress
 
 class InfoViewController: UIViewController {
     
+    @IBOutlet weak var popupMessagesView: UIView!
     @IBOutlet weak var imageContainerView: UIView!
     @IBOutlet weak var imageDownloadingProgessView: UIView!
     @IBOutlet weak var photoImageView: UIImageView!
@@ -32,6 +33,8 @@ class InfoViewController: UIViewController {
     
     var photo: PhotoModel?
     var infoViewModel: InfoViewModel!
+    
+    let popUpInfoManager = PopUpInfoManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -95,8 +98,10 @@ class InfoViewController: UIViewController {
         
         if infoViewModel.isCurrentPhotoInFavorites {
             DataManager.shared.saveFavorivePhoto(withID: photo.id)
+            popUpInfoManager.showPopup(in: popupMessagesView, with: Strings.Popup.addedToFavorites)
         } else {
             DataManager.shared.deleteFromFavoritesPhoto(withID: photo.id)
+            popUpInfoManager.showPopup(in: popupMessagesView, with: Strings.Popup.removedFromFavorites)
         }
     }
     

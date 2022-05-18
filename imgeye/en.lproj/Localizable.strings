@@ -5,6 +5,10 @@
 //  Created by Никита Владимирович on 16.05.2022.
 //
 
+// Popup
+"Popup.AddedToFavorites" = "Added to favorites";
+"Popup.RemovedFromFavorites" = "Removed from favorites";
+
 // Feed
 "Feed.Navigation.Title" = "Feed";
 

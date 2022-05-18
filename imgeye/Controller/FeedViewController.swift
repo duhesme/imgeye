@@ -11,12 +11,15 @@ import SkeletonView
 
 class FeedViewController: UIViewController {
     
+    @IBOutlet weak var popUpMessagesView: UIView!
     @IBOutlet weak var feedTableView: UITableView!
     
     let refreshControl = UIRefreshControl()
     
     var photoManager = PhotoManager()
     var photosArray = [PhotoModel]()
+    
+    let popUpInfoManager = PopUpInfoManager()
     
     var selectedPhoto: PhotoModel?
     
@@ -144,8 +147,10 @@ extension FeedViewController: PhotoTableViewCellDelegate {
         
         if photo.isFavorite {
             DataManager.shared.saveFavorivePhoto(withID: photo.id)
+            popUpInfoManager.showPopup(in: popUpMessagesView, with: Strings.Popup.addedToFavorites)
         } else {
             DataManager.shared.deleteFromFavoritesPhoto(withID: photo.id)
+            popUpInfoManager.showPopup(in: popUpMessagesView, with: Strings.Popup.removedFromFavorites)
         }
         
         cell.update(model: photo)

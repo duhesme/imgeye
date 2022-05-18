@@ -37,20 +37,29 @@
                                     <constraint firstAttribute="trailing" secondItem="D14-pI-PsV" secondAttribute="trailing" id="sA0-ux-lDM"/>
                                 </constraints>
                             </view>
+                            <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J8m-0w-oqs" userLabel="PopUp Messages View">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="J8m-0w-oqs" secondAttribute="bottom" id="5ka-1f-LSr"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="IeN-G5-ByZ" secondAttribute="bottom" id="AuW-v0-6BN"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="IeN-G5-ByZ" secondAttribute="trailing" id="ScL-zK-LVS"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="J8m-0w-oqs" secondAttribute="trailing" id="VTt-7Z-58y"/>
+                            <constraint firstItem="J8m-0w-oqs" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="fAA-1k-0je"/>
                             <constraint firstItem="IeN-G5-ByZ" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="oGA-Ad-MGf"/>
                             <constraint firstItem="IeN-G5-ByZ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="rvX-us-VlN"/>
+                            <constraint firstItem="J8m-0w-oqs" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="vgL-qK-jHg"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Feed" id="Chc-LB-LOR"/>
                     <navigationItem key="navigationItem" title="Feed" id="YOZ-2c-uLt"/>
                     <connections>
                         <outlet property="feedTableView" destination="D14-pI-PsV" id="9jP-rC-Xdm"/>
+                        <outlet property="popUpMessagesView" destination="J8m-0w-oqs" id="5vg-CJ-h13"/>
                         <segue destination="F7K-Io-s36" kind="showDetail" identifier="FromFeedToInfo" id="rg2-oa-ymo"/>
                     </connections>
                 </viewController>
@@ -430,6 +439,10 @@
                                     <constraint firstAttribute="bottom" secondItem="7XK-ev-jxu" secondAttribute="bottom" id="jgX-gF-hlM"/>
                                 </constraints>
                             </view>
+                            <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1jO-N6-Ewd" userLabel="PopUp Messages View">
+                                <rect key="frame" x="0.0" y="44" width="414" height="798"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="xr2-RW-qfl"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -437,8 +450,12 @@
                             <constraint firstItem="X7W-KM-9Ev" firstAttribute="height" secondItem="w5A-Qi-dxz" secondAttribute="height" multiplier="0.6" id="1dS-Sf-SPn"/>
                             <constraint firstItem="o2j-Q7-Rr9" firstAttribute="width" secondItem="w5A-Qi-dxz" secondAttribute="width" constant="-32" id="5b3-6N-zVf"/>
                             <constraint firstItem="xr2-RW-qfl" firstAttribute="trailing" secondItem="X7W-KM-9Ev" secondAttribute="trailing" id="Cfs-ok-LbZ"/>
+                            <constraint firstItem="xr2-RW-qfl" firstAttribute="bottom" secondItem="1jO-N6-Ewd" secondAttribute="bottom" id="Fjt-wM-yx6"/>
+                            <constraint firstItem="1jO-N6-Ewd" firstAttribute="leading" secondItem="xr2-RW-qfl" secondAttribute="leading" id="KrP-F2-KS5"/>
                             <constraint firstItem="xr2-RW-qfl" firstAttribute="trailing" secondItem="xp5-j1-el1" secondAttribute="trailing" id="M7h-G2-S8u"/>
+                            <constraint firstItem="1jO-N6-Ewd" firstAttribute="top" secondItem="xr2-RW-qfl" secondAttribute="top" id="QlP-4r-c06"/>
                             <constraint firstItem="X7W-KM-9Ev" firstAttribute="top" secondItem="w5A-Qi-dxz" secondAttribute="top" id="SgA-iS-Vzk"/>
+                            <constraint firstItem="xr2-RW-qfl" firstAttribute="trailing" secondItem="1jO-N6-Ewd" secondAttribute="trailing" id="WPX-5T-BRl"/>
                             <constraint firstAttribute="bottom" secondItem="xp5-j1-el1" secondAttribute="bottom" id="aMm-XK-ti6"/>
                             <constraint firstItem="X7W-KM-9Ev" firstAttribute="leading" secondItem="xr2-RW-qfl" secondAttribute="leading" id="aUf-Ay-MdH"/>
                             <constraint firstItem="xp5-j1-el1" firstAttribute="leading" secondItem="w5A-Qi-dxz" secondAttribute="leading" id="bzP-g0-yWH"/>
@@ -459,6 +476,7 @@
                         <outlet property="likesLabel" destination="Jcu-Ow-BfM" id="Qa4-wX-DVu"/>
                         <outlet property="locationLabel" destination="CQ0-Us-eOH" id="vhT-lo-w2o"/>
                         <outlet property="photoImageView" destination="7XK-ev-jxu" id="aA4-7Y-O9V"/>
+                        <outlet property="popupMessagesView" destination="1jO-N6-Ewd" id="ugo-SP-7hH"/>
                         <outlet property="publishedDateLabel" destination="kWO-LH-yM7" id="05l-jw-8jI"/>
                         <outlet property="updatedDateLabel" destination="kUz-ZE-pXm" id="MYV-EM-3TH"/>
                     </connections>

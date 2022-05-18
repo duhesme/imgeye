@@ -40,6 +40,13 @@ public enum Strings {
       public static let title = Strings.tr("Localizable", "Feed.Navigation.Title")
     }
   }
+
+  public enum Popup {
+    /// Added to favorites
+    public static let addedToFavorites = Strings.tr("Localizable", "Popup.AddedToFavorites")
+    /// Removed from favorites
+    public static let removedFromFavorites = Strings.tr("Localizable", "Popup.RemovedFromFavorites")
+  }
 }
 // swiftlint:enable explicit_type_interface function_parameter_count identifier_name line_length
 // swiftlint:enable nesting type_body_length type_name vertical_whitespace_opening_braces
