@@ -36,7 +36,7 @@ class InfoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let DefaultRingProgressorParameter: RingProgressorParameter = (.proportional, Asset.Colors.imageDownloadingProgressColor.color, 15, 2)
+        let DefaultRingProgressorParameter: RingProgressorParameter = (.proportional, Asset.Colors.imageDownloadingProgressColor.color, 15, 3)
         Prog.start(in: imageDownloadingProgessView, .ring(DefaultRingProgressorParameter))
         guard let photo = photo else {
             return
@@ -54,6 +54,11 @@ class InfoViewController: UIViewController {
         } imageDownloadingProgessHandler: { [weak self] progress in
             guard let progressParent = self?.imageDownloadingProgessView else { return }
             Prog.update(progress, in: progressParent)
+            
+            if progress == 1.0 {
+                self?.downloadButton.setBackgroundImage(Asset.Assets.downloadIcon.image, for: .normal)
+                Prog.dismiss(in: progressParent)
+            }
         }
         
         authorAvatarImageView.showAnimatedGradientSkeleton()

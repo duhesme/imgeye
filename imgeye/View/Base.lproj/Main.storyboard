@@ -211,12 +211,12 @@
                                                                     <action selector="downloadButtonPressed:" destination="F7K-Io-s36" eventType="touchUpInside" id="HD9-el-Im5"/>
                                                                 </connections>
                                                             </button>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X7c-88-cuB" userLabel="Image Downloading Progress View">
-                                                                <rect key="frame" x="2" y="12" width="32" height="32"/>
+                                                            <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X7c-88-cuB" userLabel="Image Downloading Progress View">
+                                                                <rect key="frame" x="1" y="11.5" width="33" height="33"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="width" constant="32" id="K8J-CZ-0dw"/>
-                                                                    <constraint firstAttribute="height" constant="32" id="neb-wZ-BIy"/>
+                                                                    <constraint firstAttribute="width" constant="33" id="K8J-CZ-0dw"/>
+                                                                    <constraint firstAttribute="height" constant="33" id="neb-wZ-BIy"/>
                                                                 </constraints>
                                                             </view>
                                                         </subviews>
@@ -225,7 +225,7 @@
                                                             <constraint firstItem="IGH-tI-cmg" firstAttribute="leading" secondItem="Kb1-58-XX1" secondAttribute="leading" constant="2" id="2AR-WM-1vV"/>
                                                             <constraint firstItem="IGH-tI-cmg" firstAttribute="centerY" secondItem="Kb1-58-XX1" secondAttribute="centerY" id="AHY-uW-Bdo"/>
                                                             <constraint firstItem="X7c-88-cuB" firstAttribute="centerY" secondItem="Kb1-58-XX1" secondAttribute="centerY" id="aUe-KJ-TKh"/>
-                                                            <constraint firstItem="X7c-88-cuB" firstAttribute="leading" secondItem="Kb1-58-XX1" secondAttribute="leading" constant="2" id="d17-Oa-nQ9"/>
+                                                            <constraint firstItem="X7c-88-cuB" firstAttribute="leading" secondItem="Kb1-58-XX1" secondAttribute="leading" constant="1" id="d17-Oa-nQ9"/>
                                                             <constraint firstItem="Guj-7q-aei" firstAttribute="centerY" secondItem="Kb1-58-XX1" secondAttribute="centerY" id="i1K-14-xYX"/>
                                                             <constraint firstItem="Guj-7q-aei" firstAttribute="leading" secondItem="IGH-tI-cmg" secondAttribute="trailing" constant="8" id="jRu-9X-frz"/>
                                                         </constraints>
