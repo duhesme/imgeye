@@ -10,6 +10,7 @@
 		2BFC4D57CD84E633E643EB31 /* Pods_imgeye.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C725982C24E7F340C92494F /* Pods_imgeye.framework */; };
 		8455A4E32833B2FE00F6540E /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8455A4E22833B2FE00F6540E /* UIView+Extensions.swift */; };
 		8455A4E52833ECA000F6540E /* InfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8455A4E42833ECA000F6540E /* InfoViewModel.swift */; };
+		8455A4E82834EC4000F6540E /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8455A4E72834EC4000F6540E /* UIImage+Extensions.swift */; };
 		84D31A6B2832B5A600480113 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 84D31A692832B5A600480113 /* Localizable.strings */; };
 		84D31A6F2832B8F000480113 /* Strings+Generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D31A6E2832B8F000480113 /* Strings+Generated.swift */; };
 		84D31A722832F3AF00480113 /* FavoritesTableViewCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D31A712832F3AF00480113 /* FavoritesTableViewCellDelegate.swift */; };
@@ -50,6 +51,7 @@
 		6D75FF380AB33F507BA22987 /* Pods-imgeye.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-imgeye.release.xcconfig"; path = "Target Support Files/Pods-imgeye/Pods-imgeye.release.xcconfig"; sourceTree = "<group>"; };
 		8455A4E22833B2FE00F6540E /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		8455A4E42833ECA000F6540E /* InfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewModel.swift; sourceTree = "<group>"; };
+		8455A4E72834EC4000F6540E /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		84D31A692832B5A600480113 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		84D31A6E2832B8F000480113 /* Strings+Generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Strings+Generated.swift"; sourceTree = "<group>"; };
 		84D31A712832F3AF00480113 /* FavoritesTableViewCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesTableViewCellDelegate.swift; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 			children = (
 				84E89D8C2831743B00483368 /* Date+Extensions.swift */,
 				8455A4E22833B2FE00F6540E /* UIView+Extensions.swift */,
+				8455A4E72834EC4000F6540E /* UIImage+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -456,6 +459,7 @@
 				84E89D772830FF7C00483368 /* IB-Scenes+Generated.swift in Sources */,
 				84E89D862831623200483368 /* UserManager.swift in Sources */,
 				84E89D82283156AA00483368 /* FavoritesTableViewCell.swift in Sources */,
+				8455A4E82834EC4000F6540E /* UIImage+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -606,6 +610,7 @@
 				DEVELOPMENT_TEAM = 8TC4T4YW8P;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = imgeye/Info.plist;
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Your permisson is necessary for saving images to library.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -636,6 +641,7 @@
 				DEVELOPMENT_TEAM = 8TC4T4YW8P;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = imgeye/Info.plist;
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Your permisson is necessary for saving images to library.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

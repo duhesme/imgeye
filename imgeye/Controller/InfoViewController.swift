@@ -86,4 +86,8 @@ class InfoViewController: UIViewController {
         }
     }
     
+    func saveImage() {
+        
+    }
+    
 }
