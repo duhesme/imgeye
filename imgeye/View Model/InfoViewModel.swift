@@ -10,10 +10,6 @@ import UIKit
 
 class InfoViewModel: NSObject {
     
-    deinit {
-        print("Deinit")
-    }
-    
     private var model: PhotoModel
     private var fullImageForSaving: UIImage?
     
