@@ -160,35 +160,3 @@ extension InfoViewModel: UserManagerDelegate {
     }
     
 }
-
-extension InfoViewModel: URLSessionDownloadDelegate {
-    
-    public func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) {
-        
-        let percentDownloaded = Float(totalBytesWritten) / Float(totalBytesExpectedToWrite)
-        
-        DispatchQueue.main.async { [weak self] in
-            self?.imageDownloadingProgessHandler(percentDownloaded)
-        }
-    }
-    
-    public func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
-        guard let data = readDownloadedData(of: location) else { return }
-        
-        fullImageForSaving = UIImage(data: data)
-        print("[urlSession in InfoViewMode] Image downloaded successfuly.")
-    }
-    
-    func readDownloadedData(of url: URL) -> Data? {
-        do {
-            let reader = try FileHandle(forReadingFrom: url)
-            let data = reader.readDataToEndOfFile()
-                
-            return data
-        } catch {
-            print(error)
-            return nil
-        }
-    }
-    
-}

@@ -19,15 +19,6 @@ class ImageDownloader: NSObject {
     private var downloadTask: URLSessionDownloadTask?
     private var downloadingProgessHandler: ((_ progress: Float) -> Void)?
     private var completionHandler: ((_ uiImage: UIImage?) -> Void)?
-     
-    func download(from url: URL, completionHandler: @escaping (_ image: UIImage?) -> Void) {
-        DispatchQueue.global(qos: .userInteractive).async {
-            guard let data = try? Data(contentsOf: url) else { return }
-            DispatchQueue.main.async {
-                completionHandler(UIImage(data: data))
-            }
-        }
-    }
     
     func download(from url: URL,
                   completionHandler: @escaping ((_ uiImage: UIImage?) -> Void),
