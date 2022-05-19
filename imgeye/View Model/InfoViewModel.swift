@@ -10,8 +10,15 @@ import UIKit
 
 class InfoViewModel: NSObject {
     
+    deinit {
+        print("[InfoViewModel] deinit.")
+    }
+    
     private var model: PhotoModel
     private var fullImageForSaving: UIImage?
+    
+    fileprivate var downloadTaskReference: URLSessionDownloadTask?
+    private var imageDownloader: ImageDownloader?
     
     private var userManager = UserManager()
     private let didFetchUserProfilePicture: (_ authorProfilePictureURL: URL) -> Void
@@ -77,8 +84,8 @@ class InfoViewModel: NSObject {
     
     init(photoModel model: PhotoModel,
          didFetchUserProfilePicture: @escaping (_ authorProfilePictureURL: URL) -> Void,
-         imageDownloadingProgessHandler: @escaping (_ progress: Float) -> Void
-    ) {
+         imageDownloadingProgessHandler: @escaping (_ progress: Float) -> Void)
+    {
         self.model = model
         self.didFetchUserProfilePicture = didFetchUserProfilePicture
         self.imageDownloadingProgessHandler = imageDownloadingProgessHandler
@@ -99,7 +106,11 @@ class InfoViewModel: NSObject {
 //            }
 //        }
         
-        UIImage.download(from: model.urls.full, delegate: self)
+//        imageDownloader.download(from: model.urls.full) { uiImage in
+//            print("[InfoViewModel] image downloaded.")
+//        } downloadingProgessHandler: { [weak self] progress in
+//            self?.imageDownloadingProgessHandler(progress)
+//        }
     }
     
     func toogleFavoriteState() {
@@ -108,6 +119,26 @@ class InfoViewModel: NSObject {
     
     func update(photoModel model: PhotoModel) {
         self.model = model
+    }
+    
+    func downloadImage(
+        completionHandler: @escaping (_ uiImage: UIImage?) -> Void,
+        imageDownloadingProgessHandler: @escaping (_ progress: Float) -> Void)
+    {
+        imageDownloader = ImageDownloader()
+        imageDownloader?.download(from: model.urls.full) { uiImage in
+            completionHandler(uiImage)
+        } downloadingProgessHandler: { progress in
+            imageDownloadingProgessHandler(progress)
+        }
+    }
+    
+    func cancelImageDownloading() {
+        imageDownloader?.cancelDownload()
+    }
+    
+    func saveImage() {
+        
     }
     
 }
@@ -144,7 +175,7 @@ extension InfoViewModel: URLSessionDownloadDelegate {
         guard let data = readDownloadedData(of: location) else { return }
         
         fullImageForSaving = UIImage(data: data)
-        print("[urlSession] Image downloaded successfuly.")
+        print("[urlSession in InfoViewMode] Image downloaded successfuly.")
     }
     
     func readDownloadedData(of url: URL) -> Data? {
@@ -157,6 +188,10 @@ extension InfoViewModel: URLSessionDownloadDelegate {
             print(error)
             return nil
         }
+    }
+    
+    func cancelImageDownload() {
+        downloadTaskReference?.cancel()
     }
     
 }
