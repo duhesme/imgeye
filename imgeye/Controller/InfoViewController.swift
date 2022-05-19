@@ -12,7 +12,7 @@ import Progress
 class InfoViewController: UIViewController {
     
     deinit {
-        infoViewModel.cancelImageDownloading()
+        viewModel.cancelImageDownloading()
     }
     
     @IBOutlet weak var popupMessagesView: UIView!
@@ -36,7 +36,7 @@ class InfoViewController: UIViewController {
     var isStateChanged = false
     
     var photo: PhotoModel?
-    var infoViewModel: InfoViewModel!
+    var viewModel: InfoViewModel!
     
     let popUpInfoManager = PopUpInfoManager()
     
@@ -49,7 +49,7 @@ class InfoViewController: UIViewController {
             return
         }
         
-        infoViewModel = InfoViewModel(photoModel: photo) { [weak self] authorProfilePictureURL in
+        viewModel = InfoViewModel(photoModel: photo) { [weak self] authorProfilePictureURL in
             DispatchQueue.main.async {
                 self?.authorAvatarImageView.kf.setImage(with: authorProfilePictureURL) { _ in
                     guard let imageView = self?.authorAvatarImageView else { return }
@@ -70,22 +70,22 @@ class InfoViewController: UIViewController {
         }
         
         authorAvatarImageView.showAnimatedGradientSkeleton()
-        photoImageView.kf.setImage(with: infoViewModel.imageURL)
+        photoImageView.kf.setImage(with: viewModel.imageURL)
         
-        authorUsernameLabel.text = infoViewModel.authorName
-        likeButton.setBackgroundImage(infoViewModel.likeButtonImage, for: .normal)
-        likesLabel.text = infoViewModel.likesCount
-        downloadsLabel.text = infoViewModel.downloadsCount
-        contentLabel.text  = infoViewModel.descriptionText
-        locationLabel.text = infoViewModel.locationString
-        publishedDateLabel.text = infoViewModel.publicationDate
-        updatedDateLabel.text = infoViewModel.updationDate
+        authorUsernameLabel.text = viewModel.authorName
+        likeButton.setBackgroundImage(viewModel.likeButtonImage, for: .normal)
+        likesLabel.text = viewModel.likesCount
+        downloadsLabel.text = viewModel.downloadsCount
+        contentLabel.text  = viewModel.descriptionText
+        locationLabel.text = viewModel.locationString
+        publishedDateLabel.text = viewModel.publicationDate
+        updatedDateLabel.text = viewModel.updationDate
         
         imageContainerView.setShadow(withCornerRadius: 0, shadowRadius: 8, shadowOpacity: 0.33, color: UIColor.black)
         authorAvatarImageView.roundCorners(withCornerRadius: authorAvatarImageView.bounds.height / 2)
         authorPictureShadowView.roundCorners(withCornerRadius: authorPictureShadowView.bounds.height / 2)
         
-        if infoViewModel.isCurrentPhotoDownloaded {
+        if viewModel.isCurrentPhotoDownloaded {
             downloadButton.setBackgroundImage(Asset.Assets.downloadIcon.image, for: .normal)
         }
     }
@@ -102,10 +102,10 @@ class InfoViewController: UIViewController {
         
         isStateChanged = true
         
-        infoViewModel.toogleFavoriteState()
-        likeButton.setBackgroundImage(infoViewModel.likeButtonImage, for: .normal)
+        viewModel.toogleFavoriteState()
+        likeButton.setBackgroundImage(viewModel.likeButtonImage, for: .normal)
         
-        if infoViewModel.isCurrentPhotoInFavorites {
+        if viewModel.isCurrentPhotoInFavorites {
             DataManager.shared.saveFavorivePhoto(withID: photo.id)
             popUpInfoManager.showPopup(in: popupMessagesView, with: Strings.Popup.addedToFavorites)
         } else {
@@ -115,9 +115,9 @@ class InfoViewController: UIViewController {
     }
     
     @IBAction func downloadButtonPressed(_ sender: BounceButton) {
-        guard !infoViewModel.isCurrentPhotoDownloaded else {
-            if let image = infoViewModel.fullUIImage {
-                infoViewModel.saveImageToPhotoLibrary(uiImage: image) { [weak self] error in
+        guard !viewModel.isCurrentPhotoDownloaded else {
+            if let image = viewModel.fullUIImage {
+                viewModel.saveImageToPhotoLibrary(uiImage: image) { [weak self] error in
                     guard let popupView = self?.popupMessagesView else { return }
                     if error == nil {
                         self?.popUpInfoManager.showPopup(in: popupView, with: Strings.Popup.imageSavedSuccesfuly)
@@ -132,7 +132,7 @@ class InfoViewController: UIViewController {
             return
         }
         
-        infoViewModel.downloadFullSizeImageAndSaveToPhotoLibrary(completionHandler: { [weak self] error in
+        viewModel.downloadFullSizeImageAndSaveToPhotoLibrary(completionHandler: { [weak self] error in
             guard let viewForPopup = self?.popupMessagesView, let progressParent = self?.imageDownloadingProgessView else { return }
             
             DispatchQueue.main.async {
