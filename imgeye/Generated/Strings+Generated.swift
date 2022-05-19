@@ -44,6 +44,10 @@ public enum Strings {
   public enum Popup {
     /// Added to favorites
     public static let addedToFavorites = Strings.tr("Localizable", "Popup.AddedToFavorites")
+    /// Error saving image
+    public static let imageNotSaved = Strings.tr("Localizable", "Popup.ImageNotSaved")
+    /// Image saved to your photo library
+    public static let imageSavedSuccesfuly = Strings.tr("Localizable", "Popup.ImageSavedSuccesfuly")
     /// Removed from favorites
     public static let removedFromFavorites = Strings.tr("Localizable", "Popup.RemovedFromFavorites")
   }

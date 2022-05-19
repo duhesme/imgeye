@@ -8,6 +8,8 @@
 // Popup
 "Popup.AddedToFavorites" = "Added to favorites";
 "Popup.RemovedFromFavorites" = "Removed from favorites";
+"Popup.ImageSavedSuccesfuly" = "Image saved to your photo library";
+"Popup.ImageNotSaved" = "Error saving image";
 
 // Feed
 "Feed.Navigation.Title" = "Feed";

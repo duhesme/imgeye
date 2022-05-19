@@ -107,15 +107,19 @@ class InfoViewController: UIViewController {
     
     @IBAction func downloadButtonPressed(_ sender: BounceButton) {
         guard let image = infoViewModel.fullUIImage else { return }
-        saveToPhotoLibrary(UIImage: image)
-    }
-    
-    @objc func saved() {
-        print("Image saved successfuly.")
-    }
-    
-    func saveToPhotoLibrary(UIImage image: UIImage) {
-        UIImageWriteToSavedPhotosAlbum(image, nil, #selector(saved), nil)
+        let saver = ImageSaver()
+        saver.writeToPhotoAlbum(image: image) { [weak self] error in
+            guard let view = self?.popupMessagesView else { return }
+            
+            guard let error = error else {
+                print("Image saved to Photo Library successfuly.")
+                self?.popUpInfoManager.showPopup(in: view, with: Strings.Popup.imageSavedSuccesfuly)
+                return
+            }
+            
+            print("[ImageSaver] \(error)")
+            self?.popUpInfoManager.showPopup(in: view, with: Strings.Popup.imageNotSaved)
+        }
     }
     
 }
