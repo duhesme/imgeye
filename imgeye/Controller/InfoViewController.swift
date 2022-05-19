@@ -110,8 +110,12 @@ class InfoViewController: UIViewController {
         saveToPhotoLibrary(UIImage: image)
     }
     
+    @objc func saved() {
+        print("Image saved successfuly.")
+    }
+    
     func saveToPhotoLibrary(UIImage image: UIImage) {
-        UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
+        UIImageWriteToSavedPhotosAlbum(image, nil, #selector(saved), nil)
     }
     
 }
