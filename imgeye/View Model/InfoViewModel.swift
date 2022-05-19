@@ -83,6 +83,14 @@ class InfoViewModel: NSObject {
         return model.isFavorite
     }
     
+    var isCurrentPhotoDownloaded: Bool {
+        if fullImageForSaving != nil {
+            return true
+        }
+        
+        return false
+    }
+    
     init(photoModel model: PhotoModel,
          didFetchUserProfilePicture: @escaping (_ authorProfilePictureURL: URL) -> Void,
          imageDownloadingProgessHandler: @escaping (_ progress: Float) -> Void)
@@ -94,6 +102,10 @@ class InfoViewModel: NSObject {
         self.userManager.delegate = self
         
         userManager.downloadUser(byUsername: model.user.username)
+        
+        if let savedPhoto = DataManager.shared.read(photoWithID: model.id) {
+            fullImageForSaving = savedPhoto
+        }
         
 //        if let savedPhoto = DataManager.shared.read(photoWithID: model.id) {
 //            fullImageForSaving = savedPhoto
@@ -116,8 +128,8 @@ class InfoViewModel: NSObject {
         self.model = model
     }
     
-    func downloadImage(
-        completionHandler: @escaping (_ uiImage: UIImage?) -> Void,
+    func downloadFullSizeImageAndSaveToPhotoLibrary(
+        completionHandler: @escaping (_ error: Error?) -> Void,
         imageDownloadingProgessHandler: @escaping (_ progress: Float) -> Void)
     {
         isImageDownloading = true
@@ -125,7 +137,17 @@ class InfoViewModel: NSObject {
         imageDownloader = ImageDownloader()
         imageDownloader?.download(from: model.urls.full) { [weak self] uiImage in
             self?.isImageDownloading = false
-            completionHandler(uiImage)
+            guard let image = uiImage else {
+                completionHandler(NSError(domain: "InfoViewController.InfoViewModel.ImageDownloader", code: -1))
+                return
+            }
+            self?.saveImageToPhotoLibrary(uiImage: image, completionHander: completionHandler)
+            
+            if let imageID = self?.model.id {
+                DispatchQueue.main.async {
+                    DataManager.shared.save(photoWithID: imageID, withUIImage: image)
+                }
+            }
         } downloadingProgessHandler: { progress in
             imageDownloadingProgessHandler(progress)
         }
@@ -138,8 +160,9 @@ class InfoViewModel: NSObject {
         }
     }
     
-    func saveImage() {
-        
+    func saveImageToPhotoLibrary(uiImage image: UIImage, completionHander: @escaping (_ error: Error?) -> Void) {
+        let imageSaver = ImageSaver()
+        imageSaver.writeToPhotoAlbum(image: image, completionHandler: completionHander)
     }
     
 }

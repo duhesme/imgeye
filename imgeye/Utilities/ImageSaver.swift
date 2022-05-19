@@ -9,6 +9,10 @@ import UIKit
 
 class ImageSaver: NSObject {
     
+    deinit {
+        print("[ImageSaver] deinit.")
+    }
+    
     private var completionHandler: ((_ error: Error?) -> Void) = { error in }
     
     func writeToPhotoAlbum(image: UIImage, completionHandler: @escaping (_ error: Error?) -> Void) {

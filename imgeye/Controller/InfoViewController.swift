@@ -62,7 +62,6 @@ class InfoViewController: UIViewController {
             guard let progressParent = self?.imageDownloadingProgessView else { return }
             DispatchQueue.main.async { [weak self] in
                 Prog.update(progress, in: progressParent)
-                print("[imageDownloadingProgessHandler] progress: \(progress)")
                 if progress == 1.0 {
                     self?.downloadButton.setBackgroundImage(Asset.Assets.downloadIcon.image, for: .normal)
                     Prog.dismiss(in: progressParent)
@@ -85,6 +84,10 @@ class InfoViewController: UIViewController {
         imageContainerView.setShadow(withCornerRadius: 0, shadowRadius: 8, shadowOpacity: 0.33, color: UIColor.black)
         authorAvatarImageView.roundCorners(withCornerRadius: authorAvatarImageView.bounds.height / 2)
         authorPictureShadowView.roundCorners(withCornerRadius: authorPictureShadowView.bounds.height / 2)
+        
+        if infoViewModel.isCurrentPhotoDownloaded {
+            downloadButton.setBackgroundImage(Asset.Assets.downloadIcon.image, for: .normal)
+        }
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -112,34 +115,42 @@ class InfoViewController: UIViewController {
     }
     
     @IBAction func downloadButtonPressed(_ sender: BounceButton) {
-        infoViewModel.downloadImage { [weak self] uiImage in
-            print("Downloaded.")
-            guard let progressParent = self?.imageDownloadingProgessView else { return }
-            DispatchQueue.main.async {
-                self?.downloadButton.setBackgroundImage(Asset.Assets.downloadIcon.image, for: .normal)
-                Prog.dismiss(in: progressParent)
+        guard !infoViewModel.isCurrentPhotoDownloaded else {
+            if let image = infoViewModel.fullUIImage {
+                infoViewModel.saveImageToPhotoLibrary(uiImage: image) { [weak self] error in
+                    guard let popupView = self?.popupMessagesView else { return }
+                    if error == nil {
+                        self?.popUpInfoManager.showPopup(in: popupView, with: Strings.Popup.imageSavedSuccesfuly)
+                    } else {
+                        self?.popUpInfoManager.showPopup(in: popupView, with: Strings.Popup.imageNotSaved)
+                    }
+                }
+            } else {
+                popUpInfoManager.showPopup(in: popupMessagesView, with: Strings.Popup.imageNotSaved)
             }
-        } imageDownloadingProgessHandler: { [weak self] progress in
-            print("[imageDownloadingProgessHandler] progress: \(progress)")
+
+            return
+        }
+        
+        infoViewModel.downloadFullSizeImageAndSaveToPhotoLibrary(completionHandler: { [weak self] error in
+            guard let viewForPopup = self?.popupMessagesView, let progressParent = self?.imageDownloadingProgessView else { return }
+            
+            DispatchQueue.main.async {
+                if error == nil {
+                    self?.popUpInfoManager.showPopup(in: viewForPopup, with: Strings.Popup.imageSavedSuccesfuly)
+                    Prog.dismiss(in: progressParent)
+                    self?.downloadButton.setBackgroundImage(Asset.Assets.downloadIcon.image, for: .normal)
+                } else {
+                    self?.popUpInfoManager.showPopup(in: viewForPopup, with: Strings.Popup.imageNotSaved)
+                    Prog.dismiss(in: progressParent)
+                }
+            }
+        }, imageDownloadingProgessHandler: { [weak self] progress in
             guard let progressParent = self?.imageDownloadingProgessView else { return }
             DispatchQueue.main.async {
                 Prog.update(progress, in: progressParent)
             }
-        }
-        
-        //                    guard let image = infoViewModel.fullUIImage else { return }
-        //                    let saver = ImageSaver()
-        //                    saver.writeToPhotoAlbum(image: image) { [weak self] error in
-        //                        guard let view = self?.popupMessagesView else { return }
-        //
-        //                        guard let error = error else {
-        //                            print("Image saved to Photo Library successfuly.")
-        //                            self?.popUpInfoManager.showPopup(in: view, with: Strings.Popup.imageSavedSuccesfuly)
-        //                            return
-        //                        }
-        //
-        //                        print("[ImageSaver] \(error)")
-        //                        self?.popUpInfoManager.showPopup(in: view, with: Strings.Popup.imageNotSaved)
+        })
         
     }
     
