@@ -5,7 +5,7 @@
     </entity>
     <entity name="PhotoDataModel" representedClassName="PhotoDataModel" syncable="YES" codeGenerationType="class">
         <attribute name="id" attributeType="String"/>
-        <attribute name="storedImage" attributeType="Binary"/>
+        <attribute name="storedImage" attributeType="Binary" allowsExternalBinaryDataStorage="YES"/>
     </entity>
     <elements>
         <element name="FavoritePhotoDataModel" positionX="-63" positionY="-18" width="128" height="58"/>

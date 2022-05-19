@@ -15,6 +15,7 @@ class FeedViewController: UIViewController {
     @IBOutlet weak var feedTableView: UITableView!
     
     let refreshControl = UIRefreshControl()
+    var isRefreshing = false
     
     var photoManager = PhotoManager()
     var photosArray = [PhotoModel]()
@@ -36,7 +37,7 @@ class FeedViewController: UIViewController {
         refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
         feedTableView.addSubview(refreshControl)
         
-        photoManager.downloadPhotos()
+        photoManager.downloadRandomPhotos()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -54,7 +55,8 @@ class FeedViewController: UIViewController {
     }
     
     @objc private func refresh(_ sender: AnyObject) {
-        photoManager.downloadPhotos()
+        isRefreshing = true
+        photoManager.downloadRandomPhotos()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -106,6 +108,11 @@ extension FeedViewController: UITableViewDelegate {
         performSegue(withIdentifier: StoryboardSegue.Main.fromFeedToInfo.rawValue, sender: nil)
     }
     
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        guard let _ = feedTableView.visibleCells.last else { return }
+        photoManager.downloadRandomPhotos()
+    }
+    
 }
 
 extension FeedViewController: PhotoManagerDelegate {
@@ -115,13 +122,20 @@ extension FeedViewController: PhotoManagerDelegate {
     }
     
     func didDownloadPhotos(_ photoManager: PhotoManager, photos: [PhotoModel]) {
-        photosArray.append(contentsOf: photos.filter {
-            !photosArray.contains($0)
-        })
-        
-        DispatchQueue.main.sync {
-            self.refreshControl.endRefreshing()
-            self.feedTableView.reloadData()
+        if isRefreshing {
+            isRefreshing = false
+            photosArray = photos
+            DispatchQueue.main.sync {
+                self.refreshControl.endRefreshing()
+                self.feedTableView.reloadData()
+            }
+        } else {
+            photosArray.append(contentsOf: Set(photos).subtracting(Set(photosArray)))
+            
+            DispatchQueue.main.sync {
+                self.refreshControl.endRefreshing()
+                self.feedTableView.reloadData()
+            }
         }
     }
     

@@ -23,6 +23,10 @@ struct PhotoManager {
         performRequest(with: "\(K.photosURL)?count=\(count)")
     }
     
+    func downloadRandomPhotos(count: Int = 10) {
+        performRequest(with: "\(K.randomPhotosURL)?count=\(count)")
+    }
+    
     func downloadPhoto(byID id: String) {
         performRequestForSinglePhotoDownloading(with: "\(K.getPhotoById)\(id)")
     }
