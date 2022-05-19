@@ -16,6 +16,7 @@ class InfoViewModel: NSObject {
     
     private var model: PhotoModel
     private var fullImageForSaving: UIImage?
+    private var isImageDownloading = false
     
     fileprivate var downloadTaskReference: URLSessionDownloadTask?
     private var imageDownloader: ImageDownloader?
@@ -105,12 +106,6 @@ class InfoViewModel: NSObject {
 //                DataManager.shared.save(photoWithID: model.id, withUIImage: image)
 //            }
 //        }
-        
-//        imageDownloader.download(from: model.urls.full) { uiImage in
-//            print("[InfoViewModel] image downloaded.")
-//        } downloadingProgessHandler: { [weak self] progress in
-//            self?.imageDownloadingProgessHandler(progress)
-//        }
     }
     
     func toogleFavoriteState() {
@@ -125,8 +120,11 @@ class InfoViewModel: NSObject {
         completionHandler: @escaping (_ uiImage: UIImage?) -> Void,
         imageDownloadingProgessHandler: @escaping (_ progress: Float) -> Void)
     {
+        isImageDownloading = true
+        
         imageDownloader = ImageDownloader()
-        imageDownloader?.download(from: model.urls.full) { uiImage in
+        imageDownloader?.download(from: model.urls.full) { [weak self] uiImage in
+            self?.isImageDownloading = false
             completionHandler(uiImage)
         } downloadingProgessHandler: { progress in
             imageDownloadingProgessHandler(progress)
@@ -134,7 +132,10 @@ class InfoViewModel: NSObject {
     }
     
     func cancelImageDownloading() {
-        imageDownloader?.cancelDownload()
+        if isImageDownloading {
+            imageDownloader?.cancelDownload()
+            isImageDownloading = false
+        }
     }
     
     func saveImage() {
@@ -188,10 +189,6 @@ extension InfoViewModel: URLSessionDownloadDelegate {
             print(error)
             return nil
         }
-    }
-    
-    func cancelImageDownload() {
-        downloadTaskReference?.cancel()
     }
     
 }

@@ -11,6 +11,10 @@ import Progress
 
 class InfoViewController: UIViewController {
     
+    deinit {
+        infoViewModel.cancelImageDownloading()
+    }
+    
     @IBOutlet weak var popupMessagesView: UIView!
     @IBOutlet weak var imageContainerView: UIView!
     @IBOutlet weak var imageDownloadingProgessView: UIView!
