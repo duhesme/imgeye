@@ -18,6 +18,7 @@ class FeedViewController: UIViewController {
     var isRefreshing = false
     
     var photoManager = PhotoManager()
+    var searchManager = SearchManager()
     var photosArray = [PhotoModel]()
     
     let popUpInfoManager = PopUpInfoManager()
@@ -28,6 +29,7 @@ class FeedViewController: UIViewController {
         super.viewDidLoad()
         
         photoManager.delegate = self
+        searchManager.delegate = self
         
         feedTableView.rowHeight = 360
         feedTableView.register(PhotoTableViewCell.nib, forCellReuseIdentifier: PhotoTableViewCell.identifier)
@@ -38,6 +40,10 @@ class FeedViewController: UIViewController {
         feedTableView.addSubview(refreshControl)
         
         photoManager.downloadRandomPhotos()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
+            self?.searchManager.searchPhotos(byKeyword: "Forest")
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -168,6 +174,22 @@ extension FeedViewController: PhotoTableViewCellDelegate {
         }
         
         cell.update(model: photo)
+    }
+    
+}
+
+extension FeedViewController: SearchManagerDelegate {
+    
+    func didDownloadPhotosBySearch(_ searchManager: SearchManager, photos: [PhotoModel]) {
+        
+    }
+    
+    func didFailDownloadingPhotosBySearchWithErrorMessage(_ searchManager: SearchManager, errorData: ErrorData) {
+        
+    }
+    
+    func didFailWithErrorDownloadingPhotosBySearch(error: Error?) {
+        
     }
     
 }

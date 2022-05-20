@@ -91,7 +91,7 @@ struct PhotoManager {
                 let created_at = dateFormatter.date(from: d.created_at)!
                 let updated_at = dateFormatter.date(from: d.updated_at)!
                 
-                var p = PhotoModel(id: d.id, urls: urls, user: d.user, created_at: created_at, updated_at: created_at, likes: d.likes, downloads: d.downloads, location: d.location, tags: d.tags, description: d.description)
+                var p = PhotoModel(id: d.id, urls: urls, user: d.user, created_at: created_at, updated_at: updated_at, likes: d.likes, downloads: d.downloads, location: d.location, tags: d.tags, description: d.description)
                 
                 DispatchQueue.main.sync {
                     p.isFavorite = DataManager.shared.isPhotoFavorite(basedOnID: p.id)

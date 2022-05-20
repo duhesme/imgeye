@@ -14,9 +14,12 @@ enum K {
     
     private static let photos = "photos/"
     private static let randomPhotos = "photos/random/"
+    private static let searchPhotos = "/search/photos"
     
     static let photosURL = "\(apiURL)\(photos)"
     static let randomPhotosURL = "\(apiURL)\(randomPhotos)"
+    static let searchPhotosURL = "\(apiURL)\(searchPhotos)"
+    
     static let getUserByUsername = "\(apiURL)users/"
     static let getPhotoById = "\(apiURL)/photos/"
 }
