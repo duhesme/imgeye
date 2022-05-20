@@ -13,6 +13,7 @@ class FeedViewController: UIViewController {
     
     @IBOutlet weak var popUpMessagesView: UIView!
     @IBOutlet weak var feedTableView: UITableView!
+    @IBOutlet weak var feedSearchBar: UISearchBar!
     
     let refreshControl = UIRefreshControl()
     var isRefreshing = false
@@ -28,6 +29,8 @@ class FeedViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        feedSearchBar.delegate = self
+        
         photoManager.delegate = self
         searchManager.delegate = self
         
@@ -40,10 +43,6 @@ class FeedViewController: UIViewController {
         feedTableView.addSubview(refreshControl)
         
         photoManager.downloadRandomPhotos()
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
-            self?.searchManager.searchPhotos(byKeyword: "Forest")
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -181,7 +180,11 @@ extension FeedViewController: PhotoTableViewCellDelegate {
 extension FeedViewController: SearchManagerDelegate {
     
     func didDownloadPhotosBySearch(_ searchManager: SearchManager, photos: [PhotoModel]) {
-        
+        photosArray = photos
+        DispatchQueue.main.sync {
+            self.refreshControl.endRefreshing()
+            self.feedTableView.reloadData()
+        }
     }
     
     func didFailDownloadingPhotosBySearchWithErrorMessage(_ searchManager: SearchManager, errorData: ErrorData) {
@@ -190,6 +193,30 @@ extension FeedViewController: SearchManagerDelegate {
     
     func didFailWithErrorDownloadingPhotosBySearch(error: Error?) {
         
+    }
+    
+}
+
+extension FeedViewController: UISearchBarDelegate {
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let searchText = searchBar.text, searchText != "" else { return }
+        
+        searchManager.searchPhotos(byKeyword: searchText)
+        DispatchQueue.main.async {
+            searchBar.resignFirstResponder()
+        }
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchBar.text?.count == 0 {
+            isRefreshing = true
+            photoManager.downloadRandomPhotos()
+
+            DispatchQueue.main.async {
+                searchBar.resignFirstResponder()
+            }
+        }
     }
     
 }

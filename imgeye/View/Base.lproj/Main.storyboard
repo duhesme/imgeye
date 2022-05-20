@@ -23,6 +23,11 @@
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="D14-pI-PsV">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <searchBar key="tableHeaderView" contentMode="redraw" id="PsR-9b-WgF">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </searchBar>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="isUserInteractionDisabledWhenSkeletonIsActive" value="YES"/>
@@ -38,7 +43,7 @@
                                 </constraints>
                             </view>
                             <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J8m-0w-oqs" userLabel="PopUp Messages View">
-                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <rect key="frame" x="0.0" y="178" width="414" height="635"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
@@ -52,12 +57,13 @@
                             <constraint firstItem="J8m-0w-oqs" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="fAA-1k-0je"/>
                             <constraint firstItem="IeN-G5-ByZ" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="oGA-Ad-MGf"/>
                             <constraint firstItem="IeN-G5-ByZ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="rvX-us-VlN"/>
-                            <constraint firstItem="J8m-0w-oqs" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="vgL-qK-jHg"/>
+                            <constraint firstItem="J8m-0w-oqs" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="90" id="vgL-qK-jHg"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Feed" id="Chc-LB-LOR"/>
                     <navigationItem key="navigationItem" title="Feed" id="YOZ-2c-uLt"/>
                     <connections>
+                        <outlet property="feedSearchBar" destination="PsR-9b-WgF" id="G6I-k2-3OZ"/>
                         <outlet property="feedTableView" destination="D14-pI-PsV" id="9jP-rC-Xdm"/>
                         <outlet property="popUpMessagesView" destination="J8m-0w-oqs" id="5vg-CJ-h13"/>
                         <segue destination="F7K-Io-s36" kind="showDetail" identifier="FromFeedToInfo" id="rg2-oa-ymo"/>
