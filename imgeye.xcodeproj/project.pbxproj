@@ -53,6 +53,7 @@
 		84F62B5F2836A1C300F49B97 /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F62B5E2836A1C300F49B97 /* ImageDownloader.swift */; };
 		84F62B612836F55100F49B97 /* SearchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F62B602836F55100F49B97 /* SearchManager.swift */; };
 		84F62B632836F55800F49B97 /* SearchData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F62B622836F55800F49B97 /* SearchData.swift */; };
+		84FC63472839688B0097331B /* SearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FC63462839688B0097331B /* SearchModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -105,6 +106,7 @@
 		84F62B5E2836A1C300F49B97 /* ImageDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
 		84F62B602836F55100F49B97 /* SearchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchManager.swift; sourceTree = "<group>"; };
 		84F62B622836F55800F49B97 /* SearchData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchData.swift; sourceTree = "<group>"; };
+		84FC63462839688B0097331B /* SearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModel.swift; sourceTree = "<group>"; };
 		C64CD8A2C8E7AB7222904669 /* Pods-imgeye.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-imgeye.debug.xcconfig"; path = "Target Support Files/Pods-imgeye/Pods-imgeye.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -332,6 +334,7 @@
 			children = (
 				84F62B602836F55100F49B97 /* SearchManager.swift */,
 				84F62B622836F55800F49B97 /* SearchData.swift */,
+				84FC63462839688B0097331B /* SearchModel.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -518,6 +521,7 @@
 				84D31A742832FC0E00480113 /* InfoViewController.swift in Sources */,
 				84E89D772830FF7C00483368 /* IB-Scenes+Generated.swift in Sources */,
 				84E89D862831623200483368 /* UserManager.swift in Sources */,
+				84FC63472839688B0097331B /* SearchModel.swift in Sources */,
 				84E89D82283156AA00483368 /* FavoritesTableViewCell.swift in Sources */,
 				8455A4E82834EC4000F6540E /* UIImage+Extensions.swift in Sources */,
 			);

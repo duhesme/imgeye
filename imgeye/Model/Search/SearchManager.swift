@@ -8,7 +8,7 @@
 import Foundation
 
 protocol SearchManagerDelegate: NSObjectProtocol {
-    func didDownloadPhotosBySearch(_ searchManager: SearchManager, photos: [PhotoModel])
+    func didDownloadPhotosBySearch(_ searchManager: SearchManager, searchResult: SearchModel)
     func didFailDownloadingPhotosBySearchWithErrorMessage(_ searchManager: SearchManager, errorData: ErrorData)
     func didFailWithErrorDownloadingPhotosBySearch(error: Error?)
 }
@@ -17,11 +17,11 @@ struct SearchManager {
     
     weak var delegate: SearchManagerDelegate?
     
-    func searchPhotos(byKeyword keyword: String) {
-        performRequest(with: "\(K.searchPhotosURL)?page=2&query=\(keyword)")
+    func searchPhotos(byKeyword keyword: String, page: Int = 1, photosPerPage: Int = 10) {
+        performRequest(with: "\(K.searchPhotosURL)?page=\(page)&per_page=\(photosPerPage)&query=\(keyword)", keyword: keyword, page: page)
     }
     
-    private func performRequest(with urlString: String) {
+    private func performRequest(with urlString: String, keyword: String, page: Int) {
         let parameters = [
             "Accept-Version": "v1",
             "Authorization": "Client-ID \(K.accessKey)"
@@ -56,8 +56,8 @@ struct SearchManager {
                         }
                     } else {
                         if let safeData = data {
-                            if let photos = self.parseJSON(safeData) {
-                                self.delegate?.didDownloadPhotosBySearch(self, photos: photos)
+                            if let searchResult = self.parseJSON(safeData) {
+                                self.delegate?.didDownloadPhotosBySearch(self, searchResult: SearchModel(searchPhrase: keyword, page: page, total_pages: searchResult.totalPages, photos: searchResult.photos))
                             }
                         }
                     }
@@ -67,7 +67,7 @@ struct SearchManager {
         }
     }
     
-    private func parseJSON(_ photoData: Data) -> [PhotoModel]? {
+    private func parseJSON(_ photoData: Data) -> (totalPages: Int, photos: [PhotoModel])? {
         let decoder = JSONDecoder()
         do {
             let decodedData = try decoder.decode(SearchData.self, from: photoData)
@@ -90,8 +90,7 @@ struct SearchManager {
                 photos.append(p)
             }
             
-            print(photos)
-            return photos
+            return (totalPages: decodedData.total_pages, photos: photos)
         } catch {
             print(error)
             delegate?.didFailWithErrorDownloadingPhotosBySearch(error: error)

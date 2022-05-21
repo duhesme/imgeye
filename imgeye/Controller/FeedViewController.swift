@@ -29,6 +29,9 @@ class FeedViewController: UIViewController {
     let searchBarMaxInputLength = 128
     let downloadCount = 10
     var isDownloadingNewPhotos = false
+    var searchPhrase = ""
+    var currentSearchPage = 1
+    var isInSearch = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,6 +68,9 @@ class FeedViewController: UIViewController {
     
     @objc private func refresh(_ sender: AnyObject) {
         isRefreshing = true
+        searchPhrase = ""
+        currentSearchPage = 1
+        isInSearch = false
         photoManager.downloadRandomPhotos()
     }
     
@@ -118,10 +124,18 @@ extension FeedViewController: UITableViewDelegate, UIScrollViewDelegate {
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        guard let cell = feedTableView.visibleCells.last as? PhotoTableViewCell, let index = cell.indexPath?.row, index == photosArray.count - 2, !isDownloadingNewPhotos  else { return }
-        
-        isDownloadingNewPhotos = true
-        photoManager.downloadRandomPhotos()
+        if isInSearch {
+            guard let cell = feedTableView.visibleCells.last as? PhotoTableViewCell, let index = cell.indexPath?.row, index == photosArray.count - 2, !isDownloadingNewPhotos else { return }
+            
+            isDownloadingNewPhotos = true
+            searchManager.searchPhotos(byKeyword: searchPhrase, page: currentSearchPage)
+            currentSearchPage += 1
+        } else {
+            guard let cell = feedTableView.visibleCells.last as? PhotoTableViewCell, let index = cell.indexPath?.row, index == photosArray.count - 2, !isDownloadingNewPhotos  else { return }
+            
+            isDownloadingNewPhotos = true
+            photoManager.downloadRandomPhotos()
+        }
     }
     
 }
@@ -142,7 +156,7 @@ extension FeedViewController: PhotoManagerDelegate {
             }
         } else {
             let newPhotos = Set(photos).subtracting(Set(photosArray))
-            
+        
             var indexPathsToUpdate: [IndexPath] = []
             for index in photosArray.count..<(photosArray.count + downloadCount) {
                 indexPathsToUpdate.append(IndexPath(row: index, section: 0))
@@ -193,11 +207,28 @@ extension FeedViewController: PhotoTableViewCellDelegate {
 
 extension FeedViewController: SearchManagerDelegate {
     
-    func didDownloadPhotosBySearch(_ searchManager: SearchManager, photos: [PhotoModel]) {
-        photosArray = photos
-        DispatchQueue.main.sync {
-            self.refreshControl.endRefreshing()
-            self.feedTableView.reloadData()
+    func didDownloadPhotosBySearch(_ searchManager: SearchManager, searchResult: SearchModel) {
+        if searchResult.page == 1 {
+            photosArray = searchResult.photos
+            DispatchQueue.main.sync {
+                self.refreshControl.endRefreshing()
+                self.feedTableView.reloadData()
+            }
+        } else {
+            let newPhotos = searchResult.photos
+        
+            var indexPathsToUpdate: [IndexPath] = []
+            for index in photosArray.count..<(photosArray.count + downloadCount) {
+                indexPathsToUpdate.append(IndexPath(row: index, section: 0))
+            }
+            
+            photosArray.append(contentsOf: newPhotos)
+            
+            DispatchQueue.main.sync {
+                self.refreshControl.endRefreshing()
+                self.feedTableView.insertRows(at: indexPathsToUpdate, with: .fade)
+                self.isDownloadingNewPhotos = false
+            }
         }
     }
     
@@ -216,7 +247,14 @@ extension FeedViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let searchText = searchBar.text, searchText != "" else { return }
         
-        searchManager.searchPhotos(byKeyword: searchText.split(separator: " ").joined(separator: ","))
+        if searchText != searchPhrase {
+            currentSearchPage = 1
+        }
+        
+        searchPhrase = searchText.split(separator: " ").joined(separator: "+")
+        searchManager.searchPhotos(byKeyword: searchPhrase, page: currentSearchPage)
+        currentSearchPage += 1
+        isInSearch = true
         DispatchQueue.main.async {
             searchBar.resignFirstResponder()
         }
@@ -225,8 +263,11 @@ extension FeedViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchBar.text?.count == 0 {
             isRefreshing = true
+            searchPhrase = ""
+            currentSearchPage = 1
+            isInSearch = false
             photoManager.downloadRandomPhotos()
-
+            
             DispatchQueue.main.async {
                 searchBar.resignFirstResponder()
             }
