@@ -26,6 +26,10 @@ class FeedViewController: UIViewController {
     
     var selectedPhoto: PhotoModel?
     
+    let searchBarMaxInputLength = 128
+    let downloadCount = 10
+    var isDownloadingNewPhotos = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -106,15 +110,17 @@ extension FeedViewController: SkeletonTableViewDataSource {
     
 }
 
-extension FeedViewController: UITableViewDelegate {
+extension FeedViewController: UITableViewDelegate, UIScrollViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedPhoto = photosArray[indexPath.row]
         performSegue(withIdentifier: StoryboardSegue.Main.fromFeedToInfo.rawValue, sender: nil)
     }
     
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        guard let _ = feedTableView.visibleCells.last else { return }
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        guard let cell = feedTableView.visibleCells.last as? PhotoTableViewCell, let index = cell.indexPath?.row, index == photosArray.count - 2, !isDownloadingNewPhotos  else { return }
+        
+        isDownloadingNewPhotos = true
         photoManager.downloadRandomPhotos()
     }
     
@@ -135,11 +141,19 @@ extension FeedViewController: PhotoManagerDelegate {
                 self.feedTableView.reloadData()
             }
         } else {
-            photosArray.append(contentsOf: Set(photos).subtracting(Set(photosArray)))
+            let newPhotos = Set(photos).subtracting(Set(photosArray))
+            
+            var indexPathsToUpdate: [IndexPath] = []
+            for index in photosArray.count..<(photosArray.count + downloadCount) {
+                indexPathsToUpdate.append(IndexPath(row: index, section: 0))
+            }
+            
+            photosArray.append(contentsOf: newPhotos)
             
             DispatchQueue.main.sync {
                 self.refreshControl.endRefreshing()
-                self.feedTableView.reloadData()
+                self.feedTableView.insertRows(at: indexPathsToUpdate, with: .fade)
+                self.isDownloadingNewPhotos = false
             }
         }
     }
@@ -202,7 +216,7 @@ extension FeedViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let searchText = searchBar.text, searchText != "" else { return }
         
-        searchManager.searchPhotos(byKeyword: searchText)
+        searchManager.searchPhotos(byKeyword: searchText.split(separator: " ").joined(separator: ","))
         DispatchQueue.main.async {
             searchBar.resignFirstResponder()
         }
@@ -217,6 +231,11 @@ extension FeedViewController: UISearchBarDelegate {
                 searchBar.resignFirstResponder()
             }
         }
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        let totalCharacters = (searchBar.text?.appending(text).count ?? 0) - range.length
+        return totalCharacters <= searchBarMaxInputLength
     }
     
 }
