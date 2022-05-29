@@ -33,8 +33,12 @@ class FeedViewController: UIViewController {
     var currentSearchPage = 1
     var isInSearch = false
     
+    var viewModel = FeedViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        viewModel.delegate = self
         
         feedSearchBar.delegate = self
         
@@ -255,6 +259,7 @@ extension FeedViewController: UISearchBarDelegate {
         searchManager.searchPhotos(byKeyword: searchPhrase, page: currentSearchPage)
         currentSearchPage += 1
         isInSearch = true
+//        viewModel.downloadPhotos(bySearchPhrase: searchText)
         DispatchQueue.main.async {
             searchBar.resignFirstResponder()
         }
@@ -267,7 +272,7 @@ extension FeedViewController: UISearchBarDelegate {
             currentSearchPage = 1
             isInSearch = false
             photoManager.downloadRandomPhotos()
-            
+//            viewModel.refresh()
             DispatchQueue.main.async {
                 searchBar.resignFirstResponder()
             }
@@ -277,6 +282,21 @@ extension FeedViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         let totalCharacters = (searchBar.text?.appending(text).count ?? 0) - range.length
         return totalCharacters <= searchBarMaxInputLength
+    }
+    
+}
+
+extension FeedViewController: FeedViewModelDelegate {
+    
+    func didDownload(photos: [PhotoModel], to indexPaths: [IndexPath]?) {
+        DispatchQueue.main.sync {
+            refreshControl.endRefreshing()
+            if let indexPaths = indexPaths {
+                feedTableView.insertRows(at: indexPaths, with: .fade)
+            } else {
+                feedTableView.reloadData()
+            }
+        }
     }
     
 }

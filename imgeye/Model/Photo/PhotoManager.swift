@@ -15,6 +15,10 @@ protocol PhotoManagerDelegate: NSObjectProtocol {
     func didFailWithErrorDownloadingPhotos(error: Error?)
 }
 
+extension PhotoManagerDelegate {
+    func didDownloadPhoto(_ photoManager: PhotoManager, photo: PhotoModel) {}
+}
+
 struct PhotoManager {
     
     weak var delegate: PhotoManagerDelegate?
