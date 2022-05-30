@@ -18,15 +18,15 @@ What I learned from this project:
 - Expanded my knowlegde of custom UI elements and animations.
 ## Examples of the app behaviour <a name="example"></a>
 - Main screen (Photo feed).\
-<img src="https://s8.gifyu.com/images/Feed.gif" width="250" height="485" />
+![Feed](https://user-images.githubusercontent.com/30961535/171057713-3a67e166-ccc0-4918-ae58-5b932290c7e0.gif)
 - Photo Details screen.\
-<img src="https://s8.gifyu.com/images/Details.gif" width="250" height="485" />
+![Details](https://user-images.githubusercontent.com/30961535/171060293-94e7d497-adaa-4df7-8850-af3812034304.gif)
 - Adding photo to favorites.\
-<img src="https://s8.gifyu.com/images/Favorites.gif" width="250" height="485" />
+![Favorites](https://user-images.githubusercontent.com/30961535/171060303-826bc43b-c8df-4dff-8103-ec2f97cf832e.gif)
 - Saving photo to Photo Library.\
-<img src="https://s8.gifyu.com/images/Save.gif" width="250" height="485" />
+![Save](https://user-images.githubusercontent.com/30961535/171060310-0d34aab2-1323-421d-a9c4-c40d91f6ffd7.gif)
 - Searching by phrase.\
-<img src="https://s8.gifyu.com/images/Searchc21f8d542d80ca32.gif" width="250" height="485" />
+![Search](https://user-images.githubusercontent.com/30961535/171060315-3d58080d-bc3e-4dcb-a3e8-bef9956e2e24.gif)
 ## How to run the app <a name="howto"></a>
 1. Clone the repo.
 2. Open Terminal and navigate to project root folder.
