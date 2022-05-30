@@ -16,22 +16,21 @@ class FeedViewController: UIViewController {
     @IBOutlet weak var feedSearchBar: UISearchBar!
     
     let refreshControl = UIRefreshControl()
-    var isRefreshing = false
     
-    var photoManager = PhotoManager()
-    var searchManager = SearchManager()
-    var photosArray = [PhotoModel]()
+    var photosArray: [PhotoModel] {
+        get {
+            return viewModel.photosArray
+        }
+        set {
+            viewModel.photosArray = newValue
+        }
+    }
     
     let popUpInfoManager = PopUpInfoManager()
     
     var selectedPhoto: PhotoModel?
     
     let searchBarMaxInputLength = 128
-    let downloadCount = 10
-    var isDownloadingNewPhotos = false
-    var searchPhrase = ""
-    var currentSearchPage = 1
-    var isInSearch = false
     
     var viewModel = FeedViewModel()
     
@@ -42,9 +41,6 @@ class FeedViewController: UIViewController {
         
         feedSearchBar.delegate = self
         
-        photoManager.delegate = self
-        searchManager.delegate = self
-        
         feedTableView.rowHeight = 360
         feedTableView.register(PhotoTableViewCell.nib, forCellReuseIdentifier: PhotoTableViewCell.identifier)
         feedTableView.dataSource = self
@@ -53,7 +49,7 @@ class FeedViewController: UIViewController {
         refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
         feedTableView.addSubview(refreshControl)
         
-        photoManager.downloadRandomPhotos()
+        viewModel.downloadRandomPhotos()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -71,11 +67,7 @@ class FeedViewController: UIViewController {
     }
     
     @objc private func refresh(_ sender: AnyObject) {
-        isRefreshing = true
-        searchPhrase = ""
-        currentSearchPage = 1
-        isInSearch = false
-        photoManager.downloadRandomPhotos()
+        viewModel.refresh()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -128,60 +120,8 @@ extension FeedViewController: UITableViewDelegate, UIScrollViewDelegate {
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if isInSearch {
-            guard let cell = feedTableView.visibleCells.last as? PhotoTableViewCell, let index = cell.indexPath?.row, index == photosArray.count - 2, !isDownloadingNewPhotos else { return }
-            
-            isDownloadingNewPhotos = true
-            searchManager.searchPhotos(byKeyword: searchPhrase, page: currentSearchPage)
-            currentSearchPage += 1
-        } else {
-            guard let cell = feedTableView.visibleCells.last as? PhotoTableViewCell, let index = cell.indexPath?.row, index == photosArray.count - 2, !isDownloadingNewPhotos  else { return }
-            
-            isDownloadingNewPhotos = true
-            photoManager.downloadRandomPhotos()
-        }
-    }
-    
-}
-
-extension FeedViewController: PhotoManagerDelegate {
-    
-    func didDownloadPhoto(_ photoManager: PhotoManager, photo: PhotoModel) {
-        
-    }
-    
-    func didDownloadPhotos(_ photoManager: PhotoManager, photos: [PhotoModel]) {
-        if isRefreshing {
-            isRefreshing = false
-            photosArray = photos
-            DispatchQueue.main.sync {
-                self.refreshControl.endRefreshing()
-                self.feedTableView.reloadData()
-            }
-        } else {
-            let newPhotos = Set(photos).subtracting(Set(photosArray))
-        
-            var indexPathsToUpdate: [IndexPath] = []
-            for index in photosArray.count..<(photosArray.count + downloadCount) {
-                indexPathsToUpdate.append(IndexPath(row: index, section: 0))
-            }
-            
-            photosArray.append(contentsOf: newPhotos)
-            
-            DispatchQueue.main.sync {
-                self.refreshControl.endRefreshing()
-                self.feedTableView.insertRows(at: indexPathsToUpdate, with: .fade)
-                self.isDownloadingNewPhotos = false
-            }
-        }
-    }
-    
-    func didFailDownloadingPhotosWithErrorMessage(_ photoManager: PhotoManager, errorData: ErrorData) {
-        
-    }
-    
-    func didFailWithErrorDownloadingPhotos(error: Error?) {
-        
+        guard let cell = feedTableView.visibleCells.last as? PhotoTableViewCell, let index = cell.indexPath?.row else { return }
+        viewModel.loadNewPageOfPhotos(indexOfLastVisiblePhoto: index)
     }
     
 }
@@ -209,57 +149,11 @@ extension FeedViewController: PhotoTableViewCellDelegate {
     
 }
 
-extension FeedViewController: SearchManagerDelegate {
-    
-    func didDownloadPhotosBySearch(_ searchManager: SearchManager, searchResult: SearchModel) {
-        if searchResult.page == 1 {
-            photosArray = searchResult.photos
-            DispatchQueue.main.sync {
-                self.refreshControl.endRefreshing()
-                self.feedTableView.reloadData()
-            }
-        } else {
-            let newPhotos = searchResult.photos
-        
-            var indexPathsToUpdate: [IndexPath] = []
-            for index in photosArray.count..<(photosArray.count + downloadCount) {
-                indexPathsToUpdate.append(IndexPath(row: index, section: 0))
-            }
-            
-            photosArray.append(contentsOf: newPhotos)
-            
-            DispatchQueue.main.sync {
-                self.refreshControl.endRefreshing()
-                self.feedTableView.insertRows(at: indexPathsToUpdate, with: .fade)
-                self.isDownloadingNewPhotos = false
-            }
-        }
-    }
-    
-    func didFailDownloadingPhotosBySearchWithErrorMessage(_ searchManager: SearchManager, errorData: ErrorData) {
-        
-    }
-    
-    func didFailWithErrorDownloadingPhotosBySearch(error: Error?) {
-        
-    }
-    
-}
-
 extension FeedViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let searchText = searchBar.text, searchText != "" else { return }
-        
-        if searchText != searchPhrase {
-            currentSearchPage = 1
-        }
-        
-        searchPhrase = searchText.split(separator: " ").joined(separator: "+")
-        searchManager.searchPhotos(byKeyword: searchPhrase, page: currentSearchPage)
-        currentSearchPage += 1
-        isInSearch = true
-//        viewModel.downloadPhotos(bySearchPhrase: searchText)
+        viewModel.downloadPhotos(bySearchPhrase: searchText)
         DispatchQueue.main.async {
             searchBar.resignFirstResponder()
         }
@@ -267,12 +161,7 @@ extension FeedViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchBar.text?.count == 0 {
-            isRefreshing = true
-            searchPhrase = ""
-            currentSearchPage = 1
-            isInSearch = false
-            photoManager.downloadRandomPhotos()
-//            viewModel.refresh()
+            viewModel.refresh()
             DispatchQueue.main.async {
                 searchBar.resignFirstResponder()
             }

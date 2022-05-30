@@ -23,7 +23,6 @@ class FeedViewModel: NSObject {
     
     var selectedPhoto: PhotoModel?
     
-    let searchBarMaxInputLength = 128
     let downloadCount = 10
     var isDownloadingNewPhotos = false
     var searchPhrase = ""
@@ -46,7 +45,7 @@ class FeedViewModel: NSObject {
     }
     
     func downloadRandomPhotos(count: Int = 10) {
-        
+        photoManager.downloadRandomPhotos()
     }
     
     func downloadPhotos(bySearchPhrase phrase: String) {
