@@ -46,7 +46,7 @@
                                         <rect key="frame" x="150" y="16" width="284" height="118"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="J4b-pw-4eC">
-                                                <rect key="frame" x="114" y="46" width="56" height="26.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="284" height="118"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -59,6 +59,10 @@
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstItem="J4b-pw-4eC" firstAttribute="centerX" secondItem="s0q-OQ-KlB" secondAttribute="centerX" id="29N-aH-mWb"/>
+                                            <constraint firstItem="J4b-pw-4eC" firstAttribute="top" secondItem="s0q-OQ-KlB" secondAttribute="top" id="6Ao-SQ-3BA"/>
+                                            <constraint firstAttribute="bottom" secondItem="J4b-pw-4eC" secondAttribute="bottom" id="6CY-Q8-flY"/>
+                                            <constraint firstAttribute="trailing" secondItem="J4b-pw-4eC" secondAttribute="trailing" id="JA0-DB-muN"/>
+                                            <constraint firstItem="J4b-pw-4eC" firstAttribute="leading" secondItem="s0q-OQ-KlB" secondAttribute="leading" id="tE2-og-B2s"/>
                                             <constraint firstItem="J4b-pw-4eC" firstAttribute="centerY" secondItem="s0q-OQ-KlB" secondAttribute="centerY" id="uhy-5B-4W3"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
