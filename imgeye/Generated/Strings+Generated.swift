@@ -39,6 +39,10 @@ public enum Strings {
       /// Feed
       public static let title = Strings.tr("Localizable", "Feed.Navigation.Title")
     }
+    public enum Popup {
+      /// Failed to download photos
+      public static let downloadingFailed = Strings.tr("Localizable", "Feed.Popup.DownloadingFailed")
+    }
   }
 
   public enum Popup {

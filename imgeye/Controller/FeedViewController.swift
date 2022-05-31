@@ -188,4 +188,12 @@ extension FeedViewController: FeedViewModelDelegate {
         }
     }
     
+    func didFailDownloading(withErrorData errorData: ErrorData?) {
+        popUpInfoManager.showPopup(in: popUpMessagesView, with: Strings.Feed.Popup.downloadingFailed)
+    }
+    
+    func didFailDownloading(withError error: Error?) {
+        popUpInfoManager.showPopup(in: popUpMessagesView, with: Strings.Feed.Popup.downloadingFailed)
+    }
+    
 }

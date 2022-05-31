@@ -9,6 +9,13 @@ import Foundation
 
 protocol FeedViewModelDelegate: NSObjectProtocol {
     func didDownload(photos: [PhotoModel], to indexPaths: [IndexPath]?)
+    func didFailDownloading(withErrorData errorData: ErrorData?)
+    func didFailDownloading(withError error: Error?)
+}
+
+extension FeedViewModelDelegate {
+    func didFailDownloading(withErrorData errorData: ErrorData?) {}
+    func didFailDownloading(withError error: Error?) {}
 }
 
 class FeedViewModel: NSObject {
@@ -96,11 +103,11 @@ extension FeedViewModel: PhotoManagerDelegate {
     }
     
     func didFailDownloadingPhotosWithErrorMessage(_ photoManager: PhotoManager, errorData: ErrorData) {
-        
+        delegate?.didFailDownloading(withErrorData: errorData)
     }
     
     func didFailWithErrorDownloadingPhotos(error: Error?) {
-        
+        delegate?.didFailDownloading(withError: error)
     }
     
 }
@@ -126,11 +133,11 @@ extension FeedViewModel: SearchManagerDelegate {
     }
     
     func didFailDownloadingPhotosBySearchWithErrorMessage(_ searchManager: SearchManager, errorData: ErrorData) {
-        
+        delegate?.didFailDownloading(withErrorData: errorData)
     }
     
     func didFailWithErrorDownloadingPhotosBySearch(error: Error?) {
-        
+        delegate?.didFailDownloading(withError: error)
     }
     
 }

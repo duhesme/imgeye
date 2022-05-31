@@ -13,6 +13,7 @@
 
 // Feed
 "Feed.Navigation.Title" = "Feed";
+"Feed.Popup.DownloadingFailed" = "Failed to download photos";
 
 // Favorites
 "Favorites.Navigation.Title" = "Favorites";
