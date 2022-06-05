@@ -68,6 +68,7 @@ class FeedViewController: UIViewController {
     
     @objc private func refresh(_ sender: AnyObject) {
         viewModel.refresh()
+        feedSearchBar.text = ""
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
