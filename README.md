@@ -1,13 +1,13 @@
 ## Table of Contents
-1. [What is this project about](#about)
-2. [Why did I make this project](#why)
+1. [What is this project about?](#about)
+2. [Why did I make this project?](#why)
 3. [Examples of the app behaviour](#example)
 4. [How to run the app](#howto)
 <a name="about"></a>
-## What is this project about 
+## What is this project about? 
 An app for viewing and saving images using the [Unsplash API](https://unsplash.com/documentation).
 <a name="why"></a>
-## Why did I make this project
+## Why did I make this project?
 I made the project to expand my knowledge in iOS Development.\
 What I learned from this project:
 - How to implement MVVM architecture.
