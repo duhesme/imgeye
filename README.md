@@ -2,7 +2,8 @@
 1. [What is this project about?](#about)
 2. [Why did I make this project?](#why)
 3. [Examples of the app behaviour](#example)
-4. [How to run the app](#howto)
+4. [Dependencies](#dependencies)
+5. [How to run the app](#howto)
 <a name="about"></a>
 ## What is this project about? 
 An app for viewing and saving images using the [Unsplash API](https://unsplash.com/documentation).
@@ -30,8 +31,15 @@ What I learned from this project:
 ![Save](https://user-images.githubusercontent.com/30961535/171060310-0d34aab2-1323-421d-a9c4-c40d91f6ffd7.gif)
 - Searching by phrase.\
 ![Search](https://user-images.githubusercontent.com/30961535/171060315-3d58080d-bc3e-4dcb-a3e8-bef9956e2e24.gif)
+## Dependencies
+The project uses the following pods:
+- [SwiftGen](https://github.com/SwiftGen/SwiftGen)
+- [KingFisher](https://github.com/onevcat/Kingfisher)
+- [SkeletonView](https://github.com/Juanpe/SkeletonView)
+- [Progress](https://github.com/popodidi/Progress)
+- [SwipeCellKit](https://github.com/SwipeCellKit/SwipeCellKit)
 <a name="howto"></a>
 ## How to run the app
 1. Clone the repo.
-2. Open Terminal and navigate to project root folder.
+2. Open Terminal and navigate to the project root folder.
 3. Run `pod install && open imgeye.xcworkspace`.
