@@ -7,7 +7,6 @@ target 'imgeye' do
 
   # Pods for imgeye
   pod 'SwipeCellKit', :git => 'https://github.com/SwipeCellKit/SwipeCellKit.git', :branch => 'develop'
-  pod 'UnsplashPhotoPicker', '~> 1.3'
   pod 'Kingfisher', '~> 6.0'
   pod 'SkeletonView'
   pod 'SwiftGen'
